@@ -250,6 +250,15 @@
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
     }
 
+    /* Selected Works — Bento archive */
+    .projects-bento-tile {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+    }
+    .projects-bento-tile:hover {
+      transform: translateY(-2px);
+      border-color: #0D0D0D;
+    }
+
     /* Toast animation */
     .toast-enter {
       transform: translateY(100%);
@@ -728,23 +737,23 @@
   </section>
   <!-- END: Experience Section -->
 
-  <!-- BEGIN: Featured Project Section -->
+  <!-- BEGIN: Selected Works — Bento Archive -->
   <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-16" data-purpose="featured-projects" id="projects">
-    <!-- Header -->
-    <div class="mb-8">
-      <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-900">
-        <span data-i18n="projects.title">TANLANGAN LOYIHA</span>
-      </h2>
+    <div class="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2" data-i18n="projects.eyebrow">LOYIHALAR</p>
+        <h2 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-[0.9]">
+          <span data-i18n="projects.title">SELECTED WORKS</span>
+        </h2>
+      </div>
+      <p class="text-xs md:text-sm text-neutral-500 max-w-sm leading-relaxed" data-i18n="projects.subtitle">
+        Tanlangan web, landing va client loyihalar. Katta plitkalar — asosiy case’lar.
+      </p>
     </div>
 
-    <!-- Dynamic Projects Content Area with FlexCarousel -->
-    <div id="projects-content" class="w-full">
-      <div id="flex-carousel-container" class="rounded-3xl border border-neutral-200 bg-[#EFEFEF] overflow-hidden shadow-inner" style="width: 100%; height: 560px; position: relative;">
-        <!-- FlexCarousel mounts here -->
-      </div>
-    </div>
+    <div id="projects-bento" class="w-full"></div>
   </section>
-  <!-- END: Featured Project Section -->
+  <!-- END: Selected Works — Bento Archive -->
 
   <!-- BEGIN: Landing Pages Featured Projects (WorksWheel) Section -->
   <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-16" data-purpose="landing-pages-featured-projects" id="landing-pages">
@@ -1428,35 +1437,24 @@
     }
   </script>
 
-  <!-- FlexCarousel Initialization (React Bits Component Engine) -->
+  <!-- Selected Works Bento -->
   <script type="module">
-    import { initFlexCarousel, DEFAULT_ITEMS } from './flex-carousel.js';
+    import { initProjectsBento } from './projects-bento.js';
 
-    function startCarousel() {
-      const container = document.getElementById('flex-carousel-container');
-      if (container) {
-        window.flexCarouselInstance = initFlexCarousel(container, {
-          items: DEFAULT_ITEMS,
-          preset: 'liquid',
-          intro: 'rise',
-          cardHeight: 0.5,
-          gap: 12,
-          squeeze: 0.2,
-          focusOnClick: true,
-          captions: true,
-          onSelect: (index, item) => {
-            if (window.openProjectModal) {
-              window.openProjectModal(item);
-            }
-          }
-        });
-      }
+    function startProjectsBento() {
+      const container = document.getElementById('projects-bento');
+      if (!container) return;
+      window.projectsBentoInstance = initProjectsBento(container, {
+        onSelect: (_index, item) => {
+          if (window.openProjectModal) window.openProjectModal(item);
+        }
+      });
     }
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', startCarousel);
+      document.addEventListener('DOMContentLoaded', startProjectsBento);
     } else {
-      startCarousel();
+      startProjectsBento();
     }
   </script>
 

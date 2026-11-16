@@ -68,7 +68,9 @@ export const translations = {
     'exp.jumpFreelance': 'FRILANS',
     'exp.present': 'HOZIR',
 
-    'projects.title': 'TANLANGAN LOYIHA',
+    'projects.eyebrow': 'LOYIHALAR',
+    'projects.title': 'SELECTED WORKS',
+    'projects.subtitle': 'Tanlangan web, landing va client loyihalar. Katta plitkalar — asosiy case’lar.',
     'landing.title': 'LANDING PAGE LAR',
 
     'services.title': 'TAQDIM ETADIGAN XIZMATLAR',
@@ -183,7 +185,9 @@ export const translations = {
     'exp.jumpFreelance': 'FREELANCE',
     'exp.present': 'PRESENT',
 
-    'projects.title': 'FEATURED PROJECT',
+    'projects.eyebrow': 'PROJECTS',
+    'projects.title': 'SELECTED WORKS',
+    'projects.subtitle': 'Selected web, landing, and client projects. Larger tiles mark primary cases.',
     'landing.title': 'LANDING PAGES',
 
     'services.title': 'THE SERVICES WE PROVIDE',
@@ -298,7 +302,9 @@ export const translations = {
     'exp.jumpFreelance': 'ФРИЛАНС',
     'exp.present': 'СЕЙЧАС',
 
-    'projects.title': 'ИЗБРАННЫЙ ПРОЕКТ',
+    'projects.eyebrow': 'ПРОЕКТЫ',
+    'projects.title': 'SELECTED WORKS',
+    'projects.subtitle': 'Избранные web, landing и client проекты. Крупные плитки — главные кейсы.',
     'landing.title': 'ЛЕНДИНГИ',
 
     'services.title': 'УСЛУГИ, КОТОРЫЕ МЫ ПРЕДОСТАВЛЯЕМ',

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>08 · Year Rail (20)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: "Plus Jakarta Sans", sans-serif; background: #FAFAFA; color: #121212; }
+    .year-nav button.active { background: #0D0D0D; color: #fff; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+  <div class="max-w-[1400px] mx-auto px-6 md:px-14 py-6 flex justify-between">
+    <a href="./index.html" class="text-[11px] font-bold tracking-widest uppercase text-neutral-500">← CONCEPT LAB</a>
+    <p class="text-[11px] font-mono text-neutral-400">08 / YEAR RAIL · 20</p>
+  </div>
+
+  <header class="max-w-[1400px] mx-auto px-6 md:px-14 pb-6">
+    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight">Archive by Year</h1>
+    <p class="mt-2 text-sm text-neutral-500">20 ta loyiha yil bo‘yicha guruhlangan. Chap sticky yillar — tez sakrash.</p>
+  </header>
+
+  <div class="max-w-[1400px] mx-auto px-6 md:px-14 pb-24 grid lg:grid-cols-12 gap-8">
+    <aside class="lg:col-span-2">
+      <div id="years" class="year-nav lg:sticky lg:top-8 flex lg:flex-col gap-2 overflow-x-auto"></div>
+    </aside>
+    <div id="sections" class="lg:col-span-10 space-y-14"></div>
+  </div>
+
+  <script type="module">
+    import { PROJECTS } from './projects-data-20.js';
+    const byYear = {};
+    PROJECTS.forEach(p => { (byYear[p.year] ||= []).push(p); });
+    const years = Object.keys(byYear).sort((a,b) => b.localeCompare(a));
+
+    document.getElementById('years').innerHTML = years.map((y, i) =>
+      `<a href="#y-${y}" data-y="${y}" class="px-4 py-2 rounded-full border border-neutral-300 text-[11px] font-bold tracking-wider whitespace-nowrap ${i===0?'active bg-black text-white border-black':''}">${y}</a>`
+    ).join('');
+
+    document.getElementById('sections').innerHTML = years.map(y => `
+      <section id="y-${y}">
+        <div class="flex items-end justify-between border-b border-neutral-200 pb-3 mb-5">
+          <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight">${y}</h2>
+          <span class="text-[11px] font-mono text-neutral-400">${byYear[y].length} loyiha</span>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          ${byYear[y].map(p => `
+            <a href="${p.link}" target="_blank" rel="noopener" class="flex gap-4 p-3 rounded-2xl border border-neutral-200 bg-white hover:border-black transition">
+              <div class="w-28 h-20 shrink-0 rounded-xl overflow-hidden bg-neutral-100">
+                <img src="${p.src}" alt="" class="w-full h-full object-cover object-top" loading="lazy">
+              </div>
+              <div class="min-w-0">
+                <p class="text-[10px] font-mono text-neutral-400 tracking-widest">${p.tag.toUpperCase()}</p>
+                <h3 class="font-black uppercase tracking-tight text-sm md:text-base truncate">${p.title}</h3>
+                <p class="text-[11px] text-neutral-500 line-clamp-2 mt-1">${p.desc}</p>
+              </div>
+            </a>
+          `).join('')}
+        </div>
+      </section>
+    `).join('');
+
+    const links = [...document.querySelectorAll('#years a')];
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const y = e.target.id.replace('y-','');
+        links.forEach(a => {
+          const on = a.dataset.y === y;
+          a.classList.toggle('bg-black', on);
+          a.classList.toggle('text-white', on);
+          a.classList.toggle('border-black', on);
+        });
+      });
+    }, { rootMargin: '-30% 0px -55% 0px' });
+    years.forEach(y => io.observe(document.getElementById(`y-${y}`)));
+  </script>
+</body>
+</html>

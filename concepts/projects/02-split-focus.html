@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>02 · Split Focus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: "Plus Jakarta Sans", sans-serif; background: #FAFAFA; color: #121212; }
+    .idx-btn { transition: color .2s, border-color .2s, background .2s; }
+    .idx-btn.active { background: #0D0D0D; color: #fff; border-color: #0D0D0D; }
+    #preview-img { transition: opacity .35s ease; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-14 py-8 flex items-center justify-between">
+    <a href="./index.html" class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 hover:text-black">← CONCEPT LAB</a>
+    <p class="text-[11px] font-mono tracking-widest text-neutral-400">02 / SPLIT FOCUS</p>
+  </div>
+
+  <div class="max-w-[1400px] mx-auto px-6 md:px-14 pb-6">
+    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight">Loyihalar</h1>
+  </div>
+
+  <main class="max-w-[1400px] mx-auto px-6 md:px-14 pb-16 grid lg:grid-cols-12 gap-8 min-h-[70vh]">
+    <aside class="lg:col-span-4 flex flex-col gap-2" id="index"></aside>
+    <section class="lg:col-span-8 flex flex-col">
+      <div class="relative flex-1 min-h-[360px] rounded-3xl overflow-hidden border border-neutral-200 bg-neutral-100">
+        <img id="preview-img" src="" alt="" class="absolute inset-0 w-full h-full object-cover object-top">
+      </div>
+      <div class="mt-5 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <p id="preview-meta" class="text-[10px] font-mono tracking-widest text-neutral-400"></p>
+          <h2 id="preview-title" class="text-3xl md:text-4xl font-black uppercase tracking-tight mt-1"></h2>
+          <p id="preview-desc" class="mt-2 text-sm text-neutral-600 max-w-xl"></p>
+        </div>
+        <a id="preview-link" href="#" target="_blank" rel="noopener" class="shrink-0 px-5 py-2.5 rounded-full bg-black text-white text-[11px] font-bold tracking-wider uppercase hover:bg-neutral-800">Live ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { PROJECTS } from './projects-data.js';
+    let active = 0;
+    const index = document.getElementById('index');
+
+    function renderIndex() {
+      index.innerHTML = PROJECTS.map((p, i) => `
+        <button type="button" data-i="${i}" class="idx-btn text-left w-full px-4 py-3 rounded-2xl border border-neutral-200 ${i===active?'active':''}">
+          <div class="flex items-center justify-between gap-3">
+            <span class="text-sm font-bold uppercase tracking-wide">${p.title}</span>
+            <span class="text-[10px] font-mono text-neutral-400">${String(i+1).padStart(2,'0')}</span>
+          </div>
+          <p class="text-[11px] text-neutral-500 mt-1 ${i===active?'text-neutral-300':''}">${p.subtitle}</p>
+        </button>
+      `).join('');
+      index.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => { active = +btn.dataset.i; paint(); });
+        btn.addEventListener('mouseenter', () => { active = +btn.dataset.i; paint(); });
+      });
+    }
+
+    function paint() {
+      const p = PROJECTS[active];
+      const img = document.getElementById('preview-img');
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = p.src;
+        img.alt = p.title;
+        img.style.opacity = '1';
+      }, 160);
+      document.getElementById('preview-meta').textContent = `${p.tag.toUpperCase()} · ${p.year} · ${p.stack.join(' / ')}`;
+      document.getElementById('preview-title').textContent = p.title;
+      document.getElementById('preview-desc').textContent = p.desc;
+      document.getElementById('preview-link').href = p.link;
+      renderIndex();
+    }
+
+    paint();
+  </script>
+</body>
+</html>
