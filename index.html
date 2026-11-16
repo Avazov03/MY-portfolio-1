@@ -15,6 +15,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Avazov Ogabek — Dizayner & Dasturchi Portfolio</title>
   <meta name="description" content="Avazov Ogabek portfolio: UI/UX, veb-dizayn, landing page va zamonaviy interaktiv tajribalar.">
+  <link rel="icon" href="assets/favicon-avazov.svg" type="image/svg+xml">
   
   <!-- Tailwind CSS v3 with Plugins -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -268,6 +269,215 @@
       transform: translateY(-2px);
     }
 
+    /* Talk stage — my.portfolio Stage + About portrait */
+    .talk-shell {
+      --talk-gold: #FCC464;
+      --talk-gold-hover: #f0b24a;
+      --talk-ink: #ffffff;
+      --talk-soft: #c9c9c9;
+      --talk-muted: #8e8e8e;
+      --talk-edge: #1c1c1c;
+      --talk-core: #454545;
+      width: 100%;
+      background: #0e0e0f;
+      padding: 0;
+    }
+    @media (min-width: 1024px) {
+      .talk-shell { padding: 1.5rem; }
+    }
+    .talk-stage {
+      position: relative;
+      width: 100%;
+      max-width: 1380px;
+      margin: 0 auto;
+      overflow: hidden;
+      color: var(--talk-ink);
+      background-color: var(--talk-edge);
+      background-image: radial-gradient(
+        circle at 56% 45%,
+        var(--talk-core) 0%,
+        #2a2a2a 38%,
+        var(--talk-edge) 75%
+      );
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (min-width: 1024px) {
+      .talk-stage {
+        border-radius: 18px;
+        min-height: 560px;
+      }
+    }
+    .talk-stroke {
+      -webkit-text-stroke: 1.5px rgb(255 255 255 / 0.13);
+      color: transparent;
+      user-select: none;
+      pointer-events: none;
+    }
+    .talk-gold { color: var(--talk-gold); }
+    .talk-btn-gold {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 1.75rem; border-radius: 999px;
+      background: var(--talk-gold); color: #0D0D0D;
+      font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      transition: background .2s, box-shadow .2s;
+      box-shadow: 0 0 24px rgba(252, 196, 100, 0.35);
+    }
+    .talk-btn-gold:hover { background: var(--talk-gold-hover); }
+    .talk-btn-outline {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 1.5rem; border-radius: 999px;
+      border: 1.5px solid rgba(255,255,255,.45); color: #fff;
+      font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      transition: border-color .2s, background .2s;
+    }
+    .talk-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); }
+    .talk-deco {
+      position: absolute;
+      left: 42%;
+      top: 28%;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #fff;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .talk-deco::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 28px;
+      height: 28px;
+      border: 1.5px solid rgba(255,255,255,.85);
+      border-radius: 999px;
+      transform: translate(-50%, -50%);
+    }
+    /* Portrait — exact about-page pattern from my.portfolio */
+    .talk-portrait {
+      pointer-events: none;
+      position: relative;
+      z-index: 20;
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      margin-bottom: 0;
+      height: 380px;
+    }
+    @media (min-width: 640px) {
+      .talk-portrait {
+        margin-left: -2.5rem;
+        margin-right: -2.5rem;
+        height: 400px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .talk-portrait {
+        position: absolute;
+        right: 18%;
+        bottom: 0;
+        left: auto;
+        margin: 0;
+        height: 96%;
+        width: 420px;
+      }
+    }
+    .talk-portrait__glow {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 40px;
+      width: 18rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,.8);
+      filter: blur(24px);
+    }
+    .talk-portrait img {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+      width: auto;
+      max-width: none;
+      object-fit: contain;
+      object-position: bottom;
+      filter: drop-shadow(0 25px 45px rgba(0,0,0,.9));
+    }
+
+    /* AVAZOV logo — black-hole mark + wordmark (site DNA, no gold box) */
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      text-decoration: none;
+      color: #0D0D0D;
+      user-select: none;
+    }
+    .brand-logo__mark {
+      display: flex;
+      width: 2.35rem;
+      height: 2.35rem;
+      align-items: center;
+      justify-content: center;
+      color: #0D0D0D;
+      background: transparent;
+      flex-shrink: 0;
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .brand-logo:hover .brand-logo__mark { transform: rotate(12deg); }
+    .brand-logo__mark svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .brand-logo__word {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #0D0D0D;
+      line-height: 1;
+    }
+    .brand-logo__tag {
+      display: none;
+    }
+
+    /* Site cursor */
+    html.has-site-cursor,
+    html.has-site-cursor * { cursor: none !important; }
+    html.has-site-cursor input,
+    html.has-site-cursor textarea,
+    html.has-site-cursor select,
+    html.has-site-cursor [contenteditable="true"] { cursor: text !important; }
+    .site-cursor {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity .35s;
+      mix-blend-mode: difference;
+    }
+    .site-cursor__dot {
+      position: absolute;
+      top: 0; left: 0;
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: #fff;
+      will-change: transform;
+    }
+    .site-cursor__ring {
+      position: absolute;
+      top: 0; left: 0;
+      width: 36px; height: 36px;
+      border-radius: 999px;
+      border: 1.5px solid #fff;
+      will-change: transform;
+    }
+
     /* Toast animation */
     .toast-enter {
       transform: translateY(100%);
@@ -286,10 +496,16 @@
 
   <!-- BEGIN: Navigation Header -->
   <header class="relative z-40 bg-[#FAFAFA] transition-all duration-300 w-full pt-6 pb-4 px-6 md:px-14 max-w-[1400px] mx-auto flex items-center justify-between" data-purpose="site-navigation">
-    <!-- Brand Wordmark -->
-    <a class="group font-extrabold text-xl tracking-tight text-black flex items-center" href="#home">
-      <span>ECHO</span>
-      <span class="inline-block w-2 h-2 bg-black rounded-full ml-1 transition-transform group-hover:scale-150 duration-200"></span>
+    <!-- Brand: black-hole icon + AVAZOV -->
+    <a class="brand-logo" href="#home" data-i18n-aria="brand.homeLabel" aria-label="Og‘abek Avazov — bosh sahifa">
+      <span class="brand-logo__mark" aria-hidden="true">
+        <svg viewBox="0 0 512 512" fill="currentColor">
+          <path d="M455.5,128.9c-0.8-1.3-3.3-2-6.9-2c-4.4,0-10.5,1.1-17.9,3.1c-15.7,4.4-32,6.6-48.2,6.6c-22.1,0-43.8-4-64.5-11.9c-18.8-8.9-39.9-13.9-62.1-13.9c-80.2,0-145.2,65-145.2,145.2c0,28.4,8.2,54.9,22.3,77.3l0.2-0.1c9.1-4.3,19-9.5,29.5-15.2l0.2-0.1c-11.8-17.7-18.7-39-18.7-61.9c0-61.7,50.1-111.8,111.8-111.8c22.8,0,43.9,6.8,61.6,18.5c8.6,5.7,16.4,12.6,23.2,20.4c0.1,0.1,0.1,0.1,0.1,0.2c12.9,21.7-18.1,52.8-47.1,72.5c-0.1,0.1-0.1,0.1-0.2,0.1c-22.6,17.9-49.6,36.3-69.1,48.8c0,0-6.7,3.9-16.3,9.4l0,0c-9.4,5.4-21.5,12.4-33,18.9c-11.9,6.7-23.2,13-29.8,16.5c-0.1,0-0.1,0.1-0.2,0.1c-1.3,0.6-2.3,1.2-3.2,1.6c-15.2,7.2-35.7,15.8-46.6,15.8c-4,0-6.7-1.1-8.2-3.4c-2.2-3.5-2.7-10.6,19-31c1.1-1,1.3-2.7,0.5-4c-0.6-0.9-1.6-1.4-2.6-1.4c-0.5,0-1.3,0.1-2,0.7c-6.2,5.4-11.9,10.5-16.9,15.3c-24.8,23.6-30.9,36.2-28.6,39.8c0.8,1.3,3.3,2,6.9,2c8.4,0,22.7-3.8,41.2-11.1c12.4-4.9,26.7-11.2,42.6-19c0.6-0.3,1.2-0.6,1.8-0.9c0.1,0,0.1-0.1,0.2-0.1c9.9-4.9,20.3-10.2,30.9-16c6.6-3.5,13.2-7.2,20-11c23.8-13.3,48.4-28.1,73.2-43.9c24.8-15.8,48.6-31.9,70.8-47.8c6.3-4.6,12.5-9.1,18.4-13.5c9.7-7.3,18.9-14.4,27.5-21.3c0.1-0.1,0.1-0.1,0.2-0.2c0.5-0.4,1-0.8,1.5-1.2C448.4,153.5,458.5,133.5,455.5,128.9z"/>
+          <path opacity="0.72" d="M391.7,199.2c-0.6,0.5-1.2,0.9-1.7,1.4c-8.6,6.9-17.8,14-27.5,21.3c-6,4.5-12.1,9-18.4,13.5c-22.2,16-46,32-70.7,47.8c-24.8,15.8-49.4,30.6-73.2,43.9c-6.8,3.8-13.4,7.5-20,11c-10.6,5.7-21,11.1-30.9,16c-0.7,0.4-1.4,0.7-2,1c-15.9,7.8-30.2,14.2-42.6,19c-18.5,7.2-32.7,11.1-41.2,11.1c-3.6,0-6.1-0.7-6.9-2c-2.3-3.6,3.8-16.2,28.6-39.8c5-4.8,10.7-9.9,16.9-15.3c0.7-0.6,1.5-0.8,2-0.8c1.1,0,2.1,0.5,2.6,1.4c0.8,1.2,0.6,2.9-0.5,4c-21.7,20.4-21.3,27.4-19,31c1.5,2.3,4.2,3.4,8.2,3.4c10.9,0,31.4-8.6,46.6-15.8c0.9-0.4,2.1-1,3.4-1.7c6.7-3.4,17.9-9.7,29.8-16.4c11.5-6.5,23.7-13.5,33-18.9l0,0C312.9,257.1,391.2,194.3,404,169.4c15.6-30.5-39.9-23-93.6-47.8c1.3,0.5,2.6,1.1,3.9,1.6c21.8,8.9,44.8,13.4,68.3,13.4c16.3,0,32.5-2.2,48.2-6.6c7.4-2.1,13.4-3.1,17.9-3.1c3.6,0,6.1,0.7,6.9,2C458.5,133.5,448.4,153.5,391.7,199.2z"/>
+          <path d="M396.9,220.7l-0.2,0.2l-29.6,22.6l0,0c0.5,4.1,0.7,8.3,0.7,12.5c0,61.7-50.1,111.8-111.8,111.8c-16,0-31.3-3.4-45-9.4c-4.6-2-9-4.4-13.3-7l0,0l-33.1,17.4c25,20.3,56.8,32.4,91.5,32.4c80.2,0,145.2-65,145.2-145.2C401.2,243.8,399.7,232,396.9,220.7z"/>
+        </svg>
+      </span>
+      <span class="brand-logo__word" data-i18n="brand.wordmark">AVAZOV</span>
     </a>
 
     <!-- Center Navigation Links (Pill with no unwanted wrapping) -->
@@ -298,30 +514,26 @@
       <a id="nav-about" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#about" data-i18n="nav.about">MEN HAQIMDA</a>
       <a id="nav-experience" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#experience" data-i18n="nav.experience">TAJRIBA</a>
       <a id="nav-projects" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#projects" data-i18n="nav.projects">LOYIHALAR</a>
-      <a id="nav-landing-pages" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#landing-pages" data-i18n="nav.landing">LANDING PAGE</a>
+      <a id="nav-landing-pages" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#startups" data-i18n="nav.landing">MENING STARTUPLARIM</a>
+      <a id="nav-talk" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#talk" data-i18n="nav.talk">ALOQA</a>
       <a id="nav-services" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#services" data-i18n="nav.services">XIZMATLAR</a>
     </nav>
 
     <!-- Right Social & Menu Links -->
     <div class="flex items-center gap-1.5 md:gap-2 p-1.5 bg-white/95 border border-[#E2E2E2] rounded-full shadow-sm">
       <!-- Instagram -->
-      <a class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 hover:text-black" href="https://www.instagram.com/echo__builds/" target="_blank" rel="noopener" title="Instagram">
+      <a data-cursor-grow class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 hover:text-black" href="https://www.instagram.com/echo__builds/" target="_blank" rel="noopener" title="Instagram">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect height="18" rx="5" ry="5" width="18" x="3" y="3"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
       </a>
 
-      <!-- Twitter / X -->
-      <a class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 hover:text-black" href="https://x.com/Jishn8m" target="_blank" rel="noopener" title="Twitter">
-        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <!-- Telegram -->
+      <a data-cursor-grow class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 hover:text-black" href="https://t.me/Avazov_fit" target="_blank" rel="noopener" title="Telegram">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21.94 4.3 18.7 19.6c-.24 1.08-.88 1.35-1.79.84l-4.94-3.64-2.38 2.3c-.26.26-.49.48-1 .48l.36-5.03 9.15-8.27c.4-.35-.09-.55-.62-.2L6.17 13.2l-4.87-1.52c-1.06-.33-1.08-1.06.22-1.57L20.55 2.8c.88-.32 1.66.2 1.39 1.5Z"/></svg>
       </a>
 
       <!-- LinkedIn -->
-      <a class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 hover:text-black" href="https://www.linkedin.com/in/jishnu-mondal/" target="_blank" rel="noopener" title="LinkedIn">
+      <a data-cursor-grow class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 hover:text-black" href="https://www.linkedin.com/in/jishnu-mondal/" target="_blank" rel="noopener" title="LinkedIn">
         <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-      </a>
-
-      <!-- GitHub -->
-      <a class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 hover:text-black" href="https://github.com/Jishnu09-siuu" target="_blank" rel="noopener" title="GitHub">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
       </a>
 
       <!-- Mobile Hamburger Button -->
@@ -343,7 +555,15 @@
     <div id="mobile-drawer-content" class="w-4/5 max-w-sm bg-white h-full p-8 flex flex-col justify-between transform translate-x-full transition-transform duration-300 shadow-2xl">
       <div>
         <div class="flex items-center justify-between pb-6 border-b border-neutral-200">
-          <span class="font-extrabold text-lg tracking-tight">ECHO•</span>
+          <span class="brand-logo" style="pointer-events:none">
+            <span class="brand-logo__mark" aria-hidden="true">
+              <svg viewBox="0 0 512 512" fill="currentColor">
+                <path d="M455.5,128.9c-0.8-1.3-3.3-2-6.9-2c-4.4,0-10.5,1.1-17.9,3.1c-15.7,4.4-32,6.6-48.2,6.6c-22.1,0-43.8-4-64.5-11.9c-18.8-8.9-39.9-13.9-62.1-13.9c-80.2,0-145.2,65-145.2,145.2c0,28.4,8.2,54.9,22.3,77.3l0.2-0.1c9.1-4.3,19-9.5,29.5-15.2l0.2-0.1c-11.8-17.7-18.7-39-18.7-61.9c0-61.7,50.1-111.8,111.8-111.8c22.8,0,43.9,6.8,61.6,18.5c8.6,5.7,16.4,12.6,23.2,20.4c0.1,0.1,0.1,0.1,0.1,0.2c12.9,21.7-18.1,52.8-47.1,72.5c-0.1,0.1-0.1,0.1-0.2,0.1c-22.6,17.9-49.6,36.3-69.1,48.8c0,0-6.7,3.9-16.3,9.4l0,0c-9.4,5.4-21.5,12.4-33,18.9c-11.9,6.7-23.2,13-29.8,16.5c-0.1,0-0.1,0.1-0.2,0.1c-1.3,0.6-2.3,1.2-3.2,1.6c-15.2,7.2-35.7,15.8-46.6,15.8c-4,0-6.7-1.1-8.2-3.4c-2.2-3.5-2.7-10.6,19-31c1.1-1,1.3-2.7,0.5-4c-0.6-0.9-1.6-1.4-2.6-1.4c-0.5,0-1.3,0.1-2,0.7c-6.2,5.4-11.9,10.5-16.9,15.3c-24.8,23.6-30.9,36.2-28.6,39.8c0.8,1.3,3.3,2,6.9,2c8.4,0,22.7-3.8,41.2-11.1c12.4-4.9,26.7-11.2,42.6-19c0.6-0.3,1.2-0.6,1.8-0.9c0.1,0,0.1-0.1,0.2-0.1c9.9-4.9,20.3-10.2,30.9-16c6.6-3.5,13.2-7.2,20-11c23.8-13.3,48.4-28.1,73.2-43.9c24.8-15.8,48.6-31.9,70.8-47.8c6.3-4.6,12.5-9.1,18.4-13.5c9.7-7.3,18.9-14.4,27.5-21.3c0.1-0.1,0.1-0.1,0.2-0.2c0.5-0.4,1-0.8,1.5-1.2C448.4,153.5,458.5,133.5,455.5,128.9z"/>
+                <path d="M396.9,220.7l-0.2,0.2l-29.6,22.6l0,0c0.5,4.1,0.7,8.3,0.7,12.5c0,61.7-50.1,111.8-111.8,111.8c-16,0-31.3-3.4-45-9.4c-4.6-2-9-4.4-13.3-7l0,0l-33.1,17.4c25,20.3,56.8,32.4,91.5,32.4c80.2,0,145.2-65,145.2-145.2C401.2,243.8,399.7,232,396.9,220.7z"/>
+              </svg>
+            </span>
+            <span class="brand-logo__word" data-i18n="brand.wordmark">AVAZOV</span>
+          </span>
           <button onclick="toggleMobileMenu()" class="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-700 hover:border-black">
             ✕
           </button>
@@ -353,7 +573,8 @@
           <a onclick="toggleMobileMenu()" href="#about" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.about">MEN HAQIMDA</a>
           <a onclick="toggleMobileMenu()" href="#experience" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.experience">TAJRIBA</a>
           <a onclick="toggleMobileMenu()" href="#projects" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.projects">LOYIHALAR</a>
-          <a onclick="toggleMobileMenu()" href="#landing-pages" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.landing">LANDING PAGE</a>
+          <a onclick="toggleMobileMenu()" href="#startups" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.landing">MENING STARTUPLARIM</a>
+          <a onclick="toggleMobileMenu()" href="#talk" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.talk">ALOQA</a>
           <a onclick="toggleMobileMenu()" href="#services" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.services">XIZMATLAR</a>
           <a onclick="toggleMobileMenu(); openContactModal();" href="javascript:void(0)" class="py-2 text-black hover:underline" data-i18n="nav.contact">ALOQA</a>
         </nav>
@@ -418,7 +639,7 @@
             <span data-i18n="hero.web">VEB DIZAYN</span>
           </a>
           <a href="#services" onclick="selectService(2)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5 font-bold text-black">
-            <span data-i18n="hero.landing">LANDING PAGE</span>
+            <span data-i18n="hero.landing">STARTAPLAR</span>
           </a>
         </div>
       </div>
@@ -505,7 +726,7 @@
                   </div>
 
                   <!-- Monochrome Action Buttons -->
-                  <div class="flex items-center gap-3 shrink-0 pt-1 md:pt-0">
+                  <div class="flex items-center gap-3 shrink-0 pt-1 md:pt-0 flex-wrap">
                     <a href="javascript:void(0)" onclick="openContactModal()" class="pointer-events-auto px-5 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 text-xs font-bold tracking-wider uppercase transition-all duration-200 inline-flex items-center gap-2">
                       <span data-i18n="about.cta">BOG‘LANISH</span>
                       <svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -514,6 +735,9 @@
                     </a>
                     <a href="#services" class="pointer-events-auto px-5 py-2.5 rounded-full border border-neutral-500 hover:border-white text-white text-xs font-bold tracking-wider uppercase transition-all duration-200" data-i18n="about.services">
                       XIZMATLAR
+                    </a>
+                    <a href="bio.html" class="pointer-events-auto px-5 py-2.5 rounded-full border border-white hover:bg-white hover:text-black text-white text-xs font-bold tracking-wider uppercase transition-all duration-200" data-i18n="about.detail">
+                      BATAFSIL
                     </a>
                   </div>
                 </div>
@@ -764,23 +988,71 @@
   </section>
   <!-- END: Selected Works — Bento Archive -->
 
-  <!-- BEGIN: Landing Pages — Case Strip (Founder Startups) -->
-  <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-16" data-purpose="landing-pages-featured-projects" id="landing-pages">
+  <!-- BEGIN: Mening Startuplarim — Case Strip -->
+  <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-16" data-purpose="founder-startups" id="startups">
     <div class="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
       <div>
-        <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2" data-i18n="landing.eyebrow">SHAXSIY STARTAPLAR</p>
+        <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2" data-i18n="landing.eyebrow">FOUNDER VENTURES</p>
         <h2 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-[0.9]">
-          <span data-i18n="landing.title">LANDING PAGE LAR</span>
+          <span data-i18n="landing.title">MENING STARTUPLARIM</span>
         </h2>
       </div>
       <p class="text-xs md:text-sm text-neutral-500 max-w-sm leading-relaxed" data-i18n="landing.subtitle">
-        O‘zimning 3 ta startap landing page — product, brand va luxury.
+        Aether AI, Afterform va Maison Éléara — o‘zim qurgan 3 ta startap.
       </p>
     </div>
 
     <div id="landing-case-strip" class="flex flex-col gap-5"></div>
   </section>
-  <!-- END: Landing Pages — Case Strip -->
+  <!-- END: Mening Startuplarim -->
+
+  <!-- BEGIN: Keling, gaplashamiz (Talk) — my.portfolio Stage + portrait -->
+  <section class="talk-shell" data-purpose="talk-section" id="talk">
+    <div class="talk-stage">
+      <span class="talk-deco" aria-hidden="true"></span>
+
+      <span
+        class="talk-stroke absolute right-[4%] bottom-[-0.12em] z-10 text-[clamp(110px,22vw,280px)] leading-none font-extrabold tracking-[-0.04em] select-none"
+        aria-hidden="true"
+        data-i18n="talk.watermark"
+      >HELLO</span>
+
+      <div class="relative z-20 flex flex-1 flex-col gap-8 px-6 pt-14 pb-0 sm:px-10 lg:flex-row lg:items-end lg:justify-between lg:px-14 lg:pt-16 lg:pb-14">
+        <div class="relative z-30 max-w-2xl pb-8 lg:pb-0">
+          <h2 class="text-[clamp(44px,7vw,96px)] leading-[0.95] font-extrabold tracking-[-0.02em] uppercase">
+            <span class="block talk-gold" data-i18n="talk.line1">KELING,</span>
+            <span class="block text-white" data-i18n="talk.line2">GAPLASHAMIZ</span>
+          </h2>
+          <p class="mt-6 max-w-md text-base leading-relaxed text-[#c9c9c9]" data-i18n="talk.intro">
+            Loyiha, hamkorlik yoki savol bo‘lsa — o‘zingizga qulay usulda yozing.
+          </p>
+          <p class="mt-3 text-sm text-white/70" data-i18n="talk.role">
+            Full-stack dasturchi, Toshkent
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <button type="button" data-cursor-grow onclick="openContactModal()" class="talk-btn-gold" data-i18n="talk.cta">
+              BOG‘LANISH
+            </button>
+            <a data-cursor-grow href="https://t.me/Avazov_fit" target="_blank" rel="noopener noreferrer" class="talk-btn-outline" data-i18n="talk.telegram">
+              Telegram’da yozish
+            </a>
+            <a data-cursor-grow href="mailto:avazovogabek86@gmail.com" class="talk-btn-outline" data-i18n="talk.email">
+              Email yuborish
+            </a>
+          </div>
+        </div>
+
+        <!-- spacer so absolute portrait has room on desktop -->
+        <div class="hidden lg:block lg:w-[420px] lg:shrink-0" aria-hidden="true"></div>
+      </div>
+
+      <div class="talk-portrait">
+        <div class="talk-portrait__glow" aria-hidden="true"></div>
+        <img src="assets/avazov-hero.png" alt="Avazov Ogabek" width="384" height="512" loading="eager" />
+      </div>
+    </div>
+  </section>
+  <!-- END: Keling, gaplashamiz -->
 
   <!-- BEGIN: Services Section -->
   <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-20" data-purpose="services-section" id="services">
@@ -880,17 +1152,14 @@
 
       <!-- Action Button Pills -->
       <div class="flex flex-wrap items-center justify-center gap-3.5 mt-8 mb-20">
-        <a class="px-6 py-2.5 rounded-full border border-neutral-700 hover:border-neutral-400 text-xs font-medium tracking-wider uppercase transition text-neutral-300 hover:text-white" href="https://www.instagram.com/echo__builds/" target="_blank" rel="noopener">
+        <a data-cursor-grow class="px-6 py-2.5 rounded-full border border-neutral-700 hover:border-neutral-400 text-xs font-medium tracking-wider uppercase transition text-neutral-300 hover:text-white" href="https://www.instagram.com/echo__builds/" target="_blank" rel="noopener">
           INSTAGRAM
         </a>
-        <a class="px-6 py-2.5 rounded-full border border-neutral-700 hover:border-neutral-400 text-xs font-medium tracking-wider uppercase transition text-neutral-300 hover:text-white" href="https://x.com/Jishn8m" target="_blank" rel="noopener">
-          TWITTER
+        <a data-cursor-grow class="px-6 py-2.5 rounded-full border border-neutral-700 hover:border-neutral-400 text-xs font-medium tracking-wider uppercase transition text-neutral-300 hover:text-white" href="https://t.me/Avazov_fit" target="_blank" rel="noopener">
+          TELEGRAM
         </a>
-        <a class="px-6 py-2.5 rounded-full border border-neutral-700 hover:border-neutral-400 text-xs font-medium tracking-wider uppercase transition text-neutral-300 hover:text-white" href="https://www.linkedin.com/in/jishnu-mondal/" target="_blank" rel="noopener">
+        <a data-cursor-grow class="px-6 py-2.5 rounded-full border border-neutral-700 hover:border-neutral-400 text-xs font-medium tracking-wider uppercase transition text-neutral-300 hover:text-white" href="https://www.linkedin.com/in/jishnu-mondal/" target="_blank" rel="noopener">
           LINKEDIN
-        </a>
-        <a class="px-6 py-2.5 rounded-full border border-neutral-700 hover:border-neutral-400 text-xs font-medium tracking-wider uppercase transition text-neutral-300 hover:text-white" href="https://github.com/Jishnu09-siuu" target="_blank" rel="noopener">
-          GITHUB
         </a>
         <button onclick="openContactModal()" class="px-7 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 text-xs font-bold tracking-wider uppercase transition transform hover:scale-105" data-i18n="footer.contactMe">
           MEN BILAN ALOQA
@@ -1412,6 +1681,8 @@
         'about': document.getElementById('nav-about'),
         'experience': document.getElementById('nav-experience'),
         'projects': document.getElementById('nav-projects'),
+        'startups': document.getElementById('nav-landing-pages'),
+        'talk': document.getElementById('nav-talk'),
         'services': document.getElementById('nav-services')
       };
 
@@ -1487,7 +1758,27 @@
   </script>
   <script type="module">
     import { initI18n } from './i18n.js';
+    import { initSiteCursor } from './site-cursor.js';
     initI18n();
+    initSiteCursor();
+
+    // bio.html → Bog‘lanish
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('contact') === '1') {
+        const open = () => {
+          if (typeof window.openContactModal === 'function') window.openContactModal();
+          const url = new URL(window.location.href);
+          url.searchParams.delete('contact');
+          window.history.replaceState({}, '', url.pathname + url.hash);
+        };
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => setTimeout(open, 200));
+        } else {
+          setTimeout(open, 200);
+        }
+      }
+    } catch (e) {}
   </script>
   <script type="module" src="./scroll-expand-media.js"></script>
   <script type="module" src="./experience-section.js"></script>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Batafsil / Bio — 10 UI variant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #0D0D0D; --paper: #FAFAFA; }
+    body { font-family: "Plus Jakarta Sans", sans-serif; background: var(--paper); color: var(--ink); }
+    html { scroll-behavior: smooth; }
+
+    .jump {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(12px); background: rgba(250,250,250,.92);
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .jump a {
+      white-space: nowrap; font-size: 10px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: .5rem .8rem; border-radius: 999px;
+      border: 1px solid #e5e5e5; color: #525252; transition: .2s;
+    }
+    .jump a:hover { border-color: #0D0D0D; color: #0D0D0D; }
+    .jump a.active { background: #0D0D0D; color: #fff; border-color: #0D0D0D; }
+
+    .label { font-size: 10px; font-family: ui-monospace, monospace; letter-spacing: .14em; color: #737373; }
+    .frame { border: 1px solid #e5e5e5; border-radius: 28px; overflow: hidden; background: #fff; }
+
+    /* About HUD mock (dark, matches site) */
+    .hud {
+      background: #0D0D0D; color: #fff; border-radius: 20px;
+      padding: 1.25rem 1.35rem; border: 1px solid rgba(255,255,255,.08);
+    }
+    .hud .btn-w {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .55rem 1.1rem; border-radius: 999px; font-size: 11px;
+      font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      background: #fff; color: #000; transition: .2s;
+    }
+    .hud .btn-g {
+      display: inline-flex; align-items: center;
+      padding: .55rem 1.1rem; border-radius: 999px; font-size: 11px;
+      font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      border: 1px solid #737373; color: #fff; transition: .2s;
+    }
+    .hud .btn-d {
+      display: inline-flex; align-items: center;
+      padding: .55rem 1.1rem; border-radius: 999px; font-size: 11px;
+      font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      background: transparent; border: 1px solid #fff; color: #fff; transition: .2s;
+    }
+    .hud .btn-d:hover, .hud a:hover { opacity: .9; }
+
+    .chip { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: .35rem .7rem; border-radius: 999px; border: 1px solid #e5e5e5; }
+
+    .v2-tab.active, .v5-tab.active, .v6-toc a.active, .v8-tab.active, .v10-idx.active {
+      background: #0D0D0D; color: #fff; border-color: #0D0D0D;
+    }
+    .v2-panel, .v5-panel, .v8-panel, .v10-panel { animation: rise .35s cubic-bezier(.16,1,.3,1); }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: #0D0D0D; border: 2px solid #fff; box-shadow: 0 0 0 1px #0D0D0D; }
+    .portrait-sticky { position: sticky; top: 5.5rem; }
+
+    .v4-dark, .v8-dark { background: #0D0D0D; color: #FAFAFA; }
+    .v6-toc a, .v8-tab, .v10-idx {
+      display: block; text-align: left; width: 100%;
+      padding: .65rem .9rem; border-radius: 14px; border: 1px solid #e5e5e5;
+      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: #404040; transition: .2s; background: #fff;
+    }
+    .v8-tab { border-color: rgba(255,255,255,.15); background: transparent; color: rgba(255,255,255,.7); }
+    .v8-tab.active { background: #fff; color: #0D0D0D; border-color: #fff; }
+    .v9-drawer {
+      border: 1px solid #e5e5e5; border-radius: 20px; background: #fff;
+      transition: border-color .2s, transform .25s cubic-bezier(.16,1,.3,1);
+    }
+    .v9-drawer:hover { border-color: #0D0D0D; transform: translateY(-2px); }
+    .v9-drawer.open { border-color: #0D0D0D; }
+  </style>
+</head>
+<body>
+  <nav class="jump">
+    <div class="max-w-[1400px] mx-auto px-4 md:px-8 py-3 flex items-center gap-2 overflow-x-auto">
+      <span class="text-[10px] font-black tracking-widest uppercase shrink-0 text-neutral-400 mr-1">10</span>
+      <a href="#v01" class="active" data-jump>01</a>
+      <a href="#v02" data-jump>02 Dossier</a>
+      <a href="#v03" data-jump>03</a>
+      <a href="#v04" data-jump>04 Split</a>
+      <a href="#v05" data-jump>05</a>
+      <a href="#v06" data-jump>06 Dual</a>
+      <a href="#v07" data-jump>07 Rail</a>
+      <a href="#v08" data-jump>08 Dark</a>
+      <a href="#v09" data-jump>09 Drawers</a>
+      <a href="#v10" data-jump>10 Spine</a>
+    </div>
+  </nav>
+
+  <header class="max-w-[1400px] mx-auto px-6 md:px-10 pt-10 pb-6">
+    <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2">ECHO · ABOUT / BIO CONCEPT LAB</p>
+    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight leading-[0.9]">
+      Batafsil tugma<br><span class="text-neutral-400">+ tarjimayi hol · 10 UI</span>
+    </h1>
+    <p class="mt-4 max-w-2xl text-sm text-neutral-600 leading-relaxed">
+      Yoqqanlari: <strong>02 Dossier</strong> va <strong>04 Split</strong>. Yangi <strong>06–10</strong> shu ikkala uslubdan ilhomlangan gibridlar.
+    </p>
+  </header>
+
+  <!-- ========== 01 ========== -->
+  <section id="v01" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="label mb-2">01 / EDITORIAL BIO</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Jurnal sahifa</h2>
+    <p class="text-sm text-neutral-500 mb-6 max-w-xl">Batafsil → uzun editorial scroll. Eng oddiy, o‘qish uchun qulay.</p>
+
+    <div class="hud mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400">About HUD · CTA mock</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="btn-w">Bog‘lanish →</span>
+        <span class="btn-g">Xizmatlar</span>
+        <a href="#v01-page" class="btn-d">Batafsil</a>
+      </div>
+    </div>
+
+    <div id="v01-page" class="frame p-6 md:p-12">
+      <div class="max-w-3xl">
+        <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-400 mb-3" id="v1-role"></p>
+        <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tight leading-[0.9]" id="v1-name"></h3>
+        <p class="mt-4 text-lg text-neutral-600 leading-relaxed" id="v1-tag"></p>
+        <div class="mt-8 flex flex-wrap gap-2" id="v1-focus"></div>
+        <div class="mt-10 space-y-5 text-sm md:text-base text-neutral-700 leading-relaxed" id="v1-story"></div>
+        <div class="mt-12 grid sm:grid-cols-3 gap-4" id="v1-values"></div>
+        <div class="mt-12 pt-8 border-t border-neutral-200">
+          <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-400 mb-3">Stack</p>
+          <div class="flex flex-wrap gap-2" id="v1-stack"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 02 ========== -->
+  <section id="v02" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="label mb-2">02 / PROFILE DOSSIER</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Yon panel + kontent</h2>
+    <p class="text-sm text-neutral-500 mb-6 max-w-xl">Chapda navigatsiya (Bio / Stack / Yo‘l / Qiymatlar). Desktop UX eng aniq.</p>
+
+    <div class="hud mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400">About HUD · CTA mock</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="btn-w">Bog‘lanish →</span>
+        <a href="#v02-page" class="btn-d">Batafsil</a>
+        <span class="btn-g">Xizmatlar</span>
+      </div>
+    </div>
+
+    <div id="v02-page" class="frame p-4 md:p-6">
+      <div class="grid lg:grid-cols-[220px_1fr] gap-5">
+        <aside>
+          <div class="rounded-2xl overflow-hidden aspect-[3/4] bg-neutral-100 mb-4">
+            <img src="../../assets/about_media_portrait.jpg" alt="Portrait" class="w-full h-full object-cover object-top" />
+          </div>
+          <div id="v2-nav" class="flex lg:flex-col gap-2 overflow-x-auto"></div>
+        </aside>
+        <div id="v2-panel" class="rounded-2xl border border-neutral-200 p-6 md:p-8 min-h-[420px]"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 03 ========== -->
+  <section id="v03" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="label mb-2">03 / JOURNEY TIMELINE</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Yo‘l xaritasi</h2>
+    <p class="text-sm text-neutral-500 mb-6 max-w-xl">Tarjimayi hol — bosqichlar timeline. Fullstack o‘sish yo‘li aniq ko‘rinadi.</p>
+
+    <div class="hud mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400">About HUD · CTA mock</p>
+      <div class="flex flex-wrap gap-2">
+        <a href="#v03-page" class="btn-d">Batafsil</a>
+        <span class="btn-w">Bog‘lanish →</span>
+        <span class="btn-g">Xizmatlar</span>
+      </div>
+    </div>
+
+    <div id="v03-page" class="frame p-6 md:p-10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+        <div>
+          <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-400 mb-2" id="v3-role"></p>
+          <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tight" id="v3-name"></h3>
+          <p class="mt-3 text-sm text-neutral-500 max-w-lg" id="v3-short"></p>
+        </div>
+        <div class="flex flex-wrap gap-2" id="v3-focus"></div>
+      </div>
+      <div id="v3-timeline" class="relative space-y-0"></div>
+      <div class="mt-12 grid md:grid-cols-3 gap-4" id="v3-stack-cols"></div>
+    </div>
+  </section>
+
+  <!-- ========== 04 ========== -->
+  <section id="v04" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="label mb-2">04 / SPLIT STUDIO</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Sticky portret + bio</h2>
+    <p class="text-sm text-neutral-500 mb-6 max-w-xl">Qorong‘i studio. Chapda rasm qotirilib turadi, o‘ngda scroll. Premium feel.</p>
+
+    <div class="hud mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400">About HUD · CTA mock</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="btn-w">Bog‘lanish →</span>
+        <span class="btn-g">Xizmatlar</span>
+        <a href="#v04-page" class="btn-d">Batafsil →</a>
+      </div>
+    </div>
+
+    <div id="v04-page" class="frame v4-dark overflow-hidden">
+      <div class="grid lg:grid-cols-2 gap-0">
+        <div class="relative min-h-[360px] lg:min-h-[640px]">
+          <div class="portrait-sticky h-full min-h-[360px] lg:min-h-[640px]">
+            <img src="../../assets/about_media_portrait.jpg" alt="Portrait" class="absolute inset-0 w-full h-full object-cover object-top" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <p class="text-[11px] font-bold tracking-widest uppercase text-white/60" id="v4-loc"></p>
+              <h3 class="text-3xl font-black uppercase tracking-tight mt-1" id="v4-name"></h3>
+            </div>
+          </div>
+        </div>
+        <div class="p-8 md:p-12 space-y-10">
+          <div>
+            <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-3">Tarjimayi hol</p>
+            <div id="v4-story" class="space-y-4 text-sm text-neutral-300 leading-relaxed"></div>
+          </div>
+          <div>
+            <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-3">Full-stack fokus</p>
+            <div class="flex flex-wrap gap-2" id="v4-stack"></div>
+          </div>
+          <div>
+            <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-3">Bosqichlar</p>
+            <div id="v4-miles" class="space-y-3"></div>
+          </div>
+          <div>
+            <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-3">Qadriyatlar</p>
+            <div id="v4-values" class="grid sm:grid-cols-3 gap-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 05 ========== -->
+  <section id="v05" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200 pb-24">
+    <p class="label mb-2">05 / CHAPTER TABS</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Bo‘limlar</h2>
+    <p class="text-sm text-neutral-500 mb-6 max-w-xl">Bio · Fullstack · Stack · Qiymatlar · Kontakt. Tez skan, mobil uchun qulay.</p>
+
+    <div class="hud mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400">About HUD · CTA mock</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="btn-w">Bog‘lanish →</span>
+        <span class="btn-g">Xizmatlar</span>
+        <a href="#v05-page" class="btn-d">Batafsil</a>
+      </div>
+    </div>
+
+    <div id="v05-page" class="frame p-5 md:p-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+        <div>
+          <h3 class="text-3xl md:text-4xl font-black uppercase tracking-tight" id="v5-name"></h3>
+          <p class="mt-2 text-sm text-neutral-500" id="v5-role"></p>
+        </div>
+        <div id="v5-tabs" class="flex flex-wrap gap-2"></div>
+      </div>
+      <div id="v5-panel" class="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 md:p-8 min-h-[320px]"></div>
+    </div>
+  </section>
+
+  <!-- ========== 06 Dual sticky ========== -->
+  <section id="v06" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="label mb-2">06 / DUAL STICKY · YANGI</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Portret + TOC + scroll</h2>
+    <p class="text-sm text-neutral-500 mb-6 max-w-xl">02 + 04 gibrid: chapda sticky portret, o‘rtada TOC, o‘ngda scroll bio.</p>
+
+    <div class="hud mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400">About HUD · CTA mock</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="btn-w">Bog‘lanish →</span>
+        <span class="btn-g">Xizmatlar</span>
+        <a href="#v06-page" class="btn-d">Batafsil</a>
+      </div>
+    </div>
+
+    <div id="v06-page" class="frame p-4 md:p-6">
+      <div class="grid lg:grid-cols-[240px_160px_1fr] gap-5 items-start">
+        <div class="portrait-sticky rounded-2xl overflow-hidden aspect-[3/4] bg-neutral-100">
+          <img src="../../assets/about_media_portrait.jpg" alt="" class="w-full h-full object-cover object-top" />
+        </div>
+        <nav id="v6-toc" class="portrait-sticky flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0"></nav>
+        <div id="v6-content" class="space-y-14 min-h-[520px] pb-8"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 07 Identity rail ========== -->
+  <section id="v07" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="label mb-2">07 / IDENTITY RAIL · YANGI</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Keng hero + yon meta</h2>
+    <p class="text-sm text-neutral-500 mb-6 max-w-xl">Yuqorida sticky keng portret lenta, pastda kontent + o‘ngda meta rail.</p>
+
+    <div class="hud mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400">About HUD · CTA mock</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="btn-w">Bog‘lanish →</span>
+        <a href="#v07-page" class="btn-d">Batafsil</a>
+        <span class="btn-g">Xizmatlar</span>
+      </div>
+    </div>
+
+    <div id="v07-page" class="frame overflow-hidden">
+      <div class="relative h-56 md:h-72 bg-neutral-900">
+        <img src="../../assets/about_media_portrait.jpg" alt="" class="absolute inset-0 w-full h-full object-cover object-top opacity-90" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+          <p class="text-[11px] font-bold tracking-widest uppercase text-white/60" id="v7-role"></p>
+          <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tight mt-1" id="v7-name"></h3>
+        </div>
+      </div>
+      <div class="grid lg:grid-cols-[1fr_240px] gap-0">
+        <div class="p-6 md:p-10 space-y-8 border-r border-neutral-100" id="v7-main"></div>
+        <aside class="p-6 md:p-8 bg-neutral-50 space-y-6" id="v7-rail"></aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 08 Dark dossier ========== -->
+  <section id="v08" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="label mb-2">08 / DARK DOSSIER · YANGI</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Qorong‘i yon panel</h2>
+    <p class="text-sm text-neutral-500 mb-6 max-w-xl">02 uslubi, lekin about DNA’siga mos dark. Portret + panel + kontent.</p>
+
+    <div class="hud mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400">About HUD · CTA mock</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="btn-w">Bog‘lanish →</span>
+        <span class="btn-g">Xizmatlar</span>
+        <a href="#v08-page" class="btn-d">Batafsil</a>
+      </div>
+    </div>
+
+    <div id="v08-page" class="frame v8-dark p-4 md:p-6">
+      <div class="grid lg:grid-cols-[220px_1fr] gap-5">
+        <aside>
+          <div class="rounded-2xl overflow-hidden aspect-[3/4] bg-neutral-800 mb-4">
+            <img src="../../assets/about_media_portrait.jpg" alt="" class="w-full h-full object-cover object-top" />
+          </div>
+          <div id="v8-nav" class="flex lg:flex-col gap-2 overflow-x-auto"></div>
+        </aside>
+        <div id="v8-panel" class="rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8 min-h-[420px]"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 09 Peek drawers ========== -->
+  <section id="v09" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="label mb-2">09 / PEEK DRAWERS · YANGI</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Markaz portret + drawer’lar</h2>
+    <p class="text-sm text-neutral-500 mb-6 max-w-xl">Sticky markaziy portret; atrofida ochiladigan bio / stack / yo‘l kartalar.</p>
+
+    <div class="hud mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400">About HUD · CTA mock</p>
+      <div class="flex flex-wrap gap-2">
+        <a href="#v09-page" class="btn-d">Batafsil</a>
+        <span class="btn-w">Bog‘lanish →</span>
+        <span class="btn-g">Xizmatlar</span>
+      </div>
+    </div>
+
+    <div id="v09-page" class="frame p-4 md:p-8 bg-neutral-50">
+      <div class="grid lg:grid-cols-[1fr_280px_1fr] gap-4 items-start">
+        <div id="v9-left" class="space-y-3 order-2 lg:order-1"></div>
+        <div class="order-1 lg:order-2 portrait-sticky">
+          <div class="rounded-2xl overflow-hidden aspect-[3/4] bg-neutral-200 border border-neutral-200 shadow-sm">
+            <img src="../../assets/about_media_portrait.jpg" alt="" class="w-full h-full object-cover object-top" />
+          </div>
+          <div class="mt-4 text-center">
+            <p class="text-lg font-black uppercase tracking-tight" id="v9-name"></p>
+            <p class="text-[11px] text-neutral-500 mt-1" id="v9-role"></p>
+          </div>
+        </div>
+        <div id="v9-right" class="space-y-3 order-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 10 Index spine ========== -->
+  <section id="v10" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200 pb-24">
+    <p class="label mb-2">10 / INDEX SPINE · YANGI</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Raqamli indeks + panel</h2>
+    <p class="text-sm text-neutral-500 mb-6 max-w-xl">Chapda 01–04 spine, markazda kontent, o‘ngda sticky mini portret.</p>
+
+    <div class="hud mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400">About HUD · CTA mock</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="btn-w">Bog‘lanish →</span>
+        <span class="btn-g">Xizmatlar</span>
+        <a href="#v10-page" class="btn-d">Batafsil</a>
+      </div>
+    </div>
+
+    <div id="v10-page" class="frame p-4 md:p-6">
+      <div class="grid lg:grid-cols-[120px_1fr_200px] gap-5 items-start">
+        <aside id="v10-idx" class="portrait-sticky flex lg:flex-col gap-2 overflow-x-auto"></aside>
+        <div id="v10-panel" class="rounded-2xl border border-neutral-200 p-6 md:p-8 min-h-[440px]"></div>
+        <div class="portrait-sticky hidden lg:block">
+          <div class="rounded-2xl overflow-hidden aspect-[3/4] bg-neutral-100 border border-neutral-200">
+            <img src="../../assets/about_media_portrait.jpg" alt="" class="w-full h-full object-cover object-top" />
+          </div>
+          <p class="mt-3 text-[10px] font-mono tracking-widest text-neutral-400 uppercase" id="v10-loc"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { BIO } from './bio-data.js';
+
+    const jumps = [...document.querySelectorAll('[data-jump]')];
+    const sections = jumps.map(a => document.querySelector(a.getAttribute('href')));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const id = '#' + e.target.id;
+        jumps.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+      });
+    }, { rootMargin: '-35% 0px -55% 0px' });
+    sections.forEach(s => s && io.observe(s));
+
+    const allStack = [...BIO.stack.frontend, ...BIO.stack.backend, ...BIO.stack.design];
+
+    /* —— 01 Editorial —— */
+    document.getElementById('v1-role').textContent = BIO.role;
+    document.getElementById('v1-name').textContent = BIO.name;
+    document.getElementById('v1-tag').textContent = BIO.tagline;
+    document.getElementById('v1-focus').innerHTML = BIO.focus.map(f => `<span class="chip">${f}</span>`).join('');
+    document.getElementById('v1-story').innerHTML = BIO.story.map(p => `<p>${p}</p>`).join('');
+    document.getElementById('v1-values').innerHTML = BIO.values.map(v => `
+      <div class="rounded-2xl border border-neutral-200 p-4">
+        <p class="text-xs font-black uppercase tracking-tight">${v.title}</p>
+        <p class="mt-2 text-xs text-neutral-500 leading-relaxed">${v.text}</p>
+      </div>`).join('');
+    document.getElementById('v1-stack').innerHTML = allStack.map(t => `<span class="chip">${t}</span>`).join('');
+
+    /* —— 02 Dossier —— */
+    const dossier = [
+      {
+        id: 'bio', label: 'Bio',
+        html: `<p class="text-[11px] font-bold tracking-widest uppercase text-neutral-400 mb-3">${BIO.location}</p>
+          <h4 class="text-2xl font-black uppercase tracking-tight mb-4">${BIO.tagline}</h4>
+          ${BIO.story.map(p => `<p class="text-sm text-neutral-600 leading-relaxed mb-4">${p}</p>`).join('')}
+          <p class="text-sm font-semibold text-neutral-800">${BIO.short}</p>`
+      },
+      {
+        id: 'stack', label: 'Full-stack',
+        html: `<h4 class="text-xl font-black uppercase tracking-tight mb-6">Texnik stack</h4>
+          ${Object.entries(BIO.stack).map(([k, arr]) => `
+            <div class="mb-5">
+              <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-2">${k}</p>
+              <div class="flex flex-wrap gap-2">${arr.map(t => `<span class="chip">${t}</span>`).join('')}</div>
+            </div>`).join('')}`
+      },
+      {
+        id: 'path', label: 'Yo‘l',
+        html: `<h4 class="text-xl font-black uppercase tracking-tight mb-6">Bosqichlar</h4>
+          ${BIO.milestones.map(m => `
+            <div class="flex gap-4 mb-5 pb-5 border-b border-neutral-100 last:border-0">
+              <span class="text-2xl font-black text-neutral-300">${m.year}</span>
+              <div><p class="font-bold uppercase text-sm tracking-tight">${m.title}</p>
+              <p class="text-sm text-neutral-500 mt-1">${m.text}</p></div>
+            </div>`).join('')}`
+      },
+      {
+        id: 'values', label: 'Qiymatlar',
+        html: `<h4 class="text-xl font-black uppercase tracking-tight mb-6">Qadriyatlar</h4>
+          <div class="grid sm:grid-cols-3 gap-3">${BIO.values.map(v => `
+            <div class="rounded-2xl bg-neutral-50 border border-neutral-200 p-4">
+              <p class="text-xs font-black uppercase">${v.title}</p>
+              <p class="text-xs text-neutral-500 mt-2">${v.text}</p>
+            </div>`).join('')}</div>`
+      }
+    ];
+    let a2 = 0;
+    const nav2 = document.getElementById('v2-nav');
+    const panel2 = document.getElementById('v2-panel');
+    function renderV2() {
+      nav2.innerHTML = dossier.map((d, i) => `
+        <button type="button" data-i="${i}" class="v2-tab shrink-0 text-left px-4 py-2.5 rounded-full border border-neutral-200 text-[11px] font-bold uppercase tracking-wider ${i === a2 ? 'active' : 'bg-white'}">${d.label}</button>`).join('');
+      nav2.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { a2 = +b.dataset.i; renderV2(); }));
+      panel2.innerHTML = `<div class="v2-panel">${dossier[a2].html}</div>`;
+    }
+    renderV2();
+
+    /* —— 03 Timeline —— */
+    document.getElementById('v3-role').textContent = BIO.role;
+    document.getElementById('v3-name').textContent = BIO.name;
+    document.getElementById('v3-short').textContent = BIO.short;
+    document.getElementById('v3-focus').innerHTML = BIO.focus.map(f => `<span class="chip">${f}</span>`).join('');
+    document.getElementById('v3-timeline').innerHTML = BIO.milestones.map((m, i) => `
+      <div class="grid grid-cols-[40px_1fr] gap-4">
+        <div class="flex flex-col items-center">
+          <span class="tl-dot mt-1.5"></span>
+          ${i < BIO.milestones.length - 1 ? '<span class="flex-1 w-px bg-neutral-200 my-1"></span>' : ''}
+        </div>
+        <div class="pb-8">
+          <p class="text-[10px] font-mono tracking-widest text-neutral-400">BOSQICH ${m.year}</p>
+          <h4 class="text-lg font-black uppercase tracking-tight mt-1">${m.title}</h4>
+          <p class="text-sm text-neutral-500 mt-2 leading-relaxed">${m.text}</p>
+        </div>
+      </div>`).join('');
+    document.getElementById('v3-stack-cols').innerHTML = Object.entries(BIO.stack).map(([k, arr]) => `
+      <div class="rounded-2xl border border-neutral-200 p-5">
+        <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-3">${k}</p>
+        <div class="flex flex-wrap gap-1.5">${arr.map(t => `<span class="chip">${t}</span>`).join('')}</div>
+      </div>`).join('');
+
+    /* —— 04 Split —— */
+    document.getElementById('v4-loc').textContent = BIO.location;
+    document.getElementById('v4-name').textContent = BIO.name;
+    document.getElementById('v4-story').innerHTML = BIO.story.map(p => `<p>${p}</p>`).join('');
+    document.getElementById('v4-stack').innerHTML = allStack.map(t =>
+      `<span class="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border border-white/20 text-white/80">${t}</span>`
+    ).join('');
+    document.getElementById('v4-miles').innerHTML = BIO.milestones.map(m => `
+      <div class="flex gap-3 items-start">
+        <span class="text-xs font-mono text-neutral-500">${m.year}</span>
+        <div><p class="text-sm font-bold uppercase tracking-tight">${m.title}</p>
+        <p class="text-xs text-neutral-400 mt-0.5">${m.text}</p></div>
+      </div>`).join('');
+    document.getElementById('v4-values').innerHTML = BIO.values.map(v => `
+      <div class="rounded-xl border border-white/10 p-3">
+        <p class="text-[11px] font-black uppercase">${v.title}</p>
+        <p class="text-[11px] text-neutral-400 mt-1">${v.text}</p>
+      </div>`).join('');
+
+    /* —— 05 Chapters —— */
+    document.getElementById('v5-name').textContent = BIO.name;
+    document.getElementById('v5-role').textContent = BIO.role;
+    const chapters = [
+      { label: 'Bio', html: BIO.story.map(p => `<p class="text-sm text-neutral-600 leading-relaxed mb-4">${p}</p>`).join('') + `<p class="text-sm font-semibold">${BIO.short}</p>` },
+      { label: 'Fullstack', html: `<p class="text-sm text-neutral-600 mb-4">Frontend + backend + deploy — bitta egasida. Demo fokus: interaktiv UI, API, auth, CI/CD.</p>
+        <ul class="space-y-2 text-sm text-neutral-700">${BIO.milestones.map(m => `<li class="flex gap-2"><span class="font-black">${m.year}</span><span>${m.title}: ${m.text}</span></li>`).join('')}</ul>` },
+      { label: 'Stack', html: Object.entries(BIO.stack).map(([k, arr]) => `
+        <div class="mb-4"><p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-2">${k}</p>
+        <div class="flex flex-wrap gap-2">${arr.map(t => `<span class="chip bg-white">${t}</span>`).join('')}</div></div>`).join('') },
+      { label: 'Qiymatlar', html: `<div class="grid sm:grid-cols-3 gap-3">${BIO.values.map(v => `
+        <div class="rounded-2xl bg-white border border-neutral-200 p-4"><p class="text-xs font-black uppercase">${v.title}</p>
+        <p class="text-xs text-neutral-500 mt-2">${v.text}</p></div>`).join('')}</div>` },
+      { label: 'Kontakt', html: `<p class="text-sm text-neutral-600 mb-4">${BIO.location}</p>
+        <p class="text-sm text-neutral-600 mb-6">Loyiha, startap yoki redesign uchun yozing.</p>
+        <span class="inline-flex px-6 py-3 rounded-full bg-black text-white text-[11px] font-bold uppercase tracking-wider">Bog‘lanish →</span>` }
+    ];
+    let a5 = 0;
+    const tabs5 = document.getElementById('v5-tabs');
+    const panel5 = document.getElementById('v5-panel');
+    function renderV5() {
+      tabs5.innerHTML = chapters.map((c, i) => `
+        <button type="button" data-i="${i}" class="v5-tab px-4 py-2 rounded-full border border-neutral-200 text-[11px] font-bold uppercase tracking-wider ${i === a5 ? 'active' : 'bg-white'}">${c.label}</button>`).join('');
+      tabs5.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { a5 = +b.dataset.i; renderV5(); }));
+      panel5.innerHTML = `<div class="v5-panel">${chapters[a5].html}</div>`;
+    }
+    renderV5();
+
+    /* —— 06 Dual sticky —— */
+    const sections6 = [
+      { id: 'bio', label: 'Bio', html: BIO.story.map(p => `<p class="text-sm text-neutral-600 leading-relaxed mb-4">${p}</p>`).join('') },
+      { id: 'stack', label: 'Stack', html: Object.entries(BIO.stack).map(([k, arr]) => `
+        <div class="mb-5"><p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-2">${k}</p>
+        <div class="flex flex-wrap gap-2">${arr.map(t => `<span class="chip">${t}</span>`).join('')}</div></div>`).join('') },
+      { id: 'path', label: 'Yo‘l', html: BIO.milestones.map(m => `
+        <div class="mb-4"><p class="text-xs font-black uppercase tracking-tight">${m.year} · ${m.title}</p>
+        <p class="text-sm text-neutral-500 mt-1">${m.text}</p></div>`).join('') },
+      { id: 'values', label: 'Qiymatlar', html: `<div class="grid sm:grid-cols-3 gap-3">${BIO.values.map(v => `
+        <div class="rounded-xl border border-neutral-200 p-4"><p class="text-xs font-black uppercase">${v.title}</p>
+        <p class="text-xs text-neutral-500 mt-2">${v.text}</p></div>`).join('')}</div>` }
+    ];
+    const toc6 = document.getElementById('v6-toc');
+    const content6 = document.getElementById('v6-content');
+    content6.innerHTML = `
+      <div class="mb-2"><p class="text-[11px] font-bold tracking-widest uppercase text-neutral-400">${BIO.role}</p>
+      <h3 class="text-3xl font-black uppercase tracking-tight mt-1">${BIO.name}</h3>
+      <p class="mt-3 text-sm text-neutral-500">${BIO.tagline}</p></div>
+      ${sections6.map(s => `<section id="v6-${s.id}"><p class="text-[11px] font-bold tracking-widest uppercase text-neutral-400 mb-3">${s.label}</p>${s.html}</section>`).join('')}`;
+    toc6.innerHTML = sections6.map(s => `<a href="#v6-${s.id}" data-toc="${s.id}">${s.label}</a>`).join('');
+    const tocLinks = [...toc6.querySelectorAll('a')];
+    const obs6 = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const id = e.target.id.replace('v6-', '');
+        tocLinks.forEach(a => a.classList.toggle('active', a.dataset.toc === id));
+      });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+    sections6.forEach(s => {
+      const el = document.getElementById(`v6-${s.id}`);
+      if (el) obs6.observe(el);
+    });
+    if (tocLinks[0]) tocLinks[0].classList.add('active');
+
+    /* —— 07 Identity rail —— */
+    document.getElementById('v7-role').textContent = BIO.role;
+    document.getElementById('v7-name').textContent = BIO.name;
+    document.getElementById('v7-main').innerHTML = `
+      <div><p class="text-[11px] font-bold tracking-widest uppercase text-neutral-400 mb-3">Tarjimayi hol</p>
+      ${BIO.story.map(p => `<p class="text-sm text-neutral-600 leading-relaxed mb-4">${p}</p>`).join('')}</div>
+      <div><p class="text-[11px] font-bold tracking-widest uppercase text-neutral-400 mb-3">Bosqichlar</p>
+      ${BIO.milestones.map(m => `<div class="flex gap-3 mb-3"><span class="font-black text-neutral-300">${m.year}</span>
+        <div><p class="text-sm font-bold uppercase tracking-tight">${m.title}</p><p class="text-xs text-neutral-500">${m.text}</p></div></div>`).join('')}</div>`;
+    document.getElementById('v7-rail').innerHTML = `
+      <div><p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-2">Lokatsiya</p>
+      <p class="text-sm font-semibold">${BIO.location}</p></div>
+      <div><p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-2">Fokus</p>
+      <div class="flex flex-wrap gap-1.5">${BIO.focus.map(f => `<span class="chip bg-white">${f}</span>`).join('')}</div></div>
+      <div><p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-2">Stack</p>
+      <div class="flex flex-wrap gap-1.5">${allStack.slice(0, 8).map(t => `<span class="chip bg-white">${t}</span>`).join('')}</div></div>
+      <div><p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-2">Qiymatlar</p>
+      ${BIO.values.map(v => `<p class="text-xs font-bold uppercase mt-2">${v.title}</p><p class="text-[11px] text-neutral-500">${v.text}</p>`).join('')}</div>`;
+
+    /* —— 08 Dark dossier —— */
+    const darkDossier = [
+      { label: 'Bio', html: `<p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-3">${BIO.location}</p>
+        <h4 class="text-2xl font-black uppercase tracking-tight mb-4">${BIO.tagline}</h4>
+        ${BIO.story.map(p => `<p class="text-sm text-neutral-300 leading-relaxed mb-4">${p}</p>`).join('')}` },
+      { label: 'Fullstack', html: `<h4 class="text-xl font-black uppercase tracking-tight mb-6">Full-stack yo‘l</h4>
+        ${BIO.milestones.map(m => `<div class="mb-5"><p class="text-sm font-bold uppercase">${m.year} · ${m.title}</p>
+        <p class="text-sm text-neutral-400 mt-1">${m.text}</p></div>`).join('')}` },
+      { label: 'Stack', html: Object.entries(BIO.stack).map(([k, arr]) => `
+        <div class="mb-5"><p class="text-[10px] font-bold tracking-widest uppercase text-neutral-500 mb-2">${k}</p>
+        <div class="flex flex-wrap gap-2">${arr.map(t => `<span class="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border border-white/15 text-white/80">${t}</span>`).join('')}</div></div>`).join('') },
+      { label: 'Qiymatlar', html: `<div class="grid sm:grid-cols-3 gap-3">${BIO.values.map(v => `
+        <div class="rounded-xl border border-white/10 p-4"><p class="text-xs font-black uppercase">${v.title}</p>
+        <p class="text-xs text-neutral-400 mt-2">${v.text}</p></div>`).join('')}</div>` }
+    ];
+    let a8 = 0;
+    const nav8 = document.getElementById('v8-nav');
+    const panel8 = document.getElementById('v8-panel');
+    function renderV8() {
+      nav8.innerHTML = darkDossier.map((d, i) => `
+        <button type="button" data-i="${i}" class="v8-tab shrink-0 ${i === a8 ? 'active' : ''}">${d.label}</button>`).join('');
+      nav8.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { a8 = +b.dataset.i; renderV8(); }));
+      panel8.innerHTML = `<div class="v8-panel">${darkDossier[a8].html}</div>`;
+    }
+    renderV8();
+
+    /* —— 09 Peek drawers —— */
+    document.getElementById('v9-name').textContent = BIO.name;
+    document.getElementById('v9-role').textContent = BIO.role;
+    const drawers = [
+      { side: 'left', title: 'Bio', body: BIO.story[0] + ' ' + BIO.story[1] },
+      { side: 'left', title: 'Qiymatlar', body: BIO.values.map(v => `${v.title}: ${v.text}`).join(' · ') },
+      { side: 'right', title: 'Fullstack', body: BIO.milestones.map(m => `${m.year} ${m.title}`).join(' → ') + '. ' + BIO.short },
+      { side: 'right', title: 'Stack', body: allStack.join(' · ') }
+    ];
+    function drawerHtml(d) {
+      return `<button type="button" class="v9-drawer w-full text-left p-4 open">
+        <p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-2">${d.title}</p>
+        <p class="text-xs text-neutral-600 leading-relaxed">${d.body}</p>
+      </button>`;
+    }
+    document.getElementById('v9-left').innerHTML = drawers.filter(d => d.side === 'left').map(drawerHtml).join('');
+    document.getElementById('v9-right').innerHTML = drawers.filter(d => d.side === 'right').map(drawerHtml).join('');
+
+    /* —— 10 Index spine —— */
+    document.getElementById('v10-loc').textContent = BIO.location;
+    const spine = [
+      { n: '01', label: 'Bio', html: `<h4 class="text-2xl font-black uppercase tracking-tight mb-4">${BIO.tagline}</h4>
+        ${BIO.story.map(p => `<p class="text-sm text-neutral-600 leading-relaxed mb-4">${p}</p>`).join('')}` },
+      { n: '02', label: 'Yo‘l', html: BIO.milestones.map(m => `
+        <div class="mb-5 pb-5 border-b border-neutral-100"><p class="text-3xl font-black text-neutral-200">${m.year}</p>
+        <p class="font-bold uppercase text-sm mt-1">${m.title}</p><p class="text-sm text-neutral-500 mt-1">${m.text}</p></div>`).join('') },
+      { n: '03', label: 'Stack', html: Object.entries(BIO.stack).map(([k, arr]) => `
+        <div class="mb-5"><p class="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-2">${k}</p>
+        <div class="flex flex-wrap gap-2">${arr.map(t => `<span class="chip">${t}</span>`).join('')}</div></div>`).join('') },
+      { n: '04', label: 'Kontakt', html: `<p class="text-sm text-neutral-600 mb-2">${BIO.location}</p>
+        <p class="text-sm text-neutral-600 mb-6">${BIO.short}</p>
+        <span class="inline-flex px-6 py-3 rounded-full bg-black text-white text-[11px] font-bold uppercase tracking-wider">Bog‘lanish →</span>` }
+    ];
+    let a10 = 0;
+    const idx10 = document.getElementById('v10-idx');
+    const panel10 = document.getElementById('v10-panel');
+    function renderV10() {
+      idx10.innerHTML = spine.map((s, i) => `
+        <button type="button" data-i="${i}" class="v10-idx shrink-0 ${i === a10 ? 'active' : ''}">
+          <span class="block text-[10px] font-mono opacity-60">${s.n}</span>
+          <span class="block mt-0.5">${s.label}</span>
+        </button>`).join('');
+      idx10.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { a10 = +b.dataset.i; renderV10(); }));
+      panel10.innerHTML = `<div class="v10-panel">${spine[a10].html}</div>`;
+    }
+    renderV10();
+  </script>
+</body>
+</html>
