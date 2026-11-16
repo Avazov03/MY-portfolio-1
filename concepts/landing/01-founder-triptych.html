@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>01 · Founder Triptych</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: "Plus Jakarta Sans", sans-serif; background: #FAFAFA; color: #0D0D0D; }
+    .panel { transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s; }
+    .panel:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,.08); }
+    .panel img { transition: transform .6s cubic-bezier(.16,1,.3,1); }
+    .panel:hover img { transform: scale(1.04); }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 pt-8 pb-4 flex items-center justify-between">
+    <a href="./index.html" class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 hover:text-black">← Concept lab</a>
+    <p class="text-[10px] font-mono tracking-widest text-neutral-400">01 / FOUNDER TRIPTYCH</p>
+  </div>
+
+  <section class="max-w-[1400px] mx-auto px-6 md:px-10 pt-6 pb-16">
+    <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2">Shaxsiy startaplar</p>
+    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight leading-[0.9] mb-3">Landing page lar</h1>
+    <p class="text-sm text-neutral-500 max-w-lg mb-10">Uchta venture — bir qarashda. Har biri alohida brand, lekin bitta founder DNA.</p>
+
+    <div id="grid" class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5"></div>
+  </section>
+
+  <script type="module">
+    import { STARTUPS } from './startups-data.js';
+    const grid = document.getElementById('grid');
+    grid.innerHTML = STARTUPS.map((s, i) => `
+      <article class="panel group rounded-[28px] border border-neutral-200 bg-white overflow-hidden flex flex-col">
+        <div class="relative aspect-[4/5] overflow-hidden bg-neutral-100">
+          <img src="${s.src}" alt="${s.name}" class="absolute inset-0 w-full h-full object-cover object-top" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+          <span class="absolute top-4 left-4 text-[10px] font-mono tracking-widest text-white/80">0${i + 1}</span>
+          <span class="absolute top-4 right-4 text-[10px] font-bold tracking-widest uppercase text-white/90">${s.tag}</span>
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
+            <h2 class="text-2xl font-black uppercase tracking-tight">${s.name}</h2>
+            <p class="mt-1 text-sm text-white/80 leading-snug">${s.headline}</p>
+          </div>
+        </div>
+        <div class="p-5 flex flex-col flex-1 gap-4">
+          <p class="text-xs text-neutral-500 leading-relaxed flex-1">${s.pitch}</p>
+          <div class="flex flex-wrap gap-1.5">
+            ${s.metrics.map(m => `<span class="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border border-neutral-200 text-neutral-600">${m}</span>`).join('')}
+          </div>
+          <a href="${s.href}" class="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full bg-black text-white text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-800 transition">
+            ${s.cta} →
+          </a>
+        </div>
+      </article>
+    `).join('');
+  </script>
+</body>
+</html>

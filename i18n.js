@@ -71,7 +71,9 @@ export const translations = {
     'projects.eyebrow': 'LOYIHALAR',
     'projects.title': 'SELECTED WORKS',
     'projects.subtitle': 'Tanlangan web, landing va client loyihalar. Katta plitkalar — asosiy case’lar.',
+    'landing.eyebrow': 'SHAXSIY STARTAPLAR',
     'landing.title': 'LANDING PAGE LAR',
+    'landing.subtitle': 'O‘zimning 3 ta startap landing page — product, brand va luxury.',
 
     'services.title': 'TAQDIM ETADIGAN XIZMATLAR',
     'services.subtitle': 'MIJOZ MAQSADLARIGA MOS, KO‘RINISHGA YOQIMLI VA ISHLAYDIGAN SAYTLAR. BARCHA PLATFORMALARDA BIR XIL FOYDALANUVCHI TAJRIBASI.',
@@ -188,7 +190,9 @@ export const translations = {
     'projects.eyebrow': 'PROJECTS',
     'projects.title': 'SELECTED WORKS',
     'projects.subtitle': 'Selected web, landing, and client projects. Larger tiles mark primary cases.',
+    'landing.eyebrow': 'PERSONAL STARTUPS',
     'landing.title': 'LANDING PAGES',
+    'landing.subtitle': 'My three startup landings — product, brand, and luxury.',
 
     'services.title': 'THE SERVICES WE PROVIDE',
     'services.subtitle': "CREATING VISUALLY APPEALING AND FUNCTIONAL WEBSITES TAILORED TO THE CLIENT'S NEEDS AND GOALS. PROVIDING A CONSISTENT USER EXPERIENCE ACROSS PLATFORMS.",
@@ -305,7 +309,9 @@ export const translations = {
     'projects.eyebrow': 'ПРОЕКТЫ',
     'projects.title': 'SELECTED WORKS',
     'projects.subtitle': 'Избранные web, landing и client проекты. Крупные плитки — главные кейсы.',
+    'landing.eyebrow': 'ЛИЧНЫЕ СТАРТАПЫ',
     'landing.title': 'ЛЕНДИНГИ',
+    'landing.subtitle': 'Мои три стартап-лендинга — product, brand и luxury.',
 
     'services.title': 'УСЛУГИ, КОТОРЫЕ МЫ ПРЕДОСТАВЛЯЕМ',
     'services.subtitle': 'КРАСИВЫЕ И РАБОЧИЕ САЙТЫ ПОД ЗАДАЧИ КЛИЕНТА. ЕДИНЫЙ ПОЛЬЗОВАТЕЛЬСКИЙ ОПЫТ НА ВСЕХ ПЛАТФОРМАХ.',

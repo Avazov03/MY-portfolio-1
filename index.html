@@ -259,6 +259,15 @@
       border-color: #0D0D0D;
     }
 
+    /* Landing — Case strip */
+    .landing-case-row {
+      transition: border-color 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .landing-case-row:hover {
+      border-color: #0D0D0D;
+      transform: translateY(-2px);
+    }
+
     /* Toast animation */
     .toast-enter {
       transform: translateY(100%);
@@ -755,25 +764,23 @@
   </section>
   <!-- END: Selected Works — Bento Archive -->
 
-  <!-- BEGIN: Landing Pages Featured Projects (WorksWheel) Section -->
+  <!-- BEGIN: Landing Pages — Case Strip (Founder Startups) -->
   <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-16" data-purpose="landing-pages-featured-projects" id="landing-pages">
-    <!-- Header with Title -->
-    <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <div class="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
       <div>
-        <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-900">
+        <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2" data-i18n="landing.eyebrow">SHAXSIY STARTAPLAR</p>
+        <h2 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-[0.9]">
           <span data-i18n="landing.title">LANDING PAGE LAR</span>
         </h2>
       </div>
+      <p class="text-xs md:text-sm text-neutral-500 max-w-sm leading-relaxed" data-i18n="landing.subtitle">
+        O‘zimning 3 ta startap landing page — product, brand va luxury.
+      </p>
     </div>
 
-    <!-- WorksWheel 3D Container -->
-    <div class="w-full relative overflow-hidden" style="height: 640px; min-height: 520px;">
-      <div id="works-wheel-container" class="w-full h-full relative">
-        <!-- WorksWheel mounts here -->
-      </div>
-    </div>
+    <div id="landing-case-strip" class="flex flex-col gap-5"></div>
   </section>
-  <!-- END: Landing Pages Featured Projects Section -->
+  <!-- END: Landing Pages — Case Strip -->
 
   <!-- BEGIN: Services Section -->
   <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-20" data-purpose="services-section" id="services">
@@ -1458,36 +1465,24 @@
     }
   </script>
 
-  <!-- WorksWheel 3D Drum Reel Initialization -->
+  <!-- Landing Case Strip -->
   <script type="module">
-    import { initWorksWheel, DEFAULT_WORKS } from './works-wheel.js';
+    import { initLandingCaseStrip } from './landing-case-strip.js';
 
-    function startWorksWheel() {
-      const container = document.getElementById('works-wheel-container');
-      if (container) {
-        const wheelInstance = initWorksWheel(container, {
-          items: DEFAULT_WORKS,
-          label: "Works '26",
-          action: "View",
-          onSelect: (index, item) => {
-            if (window.openProjectModal) {
-              window.openProjectModal(item);
-            }
-          }
-        });
-        window.worksWheelInstance = wheelInstance;
-
-        const prevBtn = document.getElementById('works-wheel-prev-btn');
-        const nextBtn = document.getElementById('works-wheel-next-btn');
-        if (prevBtn) prevBtn.addEventListener('click', () => wheelInstance.prev());
-        if (nextBtn) nextBtn.addEventListener('click', () => wheelInstance.next());
-      }
+    function startLandingCaseStrip() {
+      const container = document.getElementById('landing-case-strip');
+      if (!container) return;
+      window.landingCaseStripInstance = initLandingCaseStrip(container, {
+        onSelect: (_index, item) => {
+          if (window.openProjectModal) window.openProjectModal(item);
+        }
+      });
     }
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', startWorksWheel);
+      document.addEventListener('DOMContentLoaded', startLandingCaseStrip);
     } else {
-      startWorksWheel();
+      startLandingCaseStrip();
     }
   </script>
   <script type="module">

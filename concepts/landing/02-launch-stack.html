@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>02 · Launch Stack</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: "Plus Jakarta Sans", sans-serif; background: #FAFAFA; color: #0D0D0D; }
+    .tab { transition: background .2s, color .2s, border-color .2s; }
+    .tab.active { background: #0D0D0D; color: #fff; border-color: #0D0D0D; }
+    .stage { animation: rise .45s cubic-bezier(.16,1,.3,1); }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 pt-8 pb-4 flex items-center justify-between">
+    <a href="./index.html" class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 hover:text-black">← Concept lab</a>
+    <p class="text-[10px] font-mono tracking-widest text-neutral-400">02 / LAUNCH STACK</p>
+  </div>
+
+  <section class="max-w-[1400px] mx-auto px-6 md:px-10 pt-6 pb-16">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+      <div>
+        <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2">Product launches</p>
+        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight leading-[0.9]">Landing page lar</h1>
+      </div>
+      <div id="tabs" class="flex flex-wrap gap-2"></div>
+    </div>
+
+    <div id="stage" class="rounded-[32px] border border-neutral-200 bg-white overflow-hidden min-h-[520px]"></div>
+  </section>
+
+  <script type="module">
+    import { STARTUPS } from './startups-data.js';
+    let active = 0;
+    const tabs = document.getElementById('tabs');
+    const stage = document.getElementById('stage');
+
+    function renderTabs() {
+      tabs.innerHTML = STARTUPS.map((s, i) => `
+        <button type="button" data-i="${i}" class="tab px-4 py-2 rounded-full border border-neutral-200 text-[11px] font-bold uppercase tracking-wider ${i === active ? 'active' : 'bg-white text-neutral-700 hover:border-black'}">
+          0${i + 1} ${s.name}
+        </button>
+      `).join('');
+      tabs.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          active = Number(btn.dataset.i);
+          render();
+        });
+      });
+    }
+
+    function renderStage() {
+      const s = STARTUPS[active];
+      stage.innerHTML = `
+        <div class="stage grid md:grid-cols-2 min-h-[520px]">
+          <div class="relative min-h-[280px] md:min-h-full bg-neutral-100">
+            <img src="${s.src}" alt="${s.name}" class="absolute inset-0 w-full h-full object-cover object-top" />
+          </div>
+          <div class="flex flex-col justify-between p-8 md:p-12">
+            <div>
+              <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-400 mb-4">${s.tag} · ${s.year} · ${s.role}</p>
+              <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight leading-[0.95]">${s.name}</h2>
+              <p class="mt-4 text-xl md:text-2xl font-semibold text-neutral-800 leading-snug">${s.headline}</p>
+              <p class="mt-4 text-sm text-neutral-500 leading-relaxed max-w-md">${s.pitch}</p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                ${s.tools.map(t => `<span class="text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full bg-neutral-100 border border-neutral-200">${t}</span>`).join('')}
+              </div>
+            </div>
+            <div class="mt-10 flex flex-wrap items-center gap-4">
+              <a href="${s.href}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-black text-white text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-800 transition">${s.cta} →</a>
+              <span class="text-[11px] text-neutral-400 font-mono">0${active + 1} / 0${STARTUPS.length}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function render() {
+      renderTabs();
+      renderStage();
+    }
+    render();
+  </script>
+</body>
+</html>

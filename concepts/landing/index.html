@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Landing Startups — 10 Variant (bitta sahifa)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #0D0D0D; --paper: #FAFAFA; }
+    body { font-family: "Plus Jakarta Sans", sans-serif; background: var(--paper); color: var(--ink); }
+    html { scroll-behavior: smooth; }
+
+    .jump {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(12px); background: rgba(250,250,250,.9);
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .jump a {
+      white-space: nowrap; font-size: 10px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .5rem .75rem; border-radius: 999px; border: 1px solid #e5e5e5;
+      color: #525252; transition: .2s;
+    }
+    .jump a:hover { border-color: #0D0D0D; color: #0D0D0D; }
+    .jump a.active { background: #0D0D0D; color: #fff; border-color: #0D0D0D; }
+
+    .variant-label {
+      font-size: 10px; font-family: ui-monospace, monospace;
+      letter-spacing: .14em; color: #737373; margin-bottom: .75rem;
+    }
+    .variant-frame {
+      border: 1px solid #e5e5e5; border-radius: 28px;
+      background: #fff; overflow: hidden;
+    }
+
+    .v1-panel { transition: transform .35s cubic-bezier(.16,1,.3,1); }
+    .v1-panel:hover { transform: translateY(-3px); }
+    .v1-panel img, .v5-row img, .v8-cell img { transition: transform .55s cubic-bezier(.16,1,.3,1); }
+    .v1-panel:hover img, .v5-row:hover img, .v8-cell:hover img { transform: scale(1.04); }
+
+    .v2-tab, .v4-btn, .v7-dot, .v9-chip, .v10-row { transition: .2s; }
+    .v2-tab.active, .v4-btn.active, .v9-chip.active { background: #0D0D0D; color: #fff; border-color: #0D0D0D; }
+    .v2-stage, .v7-stage, .v9-stage { animation: rise .4s cubic-bezier(.16,1,.3,1); }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .v3-wrap { background: #0D0D0D; color: #FAFAFA; }
+    .v3-rail {
+      display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
+      padding: 0 1.25rem 1.5rem; scrollbar-width: none;
+    }
+    .v3-rail::-webkit-scrollbar { display: none; }
+    .v3-slide {
+      flex: 0 0 min(88%, 920px); scroll-snap-align: center;
+      border-radius: 22px; overflow: hidden; position: relative;
+      height: 420px; background: #1a1a1a; border: 1px solid rgba(255,255,255,.1);
+    }
+    .v3-slide img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .v3-veil { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.88)); }
+
+    .v4-fade { animation: fade .35s cubic-bezier(.16,1,.3,1); }
+    @keyframes fade {
+      from { opacity: 0; transform: scale(.985); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .v5-row:hover { border-color: #0D0D0D; }
+
+    /* 06 Cover flip */
+    .v6-cover { perspective: 1200px; }
+    .v6-inner {
+      position: relative; min-height: 480px; border-radius: 24px; overflow: hidden;
+      transform-style: preserve-3d; transition: transform .55s cubic-bezier(.16,1,.3,1);
+    }
+    .v6-inner.flip { transform: rotateY(-8deg) scale(.985); }
+
+    /* 07 Timeline */
+    .v7-line::before {
+      content: ''; position: absolute; left: 15px; top: 8px; bottom: 8px;
+      width: 1px; background: #e5e5e5;
+    }
+    .v7-dot.active { background: #0D0D0D; border-color: #0D0D0D; transform: scale(1.15); }
+
+    /* 08 Mosaic */
+    .v8-grid {
+      display: grid; gap: .75rem;
+      grid-template-columns: 1.4fr 1fr; grid-template-rows: 280px 200px;
+    }
+    @media (max-width: 768px) {
+      .v8-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    }
+    .v8-cell { position: relative; overflow: hidden; border-radius: 20px; background: #111; }
+    .v8-cell:first-child { grid-row: 1 / 3; }
+    @media (max-width: 768px) { .v8-cell:first-child { grid-row: auto; min-height: 320px; } }
+    .v8-cell img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .v8-cell .meta {
+      position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.25rem; background: linear-gradient(transparent 40%, rgba(0,0,0,.8)); color: #fff;
+    }
+
+    /* 09 Browser mock */
+    .v9-browser {
+      border-radius: 16px; border: 1px solid #e5e5e5; overflow: hidden; background: #fff;
+      box-shadow: 0 18px 50px rgba(0,0,0,.08);
+    }
+    .v9-chrome {
+      display: flex; align-items: center; gap: .5rem; padding: .65rem 1rem;
+      background: #f4f4f4; border-bottom: 1px solid #e5e5e5;
+    }
+    .v9-dot { width: 8px; height: 8px; border-radius: 50%; background: #d4d4d4; }
+
+    /* 10 Radio list */
+    .v10-row { border: 1px solid #e5e5e5; border-radius: 18px; background: #fff; cursor: pointer; }
+    .v10-row.active { border-color: #0D0D0D; background: #0D0D0D; color: #fff; }
+    .v10-preview { animation: rise .35s cubic-bezier(.16,1,.3,1); }
+  </style>
+</head>
+<body>
+  <nav class="jump">
+    <div class="max-w-[1400px] mx-auto px-4 md:px-8 py-3 flex items-center gap-2 overflow-x-auto">
+      <span class="text-[10px] font-black tracking-widest uppercase shrink-0 mr-1 text-neutral-400">10</span>
+      <a href="#v01" class="active" data-jump>01</a>
+      <a href="#v02" data-jump>02</a>
+      <a href="#v03" data-jump>03</a>
+      <a href="#v04" data-jump>04</a>
+      <a href="#v05" data-jump>05</a>
+      <a href="#v06" data-jump>06 Cover</a>
+      <a href="#v07" data-jump>07 Timeline</a>
+      <a href="#v08" data-jump>08 Mosaic</a>
+      <a href="#v09" data-jump>09 Browser</a>
+      <a href="#v10" data-jump>10 Radio</a>
+    </div>
+  </nav>
+
+  <header class="max-w-[1400px] mx-auto px-6 md:px-10 pt-10 pb-6">
+    <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2">ECHO · LANDING CONCEPT LAB</p>
+    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight leading-[0.9]">
+      3 startap<br><span class="text-neutral-400">10 ta variant · bitta sahifa</span>
+    </h1>
+    <p class="mt-4 max-w-2xl text-sm text-neutral-600 leading-relaxed">
+      Aether AI · Afterform · Maison Éléara. Yuqoridan 01–10 ga o‘ting. Yangi: <strong>06–10</strong>.
+    </p>
+  </header>
+
+  <!-- 01 -->
+  <section id="v01" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="variant-label">01 / FOUNDER TRIPTYCH</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Uchta panel</h2>
+    <p class="text-sm text-neutral-500 mb-8 max-w-xl">Bir qarashda 3 startap.</p>
+    <div class="variant-frame p-4 md:p-6"><div id="v1-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></div>
+  </section>
+
+  <!-- 02 -->
+  <section id="v02" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="variant-label">02 / LAUNCH STACK</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Tab + hero</h2>
+    <p class="text-sm text-neutral-500 mb-8 max-w-xl">3 tab, bitta katta preview.</p>
+    <div class="variant-frame p-4 md:p-6">
+      <div id="v2-tabs" class="flex flex-wrap gap-2 mb-5"></div>
+      <div id="v2-stage" class="rounded-2xl border border-neutral-200 overflow-hidden min-h-[440px]"></div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section id="v03" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="variant-label">03 / MANIFEST RAIL</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Gorizontal lenta</h2>
+    <p class="text-sm text-neutral-500 mb-8 max-w-xl">Swipe · to‘liq sahna.</p>
+    <div class="variant-frame overflow-hidden">
+      <div class="v3-wrap pt-6">
+        <div id="v3-rail" class="v3-rail"></div>
+        <div id="v3-dots" class="flex justify-center gap-2 pb-6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="v04" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="variant-label">04 / PITCH STAGE</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Sahna + side index</h2>
+    <p class="text-sm text-neutral-500 mb-8 max-w-xl">Chapda indeks, o‘ngda pitch.</p>
+    <div class="variant-frame p-4 md:p-6">
+      <div class="grid lg:grid-cols-[240px_1fr] gap-4 items-start">
+        <aside id="v4-index" class="flex lg:flex-col gap-2 overflow-x-auto"></aside>
+        <div id="v4-stage" class="rounded-2xl border border-neutral-200 overflow-hidden bg-neutral-100 min-h-[480px] relative"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="v05" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="variant-label">05 / VENTURE CARDS</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Case strip</h2>
+    <p class="text-sm text-neutral-500 mb-8 max-w-xl">Editorial qatorlar.</p>
+    <div class="variant-frame p-4 md:p-6"><div id="v5-list" class="flex flex-col gap-4"></div></div>
+  </section>
+
+  <!-- 06 NEW -->
+  <section id="v06" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="variant-label">06 / COVER FLIP · YANGI</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Jurnal muqovasi</h2>
+    <p class="text-sm text-neutral-500 mb-8 max-w-xl">Bitta katta cover. Pastida 01–03 — bosib “flip”.</p>
+    <div class="variant-frame p-4 md:p-6">
+      <div class="v6-cover">
+        <div id="v6-inner" class="v6-inner relative border border-neutral-200">
+          <img id="v6-img" class="absolute inset-0 w-full h-full object-cover object-top" alt="" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white z-10">
+            <p id="v6-meta" class="text-[11px] font-bold tracking-widest uppercase text-white/60 mb-2"></p>
+            <h3 id="v6-name" class="text-3xl md:text-5xl font-black uppercase tracking-tight"></h3>
+            <p id="v6-headline" class="mt-2 text-lg md:text-2xl text-white/90"></p>
+            <p id="v6-pitch" class="mt-3 text-sm text-white/60 max-w-xl"></p>
+            <a id="v6-cta" href="#" class="mt-6 inline-flex px-6 py-3 rounded-full bg-white text-black text-[11px] font-bold uppercase tracking-wider"></a>
+          </div>
+        </div>
+      </div>
+      <div id="v6-nav" class="mt-4 flex flex-wrap gap-2"></div>
+    </div>
+  </section>
+
+  <!-- 07 NEW -->
+  <section id="v07" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="variant-label">07 / LAUNCH TIMELINE · YANGI</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Yil bo‘yicha lenta</h2>
+    <p class="text-sm text-neutral-500 mb-8 max-w-xl">Chapda timeline, o‘ngda preview — founder story.</p>
+    <div class="variant-frame p-4 md:p-6">
+      <div class="grid lg:grid-cols-[300px_1fr] gap-6">
+        <div id="v7-timeline" class="v7-line relative flex flex-col gap-3 pl-2"></div>
+        <div id="v7-stage" class="rounded-2xl border border-neutral-200 overflow-hidden min-h-[420px] relative bg-neutral-100"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 NEW -->
+  <section id="v08" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="variant-label">08 / VENTURE MOSAIC · YANGI</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Asimmetrik kollaj</h2>
+    <p class="text-sm text-neutral-500 mb-8 max-w-xl">Katta + ikkita kichik — hierarchy aniq.</p>
+    <div class="variant-frame p-4 md:p-6">
+      <div id="v8-grid" class="v8-grid"></div>
+    </div>
+  </section>
+
+  <!-- 09 NEW -->
+  <section id="v09" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200">
+    <p class="variant-label">09 / BROWSER FRAME · YANGI</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Brauzer mock</h2>
+    <p class="text-sm text-neutral-500 mb-8 max-w-xl">Landing “live site” sifatida — chrome + URL.</p>
+    <div class="variant-frame p-4 md:p-8 bg-neutral-50">
+      <div id="v9-chips" class="flex flex-wrap gap-2 mb-6 justify-center"></div>
+      <div class="v9-browser max-w-4xl mx-auto">
+        <div class="v9-chrome">
+          <span class="v9-dot"></span><span class="v9-dot"></span><span class="v9-dot"></span>
+          <div id="v9-url" class="ml-3 flex-1 text-[11px] font-mono text-neutral-500 truncate bg-white rounded-full px-3 py-1 border border-neutral-200"></div>
+        </div>
+        <div id="v9-stage" class="relative aspect-[16/10] bg-neutral-100 overflow-hidden"></div>
+      </div>
+      <div id="v9-copy" class="max-w-4xl mx-auto mt-6 text-center"></div>
+    </div>
+  </section>
+
+  <!-- 10 NEW -->
+  <section id="v10" class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 border-t border-neutral-200 pb-24">
+    <p class="variant-label">10 / RADIO SELECT · YANGI</p>
+    <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight mb-2">Ro‘yxat + preview</h2>
+    <p class="text-sm text-neutral-500 mb-8 max-w-xl">Radio-style tanlov — tez skan, katta media.</p>
+    <div class="variant-frame p-4 md:p-6">
+      <div class="grid lg:grid-cols-[1fr_1.2fr] gap-5 items-stretch">
+        <div id="v10-list" class="flex flex-col gap-2"></div>
+        <div id="v10-preview" class="rounded-2xl border border-neutral-200 overflow-hidden min-h-[400px] relative bg-neutral-100"></div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { STARTUPS } from './startups-data.js';
+
+    const jumps = [...document.querySelectorAll('[data-jump]')];
+    const sections = jumps.map(a => document.querySelector(a.getAttribute('href')));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const id = '#' + e.target.id;
+        jumps.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+    sections.forEach(s => s && io.observe(s));
+
+    /* 01 */
+    document.getElementById('v1-grid').innerHTML = STARTUPS.map((s, i) => `
+      <article class="v1-panel rounded-2xl border border-neutral-200 overflow-hidden flex flex-col">
+        <div class="relative aspect-[4/5] overflow-hidden bg-neutral-100">
+          <img src="${s.src}" alt="${s.name}" class="absolute inset-0 w-full h-full object-cover object-top" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+          <span class="absolute top-3 left-3 text-[10px] font-mono tracking-widest text-white/80">0${i + 1}</span>
+          <div class="absolute bottom-0 p-4 text-white">
+            <h3 class="text-xl font-black uppercase tracking-tight">${s.name}</h3>
+            <p class="text-sm text-white/80">${s.headline}</p>
+          </div>
+        </div>
+        <div class="p-4 flex flex-col flex-1 gap-3">
+          <p class="text-xs text-neutral-500 flex-1">${s.pitch}</p>
+          <a href="${s.href}" class="inline-flex justify-center py-2.5 rounded-full bg-black text-white text-[10px] font-bold uppercase tracking-wider">${s.cta} →</a>
+        </div>
+      </article>`).join('');
+
+    /* 02 */
+    let a2 = 0;
+    const tabs2 = document.getElementById('v2-tabs');
+    const stage2 = document.getElementById('v2-stage');
+    function renderV2() {
+      const s = STARTUPS[a2];
+      tabs2.innerHTML = STARTUPS.map((x, i) => `
+        <button type="button" data-i="${i}" class="v2-tab px-4 py-2 rounded-full border border-neutral-200 text-[11px] font-bold uppercase tracking-wider ${i === a2 ? 'active' : 'bg-white'}">0${i + 1} ${x.name}</button>`).join('');
+      tabs2.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { a2 = +b.dataset.i; renderV2(); }));
+      stage2.innerHTML = `
+        <div class="v2-stage grid md:grid-cols-2 min-h-[440px]">
+          <div class="relative min-h-[240px] bg-neutral-100">
+            <img src="${s.src}" alt="${s.name}" class="absolute inset-0 w-full h-full object-cover object-top" />
+          </div>
+          <div class="flex flex-col justify-between p-6 md:p-10">
+            <div>
+              <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-400 mb-3">${s.tag} · ${s.year}</p>
+              <h3 class="text-3xl font-black uppercase tracking-tight">${s.name}</h3>
+              <p class="mt-3 text-lg font-semibold">${s.headline}</p>
+              <p class="mt-3 text-sm text-neutral-500">${s.pitch}</p>
+            </div>
+            <a href="${s.href}" class="mt-8 inline-flex w-fit px-6 py-3 rounded-full bg-black text-white text-[11px] font-bold uppercase tracking-wider">${s.cta} →</a>
+          </div>
+        </div>`;
+    }
+    renderV2();
+
+    /* 03 */
+    const rail = document.getElementById('v3-rail');
+    const dots = document.getElementById('v3-dots');
+    rail.innerHTML = STARTUPS.map((s, i) => `
+      <article class="v3-slide">
+        <img src="${s.src}" alt="${s.name}" />
+        <div class="v3-veil"></div>
+        <div class="absolute top-4 left-4 right-4 flex justify-between text-[10px] font-mono tracking-widest text-white/70">
+          <span>0${i + 1} / 03</span><span>${s.tag.toUpperCase()}</span>
+        </div>
+        <div class="absolute bottom-0 p-6 md:p-8">
+          <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight">${s.name}</h3>
+          <p class="mt-1 text-lg text-white/90">${s.headline}</p>
+          <a href="${s.href}" class="mt-5 inline-flex px-5 py-2.5 rounded-full bg-white text-black text-[10px] font-bold uppercase tracking-wider">${s.cta} →</a>
+        </div>
+      </article>`).join('');
+    dots.innerHTML = STARTUPS.map((_, i) => `<button type="button" data-i="${i}" class="w-2 h-2 rounded-full bg-white/30"></button>`).join('');
+    const slides = [...rail.querySelectorAll('.v3-slide')];
+    const dotBtns = [...dots.querySelectorAll('button')];
+    function setDot(i) {
+      dotBtns.forEach((d, j) => { d.classList.toggle('bg-white', j === i); d.classList.toggle('bg-white/30', j !== i); });
+    }
+    rail.addEventListener('scroll', () => {
+      const mid = rail.scrollLeft + rail.clientWidth / 2;
+      let best = 0, dist = Infinity;
+      slides.forEach((el, i) => { const d = Math.abs(el.offsetLeft + el.offsetWidth / 2 - mid); if (d < dist) { dist = d; best = i; } });
+      setDot(best);
+    }, { passive: true });
+    dotBtns.forEach(b => b.addEventListener('click', () => slides[+b.dataset.i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })));
+    setDot(0);
+
+    /* 04 */
+    let a4 = 0;
+    const idx4 = document.getElementById('v4-index');
+    const stage4 = document.getElementById('v4-stage');
+    function renderV4() {
+      const s = STARTUPS[a4];
+      idx4.innerHTML = STARTUPS.map((x, i) => `
+        <button type="button" data-i="${i}" class="v4-btn shrink-0 text-left w-full min-w-[180px] rounded-xl border border-neutral-200 bg-white px-4 py-3 ${i === a4 ? 'active' : ''}">
+          <span class="block text-[10px] font-mono tracking-widest opacity-60">0${i + 1}</span>
+          <span class="block text-sm font-black uppercase tracking-tight">${x.name}</span>
+        </button>`).join('');
+      idx4.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { a4 = +b.dataset.i; renderV4(); }));
+      stage4.innerHTML = `
+        <div class="v4-fade absolute inset-0">
+          <img src="${s.src}" alt="${s.name}" class="absolute inset-0 w-full h-full object-cover object-top" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent"></div>
+          <div class="absolute bottom-0 p-6 md:p-10 text-white">
+            <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight">${s.headline}</h3>
+            <p class="mt-3 text-sm text-white/70 max-w-lg">${s.pitch}</p>
+            <a href="${s.href}" class="mt-6 inline-flex px-6 py-3 rounded-full bg-white text-black text-[11px] font-bold uppercase tracking-wider">${s.cta} →</a>
+          </div>
+        </div>`;
+    }
+    renderV4();
+
+    /* 05 */
+    document.getElementById('v5-list').innerHTML = STARTUPS.map((s, i) => `
+      <article class="v5-row rounded-2xl border border-neutral-200 overflow-hidden grid md:grid-cols-2 ${i % 2 === 1 ? 'md:[&>div:first-child]:order-2' : ''}">
+        <div class="relative aspect-[16/10] md:min-h-[260px] overflow-hidden bg-neutral-100">
+          <img src="${s.src}" alt="${s.name}" class="absolute inset-0 w-full h-full object-cover object-top" />
+        </div>
+        <div class="flex flex-col justify-between p-6 md:p-8">
+          <div>
+            <h3 class="text-2xl font-black uppercase tracking-tight">${s.name}</h3>
+            <p class="mt-2 font-semibold">${s.headline}</p>
+            <p class="mt-2 text-sm text-neutral-500">${s.pitch}</p>
+          </div>
+          <a href="${s.href}" class="mt-6 inline-flex w-fit px-5 py-2.5 rounded-full bg-black text-white text-[10px] font-bold uppercase tracking-wider">${s.cta} →</a>
+        </div>
+      </article>`).join('');
+
+    /* 06 Cover flip */
+    let a6 = 0;
+    const inner6 = document.getElementById('v6-inner');
+    const nav6 = document.getElementById('v6-nav');
+    function renderV6() {
+      const s = STARTUPS[a6];
+      inner6.classList.add('flip');
+      setTimeout(() => {
+        document.getElementById('v6-img').src = s.src;
+        document.getElementById('v6-img').alt = s.name;
+        document.getElementById('v6-meta').textContent = `${s.tag} · ${s.year} · ${s.role}`;
+        document.getElementById('v6-name').textContent = s.name;
+        document.getElementById('v6-headline').textContent = s.headline;
+        document.getElementById('v6-pitch').textContent = s.pitch;
+        const cta = document.getElementById('v6-cta');
+        cta.textContent = s.cta + ' →';
+        cta.href = s.href;
+        inner6.classList.remove('flip');
+      }, 180);
+      nav6.innerHTML = STARTUPS.map((x, i) => `
+        <button type="button" data-i="${i}" class="v2-tab px-4 py-2 rounded-full border border-neutral-200 text-[11px] font-bold uppercase tracking-wider ${i === a6 ? 'active' : 'bg-white'}">0${i + 1} ${x.name}</button>`).join('');
+      nav6.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { a6 = +b.dataset.i; renderV6(); }));
+    }
+    renderV6();
+
+    /* 07 Timeline */
+    let a7 = 0;
+    const tl = document.getElementById('v7-timeline');
+    const stage7 = document.getElementById('v7-stage');
+    function renderV7() {
+      const s = STARTUPS[a7];
+      tl.innerHTML = STARTUPS.map((x, i) => `
+        <button type="button" data-i="${i}" class="relative pl-10 pr-3 py-3 text-left rounded-xl hover:bg-neutral-50 ${i === a7 ? 'bg-neutral-50' : ''}">
+          <span class="v7-dot absolute left-[10px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-neutral-300 bg-white ${i === a7 ? 'active' : ''}"></span>
+          <span class="block text-[10px] font-mono tracking-widest text-neutral-400">${x.year}</span>
+          <span class="block text-sm font-black uppercase tracking-tight mt-0.5">${x.name}</span>
+          <span class="block text-[11px] text-neutral-500 mt-0.5">${x.tag}</span>
+        </button>`).join('');
+      tl.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { a7 = +b.dataset.i; renderV7(); }));
+      stage7.innerHTML = `
+        <div class="v7-stage absolute inset-0">
+          <img src="${s.src}" alt="${s.name}" class="absolute inset-0 w-full h-full object-cover object-top" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+          <div class="absolute bottom-0 p-6 md:p-8 text-white">
+            <p class="text-[11px] font-bold tracking-widest uppercase text-white/55 mb-2">${s.role}</p>
+            <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight">${s.headline}</h3>
+            <p class="mt-2 text-sm text-white/70 max-w-md">${s.pitch}</p>
+            <a href="${s.href}" class="mt-5 inline-flex px-5 py-2.5 rounded-full bg-white text-black text-[10px] font-bold uppercase tracking-wider">${s.cta} →</a>
+          </div>
+        </div>`;
+    }
+    renderV7();
+
+    /* 08 Mosaic — first featured large */
+    const order = [0, 1, 2];
+    document.getElementById('v8-grid').innerHTML = order.map((idx, i) => {
+      const s = STARTUPS[idx];
+      return `
+        <a href="${s.href}" class="v8-cell ${i === 0 ? 'min-h-[320px]' : ''}">
+          <img src="${s.src}" alt="${s.name}" />
+          <div class="meta">
+            <span class="text-[10px] font-mono tracking-widest text-white/60">0${idx + 1} · ${s.tag}</span>
+            <span class="text-xl md:text-3xl font-black uppercase tracking-tight mt-1">${s.name}</span>
+            <span class="text-sm text-white/75 mt-1 ${i === 0 ? '' : 'line-clamp-2'}">${s.headline}</span>
+          </div>
+        </a>`;
+    }).join('');
+
+    /* 09 Browser */
+    let a9 = 0;
+    const chips9 = document.getElementById('v9-chips');
+    const url9 = document.getElementById('v9-url');
+    const stage9 = document.getElementById('v9-stage');
+    const copy9 = document.getElementById('v9-copy');
+    function renderV9() {
+      const s = STARTUPS[a9];
+      chips9.innerHTML = STARTUPS.map((x, i) => `
+        <button type="button" data-i="${i}" class="v9-chip px-4 py-2 rounded-full border border-neutral-200 text-[11px] font-bold uppercase tracking-wider ${i === a9 ? 'active' : 'bg-white'}">${x.name}</button>`).join('');
+      chips9.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { a9 = +b.dataset.i; renderV9(); }));
+      url9.textContent = `https://${s.id}.studio / landing`;
+      stage9.innerHTML = `
+        <div class="v9-stage absolute inset-0">
+          <img src="${s.src}" alt="${s.name}" class="absolute inset-0 w-full h-full object-cover object-top" />
+        </div>`;
+      copy9.innerHTML = `
+        <h3 class="text-2xl font-black uppercase tracking-tight">${s.name}</h3>
+        <p class="mt-2 text-sm text-neutral-500 max-w-lg mx-auto">${s.pitch}</p>
+        <a href="${s.href}" class="mt-4 inline-flex px-6 py-3 rounded-full bg-black text-white text-[11px] font-bold uppercase tracking-wider">${s.cta} →</a>`;
+    }
+    renderV9();
+
+    /* 10 Radio */
+    let a10 = 0;
+    const list10 = document.getElementById('v10-list');
+    const prev10 = document.getElementById('v10-preview');
+    function renderV10() {
+      const s = STARTUPS[a10];
+      list10.innerHTML = STARTUPS.map((x, i) => `
+        <button type="button" data-i="${i}" class="v10-row text-left px-5 py-4 ${i === a10 ? 'active' : ''}">
+          <div class="flex items-start gap-3">
+            <span class="mt-1 w-4 h-4 rounded-full border-2 ${i === a10 ? 'border-white bg-white' : 'border-neutral-300'} flex items-center justify-center shrink-0">
+              ${i === a10 ? '<span class="w-1.5 h-1.5 rounded-full bg-black"></span>' : ''}
+            </span>
+            <div>
+              <span class="block text-[10px] font-mono tracking-widest opacity-60">0${i + 1} · ${x.year}</span>
+              <span class="block text-base font-black uppercase tracking-tight mt-0.5">${x.name}</span>
+              <span class="block text-xs mt-1 ${i === a10 ? 'text-white/70' : 'text-neutral-500'}">${x.headline}</span>
+            </div>
+          </div>
+        </button>`).join('');
+      list10.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { a10 = +b.dataset.i; renderV10(); }));
+      prev10.innerHTML = `
+        <div class="v10-preview absolute inset-0">
+          <img src="${s.src}" alt="${s.name}" class="absolute inset-0 w-full h-full object-cover object-top" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent"></div>
+          <div class="absolute bottom-0 p-6 text-white">
+            <p class="text-sm text-white/75 mb-3">${s.pitch}</p>
+            <a href="${s.href}" class="inline-flex px-5 py-2.5 rounded-full bg-white text-black text-[10px] font-bold uppercase tracking-wider">${s.cta} →</a>
+          </div>
+        </div>`;
+    }
+    renderV10();
+  </script>
+</body>
+</html>
