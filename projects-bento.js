@@ -136,6 +136,32 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'lexify',
+    title: 'Lexify',
+    subtitle: 'TDYU professorlaridan jonli huquqiy kurslar',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'TDYU uchun pulli jonli-dars platformasi: kurs tanlash, sotib olish va Enrollment orqali darsga kirish. Talaba, o‘qituvchi va admin rollari — bir nechta kurs birga ishlaydi.',
+    src: 'assets/projects/lexify.png',
+    link: 'https://lexify.zonic.fit/',
+    tools: ['EdTech', 'Huquq', 'Live'],
+    featured: false
+  },
+  {
+    id: 'locme',
+    title: 'Loc',
+    subtitle: 'Amaliyot va davomat boshqaruvi',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'Universitet amaliyoti va davomat tizimi: guruhlar, tashkilotlar, biriktirishlar, jonli xarita, yuz tekshiruvi va hisobotlar. Admin panel, Telegram bot orqali talaba kirishi.',
+    src: 'assets/projects/locme.png',
+    link: 'https://locme.uz/',
+    tools: ['Web', 'Attendance', 'Admin'],
+    featured: false
+  },
+  {
     id: 'cafe',
     title: 'Cafe Website',
     subtitle: 'Editorial Coffee House',
