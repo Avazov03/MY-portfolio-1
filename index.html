@@ -373,14 +373,12 @@
 
     /* Talk stage — flat black background (no radial card panel) */
     .talk-shell {
-      --talk-gold: #FCC464;
-      --talk-gold-hover: #f0b24a;
       --talk-ink: #ffffff;
-      --talk-soft: #c9c9c9;
-      --talk-muted: #8e8e8e;
+      --talk-soft: #a3a3a3;
       width: 100%;
       background: #0D0D0D;
       padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
     @media (min-width: 1024px) {
       .talk-shell { padding: 0; }
@@ -422,51 +420,44 @@
       }
     }
     .talk-stroke {
-      -webkit-text-stroke: 1.5px rgb(255 255 255 / 0.13);
+      -webkit-text-stroke: 1.5px rgb(255 255 255 / 0.1);
       color: transparent;
       user-select: none;
       pointer-events: none;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
     }
-    .talk-gold { color: var(--talk-gold); }
-    .talk-btn-gold {
+    .talk-accent { color: #fff; }
+    .talk-btn-primary {
       display: inline-flex; align-items: center; gap: .5rem;
       padding: .85rem 1.75rem; border-radius: 999px;
-      background: var(--talk-gold); color: #0D0D0D;
-      font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
-      transition: background .2s, box-shadow .2s;
-      box-shadow: 0 0 24px rgba(252, 196, 100, 0.35);
+      background: #fff; color: #0D0D0D;
+      font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
     }
-    .talk-btn-gold:hover { background: var(--talk-gold-hover); }
+    .talk-btn-primary:hover {
+      background: #e5e5e5;
+      transform: scale(1.05);
+      box-shadow: 0 12px 28px rgba(0,0,0,.35);
+    }
+    .talk-btn-primary:active { transform: scale(0.97); }
     .talk-btn-outline {
       display: inline-flex; align-items: center; gap: .5rem;
       padding: .85rem 1.5rem; border-radius: 999px;
-      border: 1.5px solid rgba(255,255,255,.45); color: #fff;
-      font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
-      transition: border-color .2s, background .2s;
+      border: 1px solid #404040; color: #d4d4d4;
+      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      transition: border-color .2s, background .2s, color .2s, transform .2s;
     }
-    .talk-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); }
-    .talk-deco {
-      position: absolute;
-      left: 62%;
-      top: 26%;
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #fff;
-      pointer-events: none;
-      z-index: 5;
+    .talk-btn-outline:hover {
+      border-color: #a3a3a3;
+      color: #fff;
+      background: rgba(255,255,255,.04);
+      transform: scale(1.05);
     }
-    .talk-deco::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 28px;
-      height: 28px;
-      border: 1.5px solid rgba(255,255,255,.85);
-      border-radius: 999px;
-      transform: translate(-50%, -50%);
-    }
+    .talk-btn-outline:active { transform: scale(0.97); }
+    .talk-deco { display: none; }
     /* Talk portrait — absolute bottom:0 of stage (true flush) */
     .talk-portrait {
       pointer-events: none;
@@ -1308,16 +1299,16 @@
   </div>
   <!-- END: Selected Works + Startups -->
 
-  <!-- BEGIN: Keling, gaplashamiz (Talk) — my.portfolio Stage + portrait -->
+  <!-- BEGIN: Keling, gaplashamiz (Talk) -->
   <section class="talk-shell" data-purpose="talk-section" id="talk">
     <div class="talk-stage">
       <span class="talk-deco" aria-hidden="true"></span>
 
       <span
-        class="talk-stroke absolute left-[1%] bottom-[-0.14em] z-0 text-[clamp(160px,32vw,440px)] leading-none font-extrabold tracking-[-0.04em] select-none"
+        class="talk-stroke absolute left-[1%] bottom-[-0.14em] z-0 text-[clamp(140px,28vw,400px)] leading-none select-none"
         aria-hidden="true"
         data-i18n="talk.watermark"
-      >HELLO</span>
+      >SALOM</span>
 
       <div class="talk-portrait">
         <div class="talk-portrait__glow" aria-hidden="true"></div>
@@ -1326,25 +1317,26 @@
 
       <div class="talk-inner">
         <div class="talk-copy max-w-2xl">
-          <h2 class="text-[clamp(36px,5.5vw,72px)] leading-[0.95] font-extrabold tracking-[-0.02em] uppercase">
-            <span class="block talk-gold" data-i18n="talk.line1">KELING,</span>
+          <p class="mb-4 text-[11px] font-bold tracking-widest uppercase text-neutral-500" data-i18n="talk.eyebrow">ALOQA</p>
+          <h2 class="text-[clamp(36px,5.5vw,72px)] leading-[0.9] font-black tracking-tight uppercase">
+            <span class="block talk-accent" data-i18n="talk.line1">KELING,</span>
             <span class="block text-white" data-i18n="talk.line2">GAPLASHAMIZ</span>
           </h2>
-          <p class="mt-6 max-w-md text-base leading-relaxed text-[#c9c9c9]" data-i18n="talk.intro">
+          <p class="mt-6 max-w-md text-sm md:text-base leading-relaxed text-neutral-400" data-i18n="talk.intro">
             Loyiha, hamkorlik yoki savol bo‘lsa — o‘zingizga qulay usulda yozing.
           </p>
-          <p class="mt-3 text-sm text-white/70" data-i18n="talk.role">
-            Full-stack dasturchi, Toshkent
+          <p class="mt-3 text-[11px] font-semibold uppercase tracking-wider text-neutral-500" data-i18n="talk.role">
+            Dizayner & dasturchi · Toshkent
           </p>
           <div class="mt-8 flex flex-wrap items-center gap-3">
-            <a href="start.html" data-cursor-grow class="talk-btn-gold" data-i18n="talk.cta">
+            <a href="start.html" data-cursor-grow class="talk-btn-primary" data-i18n="talk.cta">
               BOG‘LANISH
             </a>
             <a data-cursor-grow href="https://t.me/Avazov_fit" target="_blank" rel="noopener noreferrer" class="talk-btn-outline" data-i18n="talk.telegram">
-              Telegram’da yozish
+              TELEGRAM
             </a>
             <a data-cursor-grow href="mailto:avazovogabek86@gmail.com" class="talk-btn-outline" data-i18n="talk.email">
-              Email yuborish
+              EMAIL
             </a>
           </div>
         </div>
@@ -2100,7 +2092,7 @@
     }
   </script>
   <script type="module">
-    import { initI18n } from './i18n.js?v=startupsZonic1';
+    import { initI18n } from './i18n.js?v=talkMatch1';
     import { initSiteCursor } from './site-cursor.js';
     initI18n();
     initSiteCursor();
