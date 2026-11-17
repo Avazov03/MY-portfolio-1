@@ -58,6 +58,19 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'yuristAi',
+    title: 'Yurist AI',
+    subtitle: 'Huquqiy AI yordamchi',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'O‘zbekiston qonunchiligi bo‘yicha savollarga manbaga tayanib javob beradigan web AI yordamchi. Shartnoma va hujjat tuzadi, mutaxassis yurist topib beradi. Javoblarda modda raqamlari saqlanadi; ovozli suhbat, chat tarixi va shaxsiy kabinet ham bor.',
+    src: 'assets/projects/yurist-ai.png',
+    link: 'https://yuristai.uz/',
+    tools: ['Web', 'AI', 'Huquq'],
+    featured: false
+  },
+  {
     id: 'cafe',
     title: 'Cafe Website',
     subtitle: 'Editorial Coffee House',
