@@ -4,6 +4,34 @@
 
 export const PROJECTS = [
   {
+    id: 'lawlab',
+    title: 'LawLab',
+    subtitle: 'Legal Tech & AI Laboratory',
+    tag: 'Web',
+    year: '2025',
+    description:
+      '“Huquqiy texnologiyalar va sun’iy intellekt laboratoriyasi” MChJ — spin-off IT kompaniyaning rasmiy sayti.',
+    src: 'assets/projects/lawlab.png',
+    link: 'https://lawlab.uz/index.html',
+    tools: ['Web', 'UI/UX', 'Product'],
+    featured: true
+  },
+  {
+    id: 'zonic',
+    title: 'ZONIC',
+    subtitle: 'GPS yugurish o‘yini',
+    tag: 'Mobile',
+    year: '2026',
+    description:
+      'Shaharni yugurib egallang: GPS orqali mahallangizni bosib oling, jamoa tuzing va raqiblardan o‘zib keting. AI murabbiy har yugurishdan keyin keyingi rejani tuzadi.',
+    src: 'assets/projects/zonic-icon.png',
+    modalSrc: 'assets/projects/zonic.png',
+    playStore: 'https://play.google.com/store/apps/details?id=com.zonic.app',
+    appStore: 'https://apps.apple.com/us/app/zonic-app/id6766318781',
+    tools: ['Mobile', 'GPS', 'AI'],
+    featured: true
+  },
+  {
     id: 'cafe',
     title: 'Cafe Website',
     subtitle: 'Editorial Coffee House',
@@ -13,7 +41,7 @@ export const PROJECTS = [
     src: 'Project Images/Cafe Website.png',
     link: 'https://mochaandmiso.web.app/',
     tools: ['React', 'Firebase', 'Node.js'],
-    featured: true
+    featured: false
   },
   {
     id: 'designStudio',
@@ -254,6 +282,33 @@ export function localizeProject(p) {
   return { ...p, tag, subtitle, description };
 }
 
+const PLAY_STORE_SVG = `
+<svg viewBox="0 0 24 24" class="w-4 h-4" aria-hidden="true">
+  <path fill="#EA4335" d="M3.6 2.1 13.8 12 3.6 21.9c-.4-.2-.6-.6-.6-1V3.1c0-.4.2-.8.6-1z"/>
+  <path fill="#FBBC04" d="m3.6 21.9 10.2-9.9 3.4 3.3-11.2 6.5c-.8.5-1.7-.2-2.4-.9z"/>
+  <path fill="#4285F4" d="M20.3 10.3 17.2 8.5l-3.4 3.5 3.4 3.3 3.1-1.8c1-.6 1-2.1 0-2.7z"/>
+  <path fill="#34A853" d="M3.6 2.1c.7-.7 1.6-1.4 2.4-.9L17.2 8.5l-3.4 3.5L3.6 2.1z"/>
+</svg>`;
+
+const APP_STORE_SVG = `
+<svg viewBox="0 0 24 24" class="w-4 h-4" aria-hidden="true">
+  <path fill="#000000" d="M16.7 12.6c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.7-2.8-.7-1.4 0-2.8.9-3.5 2.2-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.6 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7c1.2 0 1.9-1 2.6-2 .8-1.2 1.1-2.3 1.1-2.4-.1 0-2.2-.8-2.2-3.6z"/>
+  <path fill="#000000" d="M14.4 6.5c.6-.7 1-1.7.9-2.7-.9.0-2 .6-2.6 1.3-.6.6-1.1 1.7-1 2.6 1 .1 2-.5 2.7-1.2z"/>
+</svg>`;
+
+function storeButtonsHtml(p) {
+  if (!p.playStore && !p.appStore) return '';
+  const playLabel = tr('modal.playStore', 'Google Play');
+  const appLabel = tr('modal.appStore', 'App Store');
+  const play = p.playStore
+    ? `<a href="${p.playStore}" target="_blank" rel="noopener noreferrer" data-store-btn class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white shadow-md hover:scale-105 transition" aria-label="${playLabel}">${PLAY_STORE_SVG}</a>`
+    : '';
+  const apple = p.appStore
+    ? `<a href="${p.appStore}" target="_blank" rel="noopener noreferrer" data-store-btn class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white shadow-md hover:scale-105 transition" aria-label="${appLabel}">${APP_STORE_SVG}</a>`
+    : '';
+  return `<div class="flex items-center gap-2 shrink-0">${play}${apple}</div>`;
+}
+
 export function initProjectsBento(container, options = {}) {
   if (!container) return null;
   const source = options.items || PROJECTS;
@@ -272,14 +327,20 @@ export function initProjectsBento(container, options = {}) {
       a.dataset.reveal = 'mask-curtain';
       a.innerHTML = `
       <div class="bento-motion">
-        <img src="${p.src}" alt="${p.title}" class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]" loading="${i < 4 ? 'eager' : 'lazy'}">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
-        <div class="absolute left-3 right-3 bottom-3 text-white z-10">
-          <p class="text-[9px] md:text-[10px] font-mono tracking-widest text-white/70">${String(i + 1).padStart(2, '0')} · ${String(p.tag).toUpperCase()}</p>
-          <h3 class="text-sm md:text-lg font-black uppercase tracking-tight leading-tight">${p.title}</h3>
+        <img src="${p.src}" alt="${p.title}" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]" loading="${i < 4 ? 'eager' : 'lazy'}">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
+        <div class="absolute left-3 right-3 bottom-3 text-white z-10 flex items-end justify-between gap-2">
+          <div class="min-w-0">
+            <p class="text-[9px] md:text-[10px] font-mono tracking-widest text-white/70">${String(i + 1).padStart(2, '0')} · ${String(p.tag).toUpperCase()}</p>
+            <h3 class="text-sm md:text-lg font-black uppercase tracking-tight leading-tight">${p.title}</h3>
+          </div>
+          ${storeButtonsHtml(p)}
         </div>
       </div>
     `;
+      a.querySelectorAll('[data-store-btn]').forEach((btn) => {
+        btn.addEventListener('click', (e) => e.stopPropagation());
+      });
       a.addEventListener('click', () => {
         const localized = localizeProject(raw);
         if (onSelect) onSelect(i, localized);

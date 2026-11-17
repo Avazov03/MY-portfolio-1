@@ -136,12 +136,14 @@ export async function initExperienceSection() {
     // 5. Update HUD Phase Title (respects active language)
     if (hudPhase) {
       const tr = window.EchoI18n?.t;
-      if (currentProgress < 0.30) {
-        hudPhase.textContent = tr ? tr('exp.phase.origin') : "ORIGIN & FOUNDATIONS";
-      } else if (currentProgress < 0.65) {
-        hudPhase.textContent = tr ? tr('exp.phase.learning') : "SELF-DIRECTED LEARNING";
+      if (currentProgress < 0.22) {
+        hudPhase.textContent = tr ? tr('exp.phase.origin') : 'ORIGIN & FOUNDATIONS';
+      } else if (currentProgress < 0.45) {
+        hudPhase.textContent = tr ? tr('exp.phase.learning') : 'HIGHER EDUCATION';
+      } else if (currentProgress < 0.70) {
+        hudPhase.textContent = tr ? tr('exp.phase.freelance') : 'IT PATH';
       } else {
-        hudPhase.textContent = tr ? tr('exp.phase.freelance') : "FREELANCE / INDEPENDENT";
+        hudPhase.textContent = tr ? tr('exp.phase.work') : 'WORK & PROJECTS';
       }
     }
 
