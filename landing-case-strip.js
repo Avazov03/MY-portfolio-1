@@ -7,36 +7,39 @@ const IMG = 'Landing Page Assest';
 
 export const STARTUPS = [
   {
-    id: 'aether',
-    title: 'Aether AI',
-    subtitle: 'AI Product · Founder',
-    tag: 'AI Product',
+    id: 'zonic',
+    title: 'ZONIC',
+    subtitle: 'GPS yugurish o‘yini · Founder',
+    tag: 'Mobile',
     year: '2026',
-    role: 'Founder · Product Design',
-    headline: 'Think beyond the obvious.',
+    role: 'Founder · Mobile Product',
+    headline: 'Shaharni yugurib egallang.',
     description:
-      'Cognitive workspace for deep systemic research, disciplined reasoning, and structural synthesis.',
-    cta: 'Start exploring',
-    link: '#aether',
-    src: `${IMG}/Screenshot 2026-10-20 at 7.46.25\u202fPM.png`,
-    tools: ['React', 'TypeScript', 'AI Engine'],
-    stats: 'Waitlist live · Node synthesis · Research UI'
+      'GPS orqali mahallangizni bosib oling, jamoa tuzing va raqiblardan o‘zib keting. AI murabbiy har yugurishdan keyin keyingi rejani tuzadi.',
+    cta: 'Ilovani ochish',
+    link: 'https://play.google.com/store/apps/details?id=com.zonic.app',
+    src: 'assets/projects/zonic.png',
+    modalSrc: 'assets/projects/zonic.png',
+    playStore: 'https://play.google.com/store/apps/details?id=com.zonic.app',
+    appStore: 'https://apps.apple.com/us/app/zonic-app/id6766318781',
+    tools: ['Mobile', 'GPS', 'AI'],
+    stats: 'App Store · Google Play · Live'
   },
   {
-    id: 'afterform',
-    title: 'Afterform',
-    subtitle: 'Fashion Brand · Founder',
-    tag: 'Fashion Brand',
-    year: '2025',
-    role: 'Founder · Brand & Web',
-    headline: 'Not made to fit in.',
+    id: 'yuristAi',
+    title: 'Yurist AI',
+    subtitle: 'Huquqiy AI yordamchi · Founder',
+    tag: 'Web · AI',
+    year: '2026',
+    role: 'Founder · LegalTech',
+    headline: 'Qonun bo‘yicha aniq javob.',
     description:
-      'Brutalist apparel manifesto — volume, silhouette, and campaign storytelling without logos.',
-    cta: 'View campaign',
-    link: '#afterform',
-    src: `${IMG}/Screenshot 2026-10-20 at 7.45.28\u202fPM.png`,
-    tools: ['Next.js', 'GSAP', 'Figma'],
-    stats: 'S01 drop · Lookbook · E-com ready'
+      'O‘zbekiston qonunchiligi bo‘yicha manbaga tayanib javob beradigan web AI yordamchi. Shartnoma va hujjat tuzadi, mutaxassis yurist topib beradi; ovozli suhbat va shaxsiy kabinet ham bor.',
+    cta: 'Saytga o‘tish',
+    link: 'https://yuristai.uz/',
+    src: 'assets/projects/yurist-ai.png',
+    tools: ['Web', 'AI', 'Huquq'],
+    stats: 'yuristai.uz · Live'
   },
   {
     id: 'eleara',
@@ -55,6 +58,35 @@ export const STARTUPS = [
     stats: '18k gold · Salon booking · Archive'
   }
 ];
+
+const PLAY_STORE_SVG = `
+<svg viewBox="0 0 24 24" class="w-4 h-4" aria-hidden="true">
+  <path fill="#EA4335" d="M3.6 2.1 13.8 12 3.6 21.9c-.4-.2-.6-.6-.6-1V3.1c0-.4.2-.8.6-1z"/>
+  <path fill="#FBBC04" d="m3.6 21.9 10.2-9.9 3.4 3.3-11.2 6.5c-.8.5-1.7-.2-2.4-.9z"/>
+  <path fill="#4285F4" d="M20.3 10.3 17.2 8.5l-3.4 3.5 3.4 3.3 3.1-1.8c1-.6 1-2.1 0-2.7z"/>
+  <path fill="#34A853" d="M3.6 2.1c.7-.7 1.6-1.4 2.4-.9L17.2 8.5l-3.4 3.5L3.6 2.1z"/>
+</svg>`;
+
+const APP_STORE_SVG = `
+<svg viewBox="0 0 24 24" class="w-4 h-4" aria-hidden="true">
+  <path fill="#000000" d="M16.7 12.6c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.7-2.8-.7-1.4 0-2.8.9-3.5 2.2-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.6 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7c1.2 0 1.9-1 2.6-2 .8-1.2 1.1-2.3 1.1-2.4-.1 0-2.2-.8-2.2-3.6z"/>
+  <path fill="#000000" d="M14.4 6.5c.6-.7 1-1.7.9-2.7-.9.0-2 .6-2.6 1.3-.6.6-1.1 1.7-1 2.6 1 .1 2-.5 2.7-1.2z"/>
+</svg>`;
+
+function ctaHtml(s) {
+  if (s.playStore || s.appStore) {
+    const playLabel = tr('modal.playStore', 'Google Play');
+    const appLabel = tr('modal.appStore', 'App Store');
+    const play = s.playStore
+      ? `<a href="${s.playStore}" target="_blank" rel="noopener noreferrer" data-store-btn class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-black text-white text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-800 transition">${PLAY_STORE_SVG}${playLabel}</a>`
+      : '';
+    const apple = s.appStore
+      ? `<a href="${s.appStore}" target="_blank" rel="noopener noreferrer" data-store-btn class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-neutral-300 text-neutral-900 text-[11px] font-bold uppercase tracking-wider hover:border-black hover:bg-neutral-50 transition">${APP_STORE_SVG}${appLabel}</a>`
+      : '';
+    return `<div class="flex flex-wrap items-center gap-2">${play}${apple}</div>`;
+  }
+  return `<span class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black text-white text-[11px] font-bold uppercase tracking-wider group-hover:bg-neutral-800 transition">${s.cta} →</span>`;
+}
 
 function tr(key, fallback) {
   if (window.EchoI18n) {
@@ -125,9 +157,7 @@ export function initLandingCaseStrip(container, { onSelect } = {}) {
                 )
                 .join('')}
             </div>
-            <span class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black text-white text-[11px] font-bold uppercase tracking-wider group-hover:bg-neutral-800 transition">
-              ${s.cta} →
-            </span>
+            ${ctaHtml(s)}
           </div>
         </div>
       </article>
@@ -143,7 +173,10 @@ export function initLandingCaseStrip(container, { onSelect } = {}) {
 
     container.querySelectorAll('.landing-case-row').forEach((row) => {
       const index = Number(row.dataset.index);
-      row.addEventListener('click', () => open(index));
+      row.addEventListener('click', (e) => {
+        if (e.target.closest('[data-store-btn]')) return;
+        open(index);
+      });
       row.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
