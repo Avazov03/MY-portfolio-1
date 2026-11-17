@@ -5,4 +5,5 @@ services:
     container_name: avazov-portfolio
     restart: unless-stopped
     ports:
-      - "80:80"
+      # Host nginx already owns :80 — proxy avazov-dev.uz → this
+      - "127.0.0.1:8088:80"
