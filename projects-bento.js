@@ -255,6 +255,34 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'diemp',
+    title: 'D.I.E.M.P',
+    subtitle: 'Monitoring va baholash admin paneli',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'Ichki boshqaruv tizimi: dashboard, hujjat yuklash, topshiriqlar, reyestr, baholash, hisobotlar, monitoring va AI yordamchi. Statistika va audit — public URL ochilmaydi, faqat avtorizatsiyali foydalanuvchilar.',
+    src: 'assets/projects/diemp.png',
+    link: 'admin-404.html?from=diemp',
+    adminPanel: true,
+    tools: ['Admin', 'Monitoring', 'Analytics'],
+    featured: false
+  },
+  {
+    id: 'uzexInsight',
+    title: 'UZEX Insight AI',
+    subtitle: 'Bozor tahlili uchun AI yordamchi',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'Ichki bozor analitika paneli. AI yordamchi narx, hajm, risk va ishtirokchilar bo‘yicha savolga javob beradi, taqqoslash va hisobot chiqaradi. Public link yo‘q.',
+    src: 'assets/projects/uzex-insight.png',
+    link: 'admin-404.html?from=uzexInsight',
+    adminPanel: true,
+    tools: ['Admin', 'AI', 'Market'],
+    featured: false
+  },
+  {
     id: 'cafe',
     title: 'Cafe Website',
     subtitle: 'Editorial Coffee House',
