@@ -1797,10 +1797,16 @@
       if (storeLinks.length) {
         html += `<div class="pt-2 flex flex-wrap justify-center items-center gap-3">${storeLinks.join('')}</div>`;
       } else if (data.link) {
+        const isAdmin = !!data.adminPanel;
+        const visitLabel = isAdmin
+          ? i18nText('modal.adminVisit', 'Saytni ko‘rish (admin) ↗')
+          : i18nText('modal.visit', 'Jonli saytni ochish ↗');
+        const visitTarget = isAdmin ? '_self' : '_blank';
+        const visitRel = isAdmin ? '' : 'noopener noreferrer';
         html += `
           <div class="pt-2 flex justify-center items-center">
-            <a href="${data.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-all shadow-md hover:shadow-xl hover:scale-105 active:scale-95">
-              ${i18nText('modal.visit', 'Jonli saytni ochish ↗')}
+            <a href="${data.link}" target="${visitTarget}" rel="${visitRel}" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-all shadow-md hover:shadow-xl hover:scale-105 active:scale-95">
+              ${visitLabel}
             </a>
           </div>
         `;
@@ -2054,7 +2060,7 @@
 
   <!-- Selected Works Bento -->
   <script type="module">
-    import { initProjectsBento } from './projects-bento.js?v=locme1';
+    import { initProjectsBento } from './projects-bento.js?v=admin4042';
 
     function startProjectsBento() {
       const container = document.getElementById('projects-bento');
@@ -2094,7 +2100,7 @@
     }
   </script>
   <script type="module">
-    import { initI18n } from './i18n.js?v=locme1';
+    import { initI18n } from './i18n.js?v=admin4042';
     import { initSiteCursor } from './site-cursor.js';
     initI18n();
     initSiteCursor();

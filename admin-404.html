@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Admin panel</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" href="assets/favicon-avazov.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0d0d0d;
+      --soft: #6b6b6b;
+      --line: #e2e2e2;
+      --photo: url("assets/hero_portrait.png?v=7");
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      min-height: 100%;
+      min-height: 100dvh;
+    }
+
+    .page {
+      position: relative;
+      height: 100%;
+      min-height: 100dvh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      overflow: hidden;
+      animation: enter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes enter {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .wm {
+      position: absolute;
+      left: 6%;
+      top: 46%;
+      transform: translateY(-50%);
+      font-size: clamp(92px, 22vw, 220px);
+      font-weight: 900;
+      letter-spacing: -0.07em;
+      line-height: 0.8;
+      color: rgba(13, 13, 13, 0.045);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      text-transform: uppercase;
+      animation: wmIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+    }
+
+    @keyframes wmIn {
+      from { opacity: 0; transform: translateY(-42%) translateX(-12px); }
+      to { opacity: 1; transform: translateY(-50%) translateX(0); }
+    }
+
+    .copy,
+    .photo {
+      position: relative;
+      z-index: 1;
+      min-height: 0;
+    }
+
+    .copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: clamp(28px, 5vw, 64px) clamp(24px, 4vw, 48px);
+      background: #fff;
+      animation: copyIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+    }
+
+    .copy-inner {
+      width: min(100%, 440px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    @keyframes copyIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+
+    .pill {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0d0d0d;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #fafafa;
+    }
+
+    .code {
+      font-size: clamp(80px, 14vw, 140px);
+      font-weight: 900;
+      letter-spacing: -0.07em;
+      line-height: 0.82;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      line-height: 1.05;
+      max-width: 12ch;
+    }
+
+    .lead {
+      color: var(--soft);
+      font-size: clamp(14px, 1.5vw, 16px);
+      line-height: 1.6;
+      max-width: 36ch;
+      font-weight: 500;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9a9a9a;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: none; }
+
+    .btn-black {
+      background: #0d0d0d;
+      color: #fff;
+    }
+    .btn-black:hover { background: #222; }
+
+    .btn-line {
+      background: transparent;
+      color: #0d0d0d;
+      border-color: #0d0d0d;
+    }
+    .btn-line:hover {
+      background: #0d0d0d;
+      color: #fff;
+    }
+
+    .photo {
+      background:
+        linear-gradient(90deg, #fff 0%, rgba(255,255,255,0) 14%),
+        linear-gradient(180deg, transparent 62%, #fff 100%),
+        var(--photo) center top / cover no-repeat;
+      background-color: #f2f2f2;
+      animation: photoIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+    }
+
+    @keyframes photoIn {
+      from { opacity: 0; transform: scale(1.03); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 860px) {
+      html, body { overflow: auto; }
+      .page {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(42vh, 46vh) minmax(0, 1fr);
+        min-height: 100dvh;
+        height: auto;
+      }
+      .wm {
+        top: 58%;
+        font-size: clamp(72px, 28vw, 140px);
+        left: -6%;
+      }
+      .photo { order: -1; min-height: 42vh; }
+      .copy {
+        padding: 28px 22px 40px;
+        justify-content: flex-start;
+      }
+      .copy-inner {
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      h1 { max-width: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page, .wm, .copy, .photo { animation: none; }
+      .btn:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" role="main">
+    <div class="wm" aria-hidden="true">AVAZOV</div>
+
+    <section class="copy">
+      <div class="copy-inner">
+        <div class="top">
+          <p class="eyebrow" id="eyebrow">Admin · Private</p>
+          <span class="pill" id="pill">Ichki foydalanish</span>
+        </div>
+        <div class="code">404</div>
+        <h1 id="title">Sahifa topilmadi</h1>
+        <p class="lead" id="lead">
+          Bu admin panel jamoatchilik uchun ochiq emas. Live URL berilmaydi — faqat avtorizatsiyali ichki foydalanish.
+        </p>
+        <div class="meta">
+          <span id="meta-project">Admin panel</span>
+          <span>No public URL</span>
+          <span>2026</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-black" href="index.html#projects" id="btn-back">Loyihalarga qaytish</a>
+          <a class="btn btn-line" href="index.html" id="btn-home">Bosh sahifa</a>
+        </div>
+      </div>
+    </section>
+
+    <aside class="photo" role="img" aria-label="Avazov Ogabek"></aside>
+  </main>
+
+  <script>
+    const COPY = {
+      uz: {
+        eyebrow: "Admin · Private",
+        pill: "Ichki foydalanish",
+        title: "Sahifa topilmadi",
+        lead: "Bu admin panel jamoatchilik uchun ochiq emas. Live URL berilmaydi — faqat avtorizatsiyali ichki foydalanish.",
+        back: "Loyihalarga qaytish",
+        home: "Bosh sahifa",
+        fallbackProject: "Admin panel"
+      },
+      en: {
+        eyebrow: "Admin · Private",
+        pill: "Internal only",
+        title: "Page not found",
+        lead: "This admin panel is not public. No live URL is shared — authorized internal use only.",
+        back: "Back to projects",
+        home: "Home",
+        fallbackProject: "Admin panel"
+      },
+      ru: {
+        eyebrow: "Admin · Private",
+        pill: "Только внутри",
+        title: "Страница не найдена",
+        lead: "Эта админ-панель закрыта для публики. Live URL не выдаётся — только авторизованный внутренний доступ.",
+        back: "К проектам",
+        home: "Главная",
+        fallbackProject: "Админ-панель"
+      }
+    };
+
+    const PROJECTS = {
+      zonicAdmin: {
+        uz: "Zon Admin · ZONIC",
+        en: "Zon Admin · ZONIC",
+        ru: "Zon Admin · ZONIC"
+      },
+      locme: {
+        uz: "Loc · Amaliyot & davomat",
+        en: "Loc · Internship & attendance",
+        ru: "Loc · Практика и посещаемость"
+      }
+    };
+
+    const params = new URLSearchParams(location.search);
+    const from = params.get("from") || "";
+    const stored = localStorage.getItem("echo-lang");
+    const lang = ["uz", "en", "ru"].includes(stored) ? stored : "uz";
+    const t = COPY[lang] || COPY.uz;
+    const project = PROJECTS[from];
+
+    document.documentElement.lang = lang;
+    document.getElementById("eyebrow").textContent = t.eyebrow;
+    document.getElementById("pill").textContent = t.pill;
+    document.getElementById("title").textContent = t.title;
+    document.getElementById("lead").textContent = t.lead;
+    document.getElementById("btn-back").textContent = t.back;
+    document.getElementById("btn-home").textContent = t.home;
+    document.getElementById("meta-project").textContent =
+      (project && project[lang]) || t.fallbackProject;
+    document.title = `404 — ${(project && project[lang]) || t.fallbackProject}`;
+  </script>
+</body>
+</html>

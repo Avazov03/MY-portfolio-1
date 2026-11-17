@@ -155,10 +155,25 @@ export const PROJECTS = [
     tag: 'Web',
     year: '2026',
     description:
-      'Universitet amaliyoti va davomat tizimi: guruhlar, tashkilotlar, biriktirishlar, jonli xarita, yuz tekshiruvi va hisobotlar. Admin panel, Telegram bot orqali talaba kirishi.',
+      'Universitet amaliyoti va davomat tizimi: guruhlar, tashkilotlar, biriktirishlar, jonli xarita, yuz tekshiruvi va hisobotlar. Ichki admin panel — public URL ochilmaydi; talabalar Telegram bot orqali kiradi.',
     src: 'assets/projects/locme.png',
-    link: 'https://locme.uz/',
-    tools: ['Web', 'Attendance', 'Admin'],
+    link: 'admin-404.html?from=locme',
+    adminPanel: true,
+    tools: ['Admin', 'Attendance', 'Web'],
+    featured: false
+  },
+  {
+    id: 'zonicAdmin',
+    title: 'Zon Admin',
+    subtitle: 'ZONIC boshqaruv paneli',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'ZONIC mobil o‘yini uchun ichki admin panel: foydalanuvchilar, reyting, viloyatlar, xarita, yutuqlar, musobaqalar, market, yangiliklar va push. Jonli statistikalar va diagrammalar — public link berilmaydi.',
+    src: 'assets/projects/zonic-admin.png',
+    link: 'admin-404.html?from=zonicAdmin',
+    adminPanel: true,
+    tools: ['Admin', 'Analytics', 'ZONIC'],
     featured: false
   },
   {
