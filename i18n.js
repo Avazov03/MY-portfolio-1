@@ -140,10 +140,39 @@ export const translations = {
     'services.landingDesc': 'Startap, mahsulot chiqarish va shaxsiy brendlar uchun yuqori konversiyali editorial landing page lar.',
     'services.landingDel': 'NATIJA: COPY STRUKTURASI, CUSTOM GRAFIKA, WEBFLOW KOD',
     'services.inquire': 'SO‘ROV ↗',
+    'services.motion': 'Jarayon · doimiy harakat',
+
+    'start.back': '← Portfolio',
+    'start.name': 'Avazov<br>Ogabek',
+    'start.role': 'Full-stack dasturchi · Toshkent. Editorial web + product.',
+    'start.title': 'Bog‘lanish',
+    'start.intro': 'Loyiha, hamkorlik yoki savol — 24 soat ichida javob.',
+    'start.emailLabel': 'Email',
+    'start.tgLabel': 'Telegram',
+    'start.igLabel': 'Instagram',
+    'start.phName': 'Ismingiz',
+    'start.phContact': 'Email yoki Telegram',
+    'start.phMessage': 'Loyiha haqida qisqacha...',
+    'start.submit': 'Xabar yuborish →',
+    'start.readyLabel': 'Tez xabar',
+    'start.chip.landing': 'Landing',
+    'start.chip.portfolio': 'Portfolio',
+    'start.chip.startup': 'Startup',
+    'start.chip.uiux': 'UI/UX',
+    'start.chip.redesign': 'Redesign',
+    'start.chip.other': 'Boshqa',
+    'start.msg.landing': 'Salom! Landing page kerak.',
+    'start.msg.portfolio': 'Portfolio sayt yasash kerak.',
+    'start.msg.startup': 'Startup MVP uchun sayt kerak.',
+    'start.msg.uiux': 'UI/UX audit kerak.',
+    'start.msg.redesign': 'Mavjud saytni redesign qilish kerak.',
+    'start.msg.other': 'Boshqa savol / taklif bor.',
 
     'footer.rights': 'PORTFOLIO. BARCHA HUQUQLAR HIMOYALANGAN',
     'footer.designBy': 'DIZAYN: AVAZOV OGABEK',
     'footer.instagram': 'INSTAGRAM',
+    'footer.telegram': 'TELEGRAM',
+    'footer.email': 'EMAIL',
     'footer.twitter': 'TWITTER',
     'footer.linkedin': 'LINKEDIN',
     'footer.github': 'GITHUB',
@@ -312,10 +341,39 @@ export const translations = {
     'services.landingDesc': 'High-converting editorial landing pages tailored for startups, product launches, and personal brands. Engineered to capture attention and boost conversions.',
     'services.landingDel': 'DELIVERABLES: COPYWRITING STRUCTURE, CUSTOM 3D/GRAPHICS, WEBFLOW CODE',
     'services.inquire': 'INQUIRE ↗',
+    'services.motion': 'Process · always in motion',
+
+    'start.back': '← Portfolio',
+    'start.name': 'Avazov<br>Ogabek',
+    'start.role': 'Full-stack developer · Tashkent. Editorial web + product.',
+    'start.title': 'Get in touch',
+    'start.intro': 'Project, partnership or a question — reply within 24 hours.',
+    'start.emailLabel': 'Email',
+    'start.tgLabel': 'Telegram',
+    'start.igLabel': 'Instagram',
+    'start.phName': 'Your name',
+    'start.phContact': 'Email or Telegram',
+    'start.phMessage': 'Briefly about the project...',
+    'start.submit': 'Send message →',
+    'start.readyLabel': 'Quick message',
+    'start.chip.landing': 'Landing',
+    'start.chip.portfolio': 'Portfolio',
+    'start.chip.startup': 'Startup',
+    'start.chip.uiux': 'UI/UX',
+    'start.chip.redesign': 'Redesign',
+    'start.chip.other': 'Other',
+    'start.msg.landing': 'Hi! I need a landing page.',
+    'start.msg.portfolio': 'I need a portfolio website.',
+    'start.msg.startup': 'I need a startup MVP site.',
+    'start.msg.uiux': 'I need a UI/UX audit.',
+    'start.msg.redesign': 'I need a redesign of an existing site.',
+    'start.msg.other': 'I have another question / proposal.',
 
     'footer.rights': 'PORTFOLIO. ALL RIGHTS RESERVED',
     'footer.designBy': 'DESIGN BY AVAZOV OGABEK',
     'footer.instagram': 'INSTAGRAM',
+    'footer.telegram': 'TELEGRAM',
+    'footer.email': 'EMAIL',
     'footer.twitter': 'TWITTER',
     'footer.linkedin': 'LINKEDIN',
     'footer.github': 'GITHUB',
@@ -484,10 +542,39 @@ export const translations = {
     'services.landingDesc': 'Конверсионные editorial-лендинги для стартапов, запусков и личных брендов.',
     'services.landingDel': 'РЕЗУЛЬТАТ: СТРУКТУРА КОПИРАЙТА, ГРАФИКА, WEBFLOW КОД',
     'services.inquire': 'ЗАПРОС ↗',
+    'services.motion': 'Процесс · в постоянном движении',
+
+    'start.back': '← Портфолио',
+    'start.name': 'Avazov<br>Ogabek',
+    'start.role': 'Full-stack разработчик · Ташкент. Editorial web + product.',
+    'start.title': 'Связаться',
+    'start.intro': 'Проект, сотрудничество или вопрос — ответ в течение 24 часов.',
+    'start.emailLabel': 'Email',
+    'start.tgLabel': 'Telegram',
+    'start.igLabel': 'Instagram',
+    'start.phName': 'Ваше имя',
+    'start.phContact': 'Email или Telegram',
+    'start.phMessage': 'Кратко о проекте...',
+    'start.submit': 'Отправить →',
+    'start.readyLabel': 'Быстрое сообщение',
+    'start.chip.landing': 'Landing',
+    'start.chip.portfolio': 'Portfolio',
+    'start.chip.startup': 'Startup',
+    'start.chip.uiux': 'UI/UX',
+    'start.chip.redesign': 'Redesign',
+    'start.chip.other': 'Другое',
+    'start.msg.landing': 'Здравствуйте! Нужен лендинг.',
+    'start.msg.portfolio': 'Нужен сайт-портфолио.',
+    'start.msg.startup': 'Нужен сайт для startup MVP.',
+    'start.msg.uiux': 'Нужен UI/UX аудит.',
+    'start.msg.redesign': 'Нужен redesign существующего сайта.',
+    'start.msg.other': 'Есть другой вопрос / предложение.',
 
     'footer.rights': 'ПОРТФОЛИО. ВСЕ ПРАВА ЗАЩИЩЕНЫ',
     'footer.designBy': 'ДИЗАЙН: AVAZOV OGABEK',
     'footer.instagram': 'INSTAGRAM',
+    'footer.telegram': 'TELEGRAM',
+    'footer.email': 'EMAIL',
     'footer.twitter': 'TWITTER',
     'footer.linkedin': 'LINKEDIN',
     'footer.github': 'GITHUB',
@@ -562,11 +649,19 @@ export function applyLanguage(lang) {
     el.textContent = t(el.getAttribute('data-i18n-option'), lang);
   });
 
-  const isBioPage = /bio\.html$/i.test(window.location.pathname) || document.body?.dataset?.page === 'bio';
+  const path = window.location.pathname || '';
+  const isBioPage = /bio\.html$/i.test(path) || document.body?.dataset?.page === 'bio';
+  const isStartPage = /start\.html$/i.test(path) || document.body?.dataset?.page === 'start';
   const title = isBioPage
     ? `${t('bio.name', lang)} — ${t('bio.section.story', lang)}`
-    : t('meta.title', lang);
-  const desc = isBioPage ? t('bio.tagline', lang) : t('meta.description', lang);
+    : isStartPage
+      ? `${t('start.title', lang)} — Avazov Ogabek`
+      : t('meta.title', lang);
+  const desc = isBioPage
+    ? t('bio.tagline', lang)
+    : isStartPage
+      ? t('start.intro', lang)
+      : t('meta.description', lang);
   document.title = title;
   const meta = document.querySelector('meta[name="description"]');
   if (meta) meta.setAttribute('content', desc);
