@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    image: avazov-portfolio:latest
+    container_name: avazov-portfolio
+    restart: unless-stopped
+    ports:
+      - "80:80"

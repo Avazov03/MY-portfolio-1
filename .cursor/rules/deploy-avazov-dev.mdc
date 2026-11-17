@@ -1,0 +1,39 @@
+---
+description: Avazov portfolio server/deploy workflow — ask before commit, push, deploy; confirm with checkmarks
+alwaysApply: true
+---
+
+# Avazov deploy workflow (avazov-dev.uz)
+
+## Host / git memory (no secrets in git)
+
+- **Domain:** `avazov-dev.uz` (DNS A `@` → `63.189.22.217`)
+- **Public IPv4:** `63.189.22.217`
+- **Private IPv4:** `172.26.9.144`
+- **Public IPv6:** `2a05:d014:1091:2d00:86e0:17db:3d54:41ec`
+- **SSH key path (local only, NEVER commit):** `%USERPROFILE%\.ssh\avazov-dev.uz`
+- **SSH user (preferred):** `ubuntu` (fallback: `ec2-user`, then `root`)
+- **GitHub repo:** `https://github.com/Avazov03/MY-portfolio-1.git` · branch `main`
+- **Runtime:** Docker + nginx static site (`Dockerfile`, `docker-compose.yml`, `nginx.conf`)
+- **Remote app dir:** `/opt/avazov-portfolio`
+
+## After any meaningful site change in this project
+
+1. Finish the code/content change.
+2. **Ask once** (do not auto-run):  
+   `Commit + git push + serverga deploy qilaymi?`
+3. Only if the user says yes, run in order:
+   - `git add` / `git commit` (follow repo commit rules)
+   - `git push origin HEAD`
+   - Deploy: `./scripts/deploy.sh` (or PowerShell equivalent) via SSH + Docker rebuild
+4. In the **final chat reply**, confirm with checkmarks, for example:
+   - ✅ O‘zgarishlar
+   - ✅ Commit (`hash` + short message)
+   - ✅ Git push (`origin/main`)
+   - ✅ Server deploy (`avazov-dev.uz`)
+   - ⏭️ Skip any step the user declined
+
+## Secrets
+
+- Never paste, commit, or rewrite the RSA private key into the repo, rules with secret bodies, or public files.
+- If a key was exposed in chat, remind the user to **rotate/regenerate** the cloud SSH key.

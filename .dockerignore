@@ -1,0 +1,19 @@
+.git
+.agents
+.cursor
+node_modules
+extracted
+extracted_zip
+"Landing Page Assest"
+"Project Images"
+*.zip
+*.tsx
+package.json
+package-lock.json
+scratch_box.png
+.env
+.env.*
+**/*.pem
+**/*id_rsa*
+concepts
+agent-transcripts
