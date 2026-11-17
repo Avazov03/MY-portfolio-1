@@ -214,6 +214,19 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'avazovPortfolio',
+    title: 'Avazov Portfolio',
+    subtitle: 'Asosiy shaxsiy portfolio sayti',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'Og‘abek Avazov uchun asosiy portfolio: About, Experience, Selected Works, Startups, Contact va Services. UZ/EN/RU i18n, bento loyihalar va production deploy — avazov-dev.uz.',
+    src: 'assets/projects/avazov-portfolio.png',
+    link: 'https://avazov-dev.uz/',
+    tools: ['Portfolio', 'i18n', 'Web'],
+    featured: false
+  },
+  {
     id: 'locme',
     title: 'Loc',
     subtitle: 'Amaliyot va davomat boshqaruvi',
