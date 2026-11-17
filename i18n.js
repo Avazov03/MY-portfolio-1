@@ -33,6 +33,8 @@ export const translations = {
     'hero.landing': 'LANDING',
     'hero.app': 'MOBIL APP',
     'hero.scrollAbout': 'Men haqimda bo‘limiga o‘tish',
+    'hero.contactLabel': 'Men bilan bog‘lanish',
+    'hero.contactAria': 'Men bilan bog‘lanish sahifasini ochish',
 
     'about.headline': 'G‘OYALARNI TEZ VA O‘ZIGA XOS RAQAMLI TAJRIBALARGA AYLANTRISH',
     'about.based': 'O‘ZBEKISTON • DUNYO BO‘YLAB',
@@ -236,6 +238,8 @@ export const translations = {
     'hero.landing': 'LANDING',
     'hero.app': 'MOBILE APP',
     'hero.scrollAbout': 'Scroll to About Section',
+    'hero.contactLabel': 'Get in touch',
+    'hero.contactAria': 'Open contact page',
 
     'about.headline': 'TURNING VISIONARY IDEAS INTO FAST, DISTINCTIVE DIGITAL EXPERIENCES',
     'about.based': 'UZBEKISTAN • WORLDWIDE',
@@ -439,6 +443,8 @@ export const translations = {
     'hero.landing': 'LANDING',
     'hero.app': 'МОБИЛЬНОЕ ПРИЛОЖЕНИЕ',
     'hero.scrollAbout': 'Перейти к разделу Обо мне',
+    'hero.contactLabel': 'Связаться со мной',
+    'hero.contactAria': 'Открыть страницу связи',
 
     'about.headline': 'ПРЕВРАЩАЮ СМЕЛЫЕ ИДЕИ В БЫСТРЫЕ И САМОБЫТНЫЕ ЦИФРОВЫЕ ПРОДУКТЫ',
     'about.based': 'УЗБЕКИСТАН • ПО ВСЕМУ МИРУ',

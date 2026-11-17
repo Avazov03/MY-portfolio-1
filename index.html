@@ -815,14 +815,36 @@
     <!-- Center Headshot & Symmetrical Content Grid -->
     <div class="relative grid grid-cols-1 md:grid-cols-12 items-center mt-2 md:-mt-6">
       
-      <!-- Left Column: Designer info & Arrow -->
-      <div class="md:col-span-3 flex flex-col items-start md:items-start pl-2 md:pl-6 order-2 md:order-1 pt-6 md:pt-0">
-        <span class="text-xs font-bold tracking-wider uppercase text-neutral-800 mb-6" data-i18n="hero.designer">DIZAYNER EST.2000</span>
-        <a class="circle-btn w-14 h-14 md:w-16 md:h-16 border-neutral-300" href="#about" data-i18n-aria="hero.scrollAbout" aria-label="Men haqimda bo‘limiga o‘tish">
-          <svg class="w-5 h-5 text-neutral-800 transform rotate-45" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </a>
+      <!-- Left Column: stacked label + circle pairs -->
+      <div class="md:col-span-3 flex flex-col items-start md:items-start pl-2 md:pl-6 order-2 md:order-1 pt-6 md:pt-0 gap-10">
+        <!-- Fixed brand line — never translated -->
+        <div class="flex flex-col items-start">
+          <span class="text-xs font-bold tracking-wider uppercase text-neutral-800 mb-2.5">MY WORK → lawlab</span>
+          <a
+            class="circle-btn w-14 h-14 md:w-16 md:h-16 border-neutral-300"
+            href="https://lawlab.uz/index.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open lawlab"
+          >
+            <svg class="w-5 h-5 text-neutral-800 -rotate-45" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="flex flex-col items-start">
+          <span class="text-xs font-bold tracking-wider uppercase text-neutral-800 mb-2.5" data-i18n="hero.contactLabel">Men bilan bog‘lanish</span>
+          <a
+            class="circle-btn w-14 h-14 md:w-16 md:h-16 border-neutral-300"
+            href="start.html"
+            data-i18n-aria="hero.contactAria"
+            aria-label="Men bilan bog‘lanish"
+          >
+            <svg class="w-5 h-5 text-neutral-800" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+        </div>
       </div>
 
       <!-- Center Column: Stylized Black and White Headshot (in front of text) -->
@@ -1983,7 +2005,7 @@
     }
   </script>
   <script type="module">
-    import { initI18n } from './i18n.js?v=hero5';
+    import { initI18n } from './i18n.js?v=heroLeft1';
     import { initSiteCursor } from './site-cursor.js';
     initI18n();
     initSiteCursor();
