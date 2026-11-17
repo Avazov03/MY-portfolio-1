@@ -269,21 +269,19 @@
       transform: translateY(-2px);
     }
 
-    /* Talk stage — my.portfolio Stage + About portrait */
+    /* Talk stage — flat black background (no radial card panel) */
     .talk-shell {
       --talk-gold: #FCC464;
       --talk-gold-hover: #f0b24a;
       --talk-ink: #ffffff;
       --talk-soft: #c9c9c9;
       --talk-muted: #8e8e8e;
-      --talk-edge: #1c1c1c;
-      --talk-core: #454545;
       width: 100%;
-      background: #0e0e0f;
+      background: #0D0D0D;
       padding: 0;
     }
     @media (min-width: 1024px) {
-      .talk-shell { padding: 1.5rem; }
+      .talk-shell { padding: 0; }
     }
     .talk-stage {
       position: relative;
@@ -292,21 +290,14 @@
       margin: 0 auto;
       overflow: hidden;
       color: var(--talk-ink);
-      background-color: var(--talk-edge);
-      background-image: radial-gradient(
-        circle at 56% 45%,
-        var(--talk-core) 0%,
-        #2a2a2a 38%,
-        var(--talk-edge) 75%
-      );
-      min-height: 520px;
+      background: transparent;
+      min-height: 670px;
       display: flex;
       flex-direction: column;
     }
     @media (min-width: 1024px) {
       .talk-stage {
-        border-radius: 18px;
-        min-height: 560px;
+        min-height: 710px;
       }
     }
     .talk-stroke {
@@ -335,7 +326,7 @@
     .talk-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); }
     .talk-deco {
       position: absolute;
-      left: 42%;
+      left: 58%;
       top: 28%;
       width: 8px;
       height: 8px;
@@ -375,9 +366,9 @@
     @media (min-width: 1024px) {
       .talk-portrait {
         position: absolute;
-        right: 18%;
+        left: 18%;
+        right: auto;
         bottom: 0;
-        left: auto;
         margin: 0;
         height: 96%;
         width: 420px;
@@ -1012,13 +1003,16 @@
       <span class="talk-deco" aria-hidden="true"></span>
 
       <span
-        class="talk-stroke absolute right-[4%] bottom-[-0.12em] z-10 text-[clamp(110px,22vw,280px)] leading-none font-extrabold tracking-[-0.04em] select-none"
+        class="talk-stroke absolute left-[4%] bottom-[-0.12em] z-10 text-[clamp(110px,22vw,280px)] leading-none font-extrabold tracking-[-0.04em] select-none"
         aria-hidden="true"
         data-i18n="talk.watermark"
       >HELLO</span>
 
-      <div class="relative z-20 flex flex-1 flex-col gap-8 px-6 pt-14 pb-0 sm:px-10 lg:flex-row lg:items-end lg:justify-between lg:px-14 lg:pt-16 lg:pb-14">
-        <div class="relative z-30 max-w-2xl pb-8 lg:pb-0">
+      <div class="relative z-20 flex flex-1 flex-col gap-8 px-6 pt-14 pb-0 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-14 lg:py-16">
+        <!-- spacer so absolute portrait has room on desktop (left) -->
+        <div class="hidden lg:block lg:w-[420px] lg:shrink-0" aria-hidden="true"></div>
+
+        <div class="relative z-30 max-w-2xl pb-8 lg:pb-0 lg:self-center">
           <h2 class="text-[clamp(44px,7vw,96px)] leading-[0.95] font-extrabold tracking-[-0.02em] uppercase">
             <span class="block talk-gold" data-i18n="talk.line1">KELING,</span>
             <span class="block text-white" data-i18n="talk.line2">GAPLASHAMIZ</span>
@@ -1041,9 +1035,6 @@
             </a>
           </div>
         </div>
-
-        <!-- spacer so absolute portrait has room on desktop -->
-        <div class="hidden lg:block lg:w-[420px] lg:shrink-0" aria-hidden="true"></div>
       </div>
 
       <div class="talk-portrait">
