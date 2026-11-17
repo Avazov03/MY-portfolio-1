@@ -251,13 +251,32 @@
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
     }
 
-    /* Selected Works — Bento archive */
+    /* Selected Works — Bento archive + Mask Curtain reveal */
     .projects-bento-tile {
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
     }
     .projects-bento-tile:hover {
       transform: translateY(-2px);
       border-color: #0D0D0D;
+    }
+    .projects-bento-tile .bento-motion {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      overflow: hidden;
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(var(--stagger, 0) * 80ms);
+      will-change: clip-path;
+    }
+    .projects-bento-tile.is-in .bento-motion {
+      clip-path: inset(0 0% 0 0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .projects-bento-tile .bento-motion {
+        clip-path: none;
+        transition: none;
+      }
     }
     /* AVAZOV watermark — viewport-centered sticky across projects + startups;
        grid-stacked + overflow clip so it never bleeds into Talk */
@@ -309,13 +328,47 @@
       z-index: 1;
     }
 
-    /* Landing — Case strip */
+    /* Landing — Case strip + Split Arrive reveal */
     .landing-case-row {
       transition: border-color 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .landing-case-row:hover {
+    .landing-case-row.is-in:hover {
       border-color: #0D0D0D;
       transform: translateY(-2px);
+    }
+    .landing-case-row .landing-case-media,
+    .landing-case-row .landing-case-copy {
+      opacity: 0;
+      transition:
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(var(--stagger, 0) * 110ms);
+      will-change: transform, opacity;
+    }
+    .landing-case-row .landing-case-media {
+      transform: translate3d(-36px, 0, 0);
+    }
+    .landing-case-row .landing-case-copy {
+      transform: translate3d(36px, 0, 0);
+    }
+    .landing-case-row.is-flip .landing-case-media {
+      transform: translate3d(36px, 0, 0);
+    }
+    .landing-case-row.is-flip .landing-case-copy {
+      transform: translate3d(-36px, 0, 0);
+    }
+    .landing-case-row.is-in .landing-case-media,
+    .landing-case-row.is-in .landing-case-copy {
+      opacity: 1;
+      transform: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .landing-case-row .landing-case-media,
+      .landing-case-row .landing-case-copy {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
     }
 
     /* Talk stage — flat black background (no radial card panel) */
@@ -1884,7 +1937,7 @@
 
   <!-- Selected Works Bento -->
   <script type="module">
-    import { initProjectsBento } from './projects-bento.js';
+    import { initProjectsBento } from './projects-bento.js?v=replay1';
 
     function startProjectsBento() {
       const container = document.getElementById('projects-bento');
@@ -1905,7 +1958,7 @@
 
   <!-- Landing Case Strip -->
   <script type="module">
-    import { initLandingCaseStrip } from './landing-case-strip.js';
+    import { initLandingCaseStrip } from './landing-case-strip.js?v=replay1';
 
     function startLandingCaseStrip() {
       const container = document.getElementById('landing-case-strip');

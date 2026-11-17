@@ -1,5 +1,6 @@
 /**
  * Landing Pages — Case strip (3 founder startups)
+ * Reveal: Split Arrive (media ↔ copy)
  */
 
 const IMG = 'Landing Page Assest';
@@ -60,14 +61,15 @@ export function initLandingCaseStrip(container, { onSelect } = {}) {
     return `
       <article
         class="landing-case-row group rounded-[28px] border border-neutral-200 bg-white overflow-hidden grid md:grid-cols-2 cursor-pointer ${
-          flip ? 'md:[&>div:first-child]:order-2' : ''
+          flip ? 'is-flip md:[&>.landing-case-media]:order-2' : ''
         }"
         data-index="${i}"
+        data-reveal="split-arrive"
         role="button"
         tabindex="0"
         aria-label="${s.title}"
       >
-        <div class="relative aspect-[16/10] md:aspect-auto md:min-h-[320px] overflow-hidden bg-neutral-100">
+        <div class="landing-case-media relative aspect-[16/10] md:aspect-auto md:min-h-[320px] overflow-hidden bg-neutral-100">
           <img
             src="${s.src}"
             alt="${s.title}"
@@ -75,7 +77,7 @@ export function initLandingCaseStrip(container, { onSelect } = {}) {
             loading="lazy"
           />
         </div>
-        <div class="flex flex-col justify-between p-7 md:p-10">
+        <div class="landing-case-copy flex flex-col justify-between p-7 md:p-10">
           <div>
             <div class="flex items-center justify-between gap-3 mb-5">
               <span class="text-[10px] font-mono tracking-widest text-neutral-400">0${i + 1} — ${s.year}</span>
@@ -121,5 +123,49 @@ export function initLandingCaseStrip(container, { onSelect } = {}) {
     });
   });
 
+  bindSplitArriveReveal(container);
+
   return { items: STARTUPS };
+}
+
+/** Split Arrive — replays every time a case re-enters the viewport */
+function bindSplitArriveReveal(container) {
+  const rows = () => [...container.querySelectorAll('.landing-case-row')];
+
+  const show = (row, stagger = 0) => {
+    if (!row || row.classList.contains('is-in')) return;
+    row.style.setProperty('--stagger', String(stagger));
+    row.classList.add('is-in');
+    delete row.dataset.revealing;
+  };
+
+  const hide = (row) => {
+    if (!row || !row.classList.contains('is-in')) return;
+    row.classList.remove('is-in');
+    delete row.dataset.revealing;
+    row.style.setProperty('--stagger', '0');
+  };
+
+  if (!container || typeof IntersectionObserver === 'undefined') {
+    rows().forEach((r) => show(r));
+    return;
+  }
+
+  const reveal = (row) => {
+    if (!row || row.classList.contains('is-in') || row.dataset.revealing === '1') return;
+    row.dataset.revealing = '1';
+    requestAnimationFrame(() => show(row, 0));
+  };
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) reveal(entry.target);
+        else hide(entry.target);
+      });
+    },
+    { threshold: 0.14, rootMargin: '0px 0px -8% 0px' }
+  );
+
+  rows().forEach((row) => io.observe(row));
 }

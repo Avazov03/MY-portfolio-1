@@ -244,12 +244,15 @@ export function initProjectsBento(container, options = {}) {
     const a = document.createElement('button');
     a.type = 'button';
     a.className = `projects-bento-tile ${spanForIndex(i)} relative rounded-2xl md:rounded-3xl border border-neutral-200 bg-neutral-100 overflow-hidden text-left group`;
+    a.dataset.reveal = 'mask-curtain';
     a.innerHTML = `
-      <img src="${p.src}" alt="${p.title}" class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]" loading="${i < 4 ? 'eager' : 'lazy'}">
-      <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
-      <div class="absolute left-3 right-3 bottom-3 text-white z-10">
-        <p class="text-[9px] md:text-[10px] font-mono tracking-widest text-white/70">${String(i + 1).padStart(2, '0')} · ${p.tag.toUpperCase()}</p>
-        <h3 class="text-sm md:text-lg font-black uppercase tracking-tight leading-tight">${p.title}</h3>
+      <div class="bento-motion">
+        <img src="${p.src}" alt="${p.title}" class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]" loading="${i < 4 ? 'eager' : 'lazy'}">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
+        <div class="absolute left-3 right-3 bottom-3 text-white z-10">
+          <p class="text-[9px] md:text-[10px] font-mono tracking-widest text-white/70">${String(i + 1).padStart(2, '0')} · ${p.tag.toUpperCase()}</p>
+          <h3 class="text-sm md:text-lg font-black uppercase tracking-tight leading-tight">${p.title}</h3>
+        </div>
       </div>
     `;
     a.addEventListener('click', () => {
@@ -260,5 +263,63 @@ export function initProjectsBento(container, options = {}) {
     container.appendChild(a);
   });
 
+  bindMaskCurtainReveal(container);
+
   return { items };
+}
+
+/** Row-wave Mask Curtain — replays every time tiles re-enter the viewport */
+function bindMaskCurtainReveal(container) {
+  const tiles = () => [...container.querySelectorAll('.projects-bento-tile')];
+
+  const show = (tile, stagger = 0) => {
+    if (!tile || tile.classList.contains('is-in')) return;
+    tile.style.setProperty('--stagger', String(stagger));
+    tile.classList.add('is-in');
+    delete tile.dataset.revealing;
+  };
+
+  const hide = (tile) => {
+    if (!tile || !tile.classList.contains('is-in')) return;
+    tile.classList.remove('is-in');
+    delete tile.dataset.revealing;
+    tile.style.setProperty('--stagger', '0');
+  };
+
+  if (!container || typeof IntersectionObserver === 'undefined') {
+    tiles().forEach((t) => show(t));
+    return;
+  }
+
+  const revealRow = (tile) => {
+    if (!tile || tile.classList.contains('is-in') || tile.dataset.revealing === '1') return;
+    const top = tile.getBoundingClientRect().top;
+    const pending = tiles()
+      .filter((t) => !t.classList.contains('is-in') && t.dataset.revealing !== '1')
+      .filter((t) => Math.abs(t.getBoundingClientRect().top - top) < 48)
+      .sort((a, b) => a.getBoundingClientRect().left - b.getBoundingClientRect().left);
+
+    if (!pending.length) {
+      show(tile, 0);
+      return;
+    }
+
+    pending.forEach((t, i) => {
+      t.dataset.revealing = '1';
+      requestAnimationFrame(() => show(t, i));
+    });
+  };
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) revealRow(entry.target);
+        else hide(entry.target);
+      });
+    },
+    // Slight inset so leave/re-enter is clear (replay without flicker)
+    { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
+  );
+
+  tiles().forEach((tile) => io.observe(tile));
 }
