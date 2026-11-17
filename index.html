@@ -259,6 +259,55 @@
       transform: translateY(-2px);
       border-color: #0D0D0D;
     }
+    /* AVAZOV watermark — viewport-centered sticky across projects + startups;
+       grid-stacked + overflow clip so it never bleeds into Talk */
+    .works-sticky-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      overflow: clip;
+    }
+    .works-watermark,
+    .works-sticky-content {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .works-stroke {
+      -webkit-text-stroke: 1.5px rgb(13 13 13 / 0.12);
+      color: transparent;
+      user-select: none;
+      pointer-events: none;
+    }
+    .works-watermark {
+      position: sticky;
+      top: 0;
+      z-index: 0;
+      align-self: start;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .works-watermark span {
+      display: block;
+      font-size: clamp(120px, 28vw, 420px);
+      line-height: 0.85;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .works-sticky-content {
+      position: relative;
+      z-index: 1;
+    }
+    #projects-bento,
+    #landing-case-strip {
+      position: relative;
+      z-index: 1;
+    }
 
     /* Landing — Case strip */
     .landing-case-row {
@@ -1079,41 +1128,49 @@
   </section>
   <!-- END: Experience Section -->
 
-  <!-- BEGIN: Selected Works — Bento Archive -->
-  <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-16" data-purpose="featured-projects" id="projects">
-    <div class="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
-      <div>
-        <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2" data-i18n="projects.eyebrow">LOYIHALAR</p>
-        <h2 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-[0.9]">
-          <span data-i18n="projects.title">SELECTED WORKS</span>
-        </h2>
-      </div>
-      <p class="text-xs md:text-sm text-neutral-500 max-w-sm leading-relaxed" data-i18n="projects.subtitle">
-        Tanlangan web, landing va client loyihalar. Katta plitkalar — asosiy case’lar.
-      </p>
+  <!-- BEGIN: Selected Works + Startups — shared sticky AVAZOV watermark -->
+  <div class="works-sticky-shell">
+    <div class="works-watermark" aria-hidden="true">
+      <span class="works-stroke">AVAZOV</span>
     </div>
 
-    <div id="projects-bento" class="w-full"></div>
-  </section>
-  <!-- END: Selected Works — Bento Archive -->
-
-  <!-- BEGIN: Mening Startuplarim — Case Strip -->
-  <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-16" data-purpose="founder-startups" id="startups">
-    <div class="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
-      <div>
-        <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2" data-i18n="landing.eyebrow">FOUNDER VENTURES</p>
-        <h2 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-[0.9]">
-          <span data-i18n="landing.title">MENING STARTUPLARIM</span>
-        </h2>
+    <div class="works-sticky-content">
+    <!-- Selected Works — Bento Archive -->
+    <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-16" data-purpose="featured-projects" id="projects">
+      <div class="relative z-10 mb-8 md:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2" data-i18n="projects.eyebrow">LOYIHALAR</p>
+          <h2 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-[0.9]">
+            <span data-i18n="projects.title">SELECTED WORKS</span>
+          </h2>
+        </div>
+        <p class="text-xs md:text-sm text-neutral-500 max-w-sm leading-relaxed" data-i18n="projects.subtitle">
+          Tanlangan web, landing va client loyihalar. Katta plitkalar — asosiy case’lar.
+        </p>
       </div>
-      <p class="text-xs md:text-sm text-neutral-500 max-w-sm leading-relaxed" data-i18n="landing.subtitle">
-        Aether AI, Afterform va Maison Éléara — o‘zim qurgan 3 ta startap.
-      </p>
-    </div>
 
-    <div id="landing-case-strip" class="flex flex-col gap-5"></div>
-  </section>
-  <!-- END: Mening Startuplarim -->
+      <div id="projects-bento" class="w-full"></div>
+    </section>
+
+    <!-- Mening Startuplarim — Case Strip -->
+    <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-16" data-purpose="founder-startups" id="startups">
+      <div class="relative z-10 mb-8 md:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <p class="text-[11px] font-bold tracking-widest uppercase text-neutral-500 mb-2" data-i18n="landing.eyebrow">FOUNDER VENTURES</p>
+          <h2 class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-[0.9]">
+            <span data-i18n="landing.title">MENING STARTUPLARIM</span>
+          </h2>
+        </div>
+        <p class="text-xs md:text-sm text-neutral-500 max-w-sm leading-relaxed" data-i18n="landing.subtitle">
+          Aether AI, Afterform va Maison Éléara — o‘zim qurgan 3 ta startap.
+        </p>
+      </div>
+
+      <div id="landing-case-strip" class="flex flex-col gap-5"></div>
+    </section>
+    </div>
+  </div>
+  <!-- END: Selected Works + Startups -->
 
   <!-- BEGIN: Keling, gaplashamiz (Talk) — my.portfolio Stage + portrait -->
   <section class="talk-shell" data-purpose="talk-section" id="talk">
