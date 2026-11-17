@@ -110,6 +110,32 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'hotelSite',
+    title: 'Hotel Website',
+    subtitle: 'Bron, xonalar va mehmonxona xizmatlari',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'Mehmonxona uchun korporativ sayt: xona turlari, bron qilish, restoran va bar, transfer hamda 24 soat qabulxona. Ko‘p tilli interfeys, maxsus takliflar va aloqa bo‘limi.',
+    src: 'assets/projects/hotel-booking.jpg',
+    link: 'https://hotel.zonic.fit/',
+    tools: ['Next.js', 'Web', 'Booking'],
+    featured: false
+  },
+  {
+    id: 'cosmetologist',
+    title: 'Malika Karimova',
+    subtitle: 'Yuz va teri parvarishi mutaxassisi',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'Kosmetolog uchun shaxsiy brend sayti: muolajalar, kurs paketlar, qabulga yozilish va mijoz sharhlari. Diagnostika, premium parvarish va anti-age dasturlari — tushunarli protokol bilan.',
+    src: 'assets/projects/cosmetologist.jpg',
+    link: 'https://cos.zonic.fit/',
+    tools: ['Next.js', 'Beauty', 'Booking'],
+    featured: false
+  },
+  {
     id: 'cafe',
     title: 'Cafe Website',
     subtitle: 'Editorial Coffee House',
