@@ -89,64 +89,6 @@
     .exp-living-flow {
       animation: expLivingFlow 4.5s ease-in-out infinite;
     }
-    /* Services motion — 85vh stage; video fits without upscaling */
-    .services-motion {
-      position: relative;
-      top: auto;
-      width: 100%;
-      height: 85vh;
-      min-height: 85vh;
-      overflow: hidden;
-      background: #0D0D0D;
-      isolation: isolate;
-      display: grid;
-      place-items: center;
-    }
-    .services-motion__media {
-      position: relative;
-      inset: auto;
-      width: auto;
-      height: auto;
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      object-position: center center;
-      display: block;
-      transform: none;
-      will-change: auto;
-      pointer-events: none;
-    }
-    .services-motion__veil {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(180deg, rgba(13,13,13,.28) 0%, transparent 16%, transparent 84%, rgba(13,13,13,.4) 100%);
-    }
-    .services-motion__label {
-      position: absolute;
-      left: 50%;
-      bottom: max(1.5rem, env(safe-area-inset-bottom, 0px) + 1.25rem);
-      transform: translateX(-50%);
-      z-index: 2;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.72);
-      text-shadow: 0 1px 12px rgba(0,0,0,.45);
-      pointer-events: none;
-      white-space: nowrap;
-    }
-    .services-shell {
-      background: #FAFAFA;
-    }
-    .services-shell .services-body {
-      margin-top: 0;
-      position: relative;
-      z-index: 1;
-    }
-
     @media (prefers-reduced-motion: reduce) {
       #experience {
         height: auto !important;
@@ -168,21 +110,6 @@
       }
       .exp-living-flow {
         animation: none !important;
-      }
-      .services-motion__media {
-        display: none !important;
-      }
-      .services-motion {
-        height: 0 !important;
-        min-height: 0 !important;
-        display: none !important;
-      }
-      .services-motion__label,
-      .services-motion__veil {
-        display: none !important;
-      }
-      .services-shell .services-body {
-        margin-top: 0;
       }
     }
 
@@ -1128,28 +1055,7 @@
   <!-- END: Keling, gaplashamiz -->
 
   <!-- BEGIN: Services Section -->
-  <section class="services-shell" data-purpose="services-section" id="services">
-    <!-- Looping motion band — sits directly above offerings -->
-    <div class="services-motion" data-purpose="services-motion">
-      <video
-        id="services-motion-video"
-        class="services-motion__media"
-        src="assets/services-motion.mp4"
-        muted
-        loop
-        playsinline
-        autoplay
-        preload="auto"
-        disablepictureinpicture
-        disableremoteplayback
-        aria-hidden="true"
-        tabindex="-1"
-      ></video>
-      <div class="services-motion__veil" aria-hidden="true"></div>
-      <p class="services-motion__label" data-i18n="services.motion">Jarayon · doimiy harakat</p>
-    </div>
-
-    <div class="services-body max-w-[1400px] mx-auto px-6 md:px-14 pt-10 pb-20">
+  <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-20" data-purpose="services-section" id="services">
     <!-- Centered Header -->
     <div class="text-center max-w-2xl mx-auto mb-14">
       <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-900 mb-4">
@@ -1229,7 +1135,6 @@
         </div>
       </div>
 
-    </div>
     </div>
   </section>
   <!-- END: Services Section -->
@@ -1850,47 +1755,6 @@
     } else {
       startLandingCaseStrip();
     }
-  </script>
-  <script>
-    (function initServicesMotion() {
-      const video = document.getElementById('services-motion-video');
-      if (!video) return;
-
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce) {
-        video.removeAttribute('autoplay');
-        video.pause();
-        return;
-      }
-
-      video.muted = true;
-      video.defaultMuted = true;
-      video.playsInline = true;
-      video.setAttribute('muted', '');
-      video.setAttribute('playsinline', '');
-
-      const tryPlay = () => {
-        const p = video.play();
-        if (p && typeof p.catch === 'function') p.catch(() => {});
-      };
-
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) tryPlay();
-            else video.pause();
-          });
-        }, { threshold: 0.2 });
-        io.observe(video);
-      } else {
-        tryPlay();
-      }
-
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) video.pause();
-        else if (video.getBoundingClientRect().top < window.innerHeight) tryPlay();
-      });
-    })();
   </script>
   <script type="module">
     import { initI18n } from './i18n.js';
