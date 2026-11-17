@@ -71,6 +71,19 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'yuristAi2',
+    title: 'Yurist AI 2.0',
+    subtitle: 'Huquqiy AI yordamchi',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'O‘zbekiston qonunchiligi bo‘yicha savollarga manbaga tayanib javob beradigan web AI yordamchi. Shartnoma va hujjat tuzadi, mutaxassis yurist topib beradi. Javoblarda modda raqamlari saqlanadi; ovozli suhbat, chat tarixi va shaxsiy kabinet ham bor.',
+    src: 'assets/projects/yurist-ai-2.jpg',
+    link: 'http://yurist.zonic.fit/',
+    tools: ['Web', 'AI', 'Huquq'],
+    featured: false
+  },
+  {
     id: 'cafe',
     title: 'Cafe Website',
     subtitle: 'Editorial Coffee House',
