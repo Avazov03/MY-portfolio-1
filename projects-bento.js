@@ -84,6 +84,32 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'agroExport',
+    title: 'AGRO EXPORT GROUP',
+    subtitle: 'Urug‘lik, galla va ozuqa ulgurji savdosi',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'AGRO EXPORT GROUP INCORPORATION MChJ uchun korporativ sayt — galla, urug‘lik va hayvonlar uchun ozuqaning ulgurji savdosi. Katalog, xizmatlar, jurnal va aloqa; 2007-yildan beri Toshkentda faoliyat.',
+    src: 'assets/projects/agro-export.jpg',
+    link: 'https://agro.zonic.fit/',
+    tools: ['HTML', 'Bootstrap', 'GSAP'],
+    featured: false
+  },
+  {
+    id: 'tdyuEndowment',
+    title: 'TDYU Endowment Fund',
+    subtitle: 'Huquqiy ta’limning kelajagiga sarmoya',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'Toshkent davlat yuridik universitetining maqsadli kapital (Endowment Fund) jamoat fondi sayti. Grant, stipendiya, xalqaro stajirovka va dasturlar; xayriya, e’lonlar, alumni xaritasi va hisobotlar — UZ/RU/EN.',
+    src: 'assets/projects/tdyu-endowment.jpg',
+    link: 'https://tdyu.zonic.fit/uz',
+    tools: ['Web', 'Nonprofit', 'TDYU'],
+    featured: false
+  },
+  {
     id: 'cafe',
     title: 'Cafe Website',
     subtitle: 'Editorial Coffee House',
