@@ -286,18 +286,37 @@
     .talk-stage {
       position: relative;
       width: 100%;
-      max-width: 1380px;
+      max-width: 1400px;
       margin: 0 auto;
       overflow: hidden;
       color: var(--talk-ink);
       background: transparent;
-      min-height: 670px;
+      padding: 3.5rem 1.5rem 0;
       display: flex;
       flex-direction: column;
     }
+    @media (min-width: 768px) {
+      .talk-stage { padding: 4rem 3.5rem 0; }
+    }
     @media (min-width: 1024px) {
       .talk-stage {
-        min-height: 710px;
+        min-height: 740px;
+        padding-bottom: 0;
+      }
+    }
+    .talk-inner {
+      position: relative;
+      z-index: 2;
+      order: 1;
+      width: 100%;
+    }
+    @media (min-width: 1024px) {
+      .talk-inner {
+        order: 0;
+        padding-left: 440px;
+        min-height: 740px;
+        display: flex;
+        align-items: center;
       }
     }
     .talk-stroke {
@@ -326,8 +345,8 @@
     .talk-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); }
     .talk-deco {
       position: absolute;
-      left: 58%;
-      top: 28%;
+      left: 62%;
+      top: 26%;
       width: 8px;
       height: 8px;
       border-radius: 999px;
@@ -346,56 +365,155 @@
       border-radius: 999px;
       transform: translate(-50%, -50%);
     }
-    /* Portrait — exact about-page pattern from my.portfolio */
+    /* Talk portrait — absolute bottom:0 of stage (true flush) */
     .talk-portrait {
       pointer-events: none;
       position: relative;
-      z-index: 20;
-      margin-left: -1.5rem;
-      margin-right: -1.5rem;
-      margin-bottom: 0;
+      z-index: 1;
       height: 380px;
+      width: 100%;
+      order: 2;
+      margin: 0;
     }
     @media (min-width: 640px) {
-      .talk-portrait {
-        margin-left: -2.5rem;
-        margin-right: -2.5rem;
-        height: 400px;
-      }
+      .talk-portrait { height: 420px; }
     }
     @media (min-width: 1024px) {
       .talk-portrait {
         position: absolute;
-        left: 18%;
-        right: auto;
+        left: 3.5rem;
+        top: auto;
         bottom: 0;
-        margin: 0;
-        height: 96%;
+        width: 380px;
+        /* talk portrait only — larger */
+        height: 760px;
         width: 420px;
+        order: 0;
+        margin: 0;
+        z-index: 1;
       }
     }
     .talk-portrait__glow {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 40px;
-      width: 18rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,.8);
-      filter: blur(24px);
+      display: none;
     }
     .talk-portrait img {
       position: absolute;
-      bottom: 0;
       left: 50%;
+      bottom: 0;
       transform: translateX(-50%);
       height: 100%;
       width: auto;
       max-width: none;
       object-fit: contain;
-      object-position: bottom;
-      filter: drop-shadow(0 25px 45px rgba(0,0,0,.9));
+      object-position: bottom center;
+      filter: drop-shadow(-12px 0 24px rgba(0,0,0,.35));
+      display: block;
+    }
+    .talk-copy {
+      position: relative;
+      z-index: 2;
+      min-width: 0;
+      order: 1;
+      padding-bottom: 1.25rem;
+    }
+    @media (min-width: 1024px) {
+      .talk-copy {
+        order: 0;
+        padding-top: 1rem;
+        padding-bottom: 2.5rem;
+        max-width: 36rem;
+      }
+    }
+
+    /* Services: portrait absolute bottom:0 of shell */
+    .services-shell {
+      position: relative;
+      overflow: hidden;
+      padding-top: 2.5rem;
+      padding-bottom: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (min-width: 1024px) {
+      .services-shell { min-height: 670px; padding-top: 1.25rem; }
+    }
+    .services-inner {
+      position: relative;
+      z-index: 2;
+      order: 1;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .services-inner { padding: 0 3.5rem; }
+    }
+    @media (min-width: 1024px) {
+      .services-inner {
+        order: 0;
+        padding-left: calc(3.5rem + 400px);
+        min-height: 670px;
+        display: flex;
+        align-items: center;
+      }
+    }
+    .services-portrait {
+      pointer-events: none;
+      position: relative;
+      z-index: 1;
+      height: 380px;
+      width: 100%;
+      order: 2;
+      margin: 0;
+    }
+    @media (min-width: 640px) {
+      .services-portrait { height: 420px; }
+    }
+    @media (min-width: 1024px) {
+      .services-portrait {
+        position: absolute;
+        left: max(1.5rem, calc((100% - 1400px) / 2 + 3.5rem));
+        top: auto;
+        bottom: 0;
+        width: 380px;
+        /* locked to previous full-section visual size, not scaled with page */
+        height: 620px;
+        order: 0;
+        margin: 0;
+        z-index: 1;
+      }
+    }
+    .services-portrait__glow {
+      display: none;
+    }
+    .services-portrait img {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      height: 100%;
+      width: auto;
+      max-width: none;
+      object-fit: contain;
+      object-position: bottom center;
+      filter: drop-shadow(-12px 0 24px rgba(0,0,0,.35));
+      display: block;
+    }
+    .services-content {
+      position: relative;
+      z-index: 2;
+      min-width: 0;
+      order: 1;
+      padding-bottom: 1.25rem;
+    }
+    @media (min-width: 1024px) {
+      .services-content {
+        order: 0;
+        padding-top: 1rem;
+        padding-bottom: 2.5rem;
+        align-self: center;
+      }
     }
 
     /* AVAZOV logo — black-hole mark + wordmark (site DNA, no gold box) */
@@ -1003,17 +1121,19 @@
       <span class="talk-deco" aria-hidden="true"></span>
 
       <span
-        class="talk-stroke absolute left-[4%] bottom-[-0.12em] z-10 text-[clamp(110px,22vw,280px)] leading-none font-extrabold tracking-[-0.04em] select-none"
+        class="talk-stroke absolute left-[1%] bottom-[-0.14em] z-0 text-[clamp(160px,32vw,440px)] leading-none font-extrabold tracking-[-0.04em] select-none"
         aria-hidden="true"
         data-i18n="talk.watermark"
       >HELLO</span>
 
-      <div class="relative z-20 flex flex-1 flex-col gap-8 px-6 pt-14 pb-0 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-14 lg:py-16">
-        <!-- spacer so absolute portrait has room on desktop (left) -->
-        <div class="hidden lg:block lg:w-[420px] lg:shrink-0" aria-hidden="true"></div>
+      <div class="talk-portrait">
+        <div class="talk-portrait__glow" aria-hidden="true"></div>
+        <img src="assets/avazov-talk.png?v=5" alt="Avazov Ogabek" width="384" height="512" loading="eager" />
+      </div>
 
-        <div class="relative z-30 max-w-2xl pb-8 lg:pb-0 lg:self-center">
-          <h2 class="text-[clamp(44px,7vw,96px)] leading-[0.95] font-extrabold tracking-[-0.02em] uppercase">
+      <div class="talk-inner">
+        <div class="talk-copy max-w-2xl">
+          <h2 class="text-[clamp(36px,5.5vw,72px)] leading-[0.95] font-extrabold tracking-[-0.02em] uppercase">
             <span class="block talk-gold" data-i18n="talk.line1">KELING,</span>
             <span class="block text-white" data-i18n="talk.line2">GAPLASHAMIZ</span>
           </h2>
@@ -1036,102 +1156,101 @@
           </div>
         </div>
       </div>
-
-      <div class="talk-portrait">
-        <div class="talk-portrait__glow" aria-hidden="true"></div>
-        <img src="assets/avazov-hero.png" alt="Avazov Ogabek" width="384" height="512" loading="eager" />
-      </div>
     </div>
   </section>
   <!-- END: Keling, gaplashamiz -->
 
   <!-- BEGIN: Services Section -->
-  <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-20" data-purpose="services-section" id="services">
-    <!-- Centered Header -->
-    <div class="text-center max-w-2xl mx-auto mb-14">
-      <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-900 mb-4">
-        <span data-i18n="services.title">TAQDIM ETADIGAN XIZMATLAR</span>
-      </h2>
-      <p class="text-xs md:text-xs uppercase font-medium leading-relaxed tracking-wider text-neutral-500" data-i18n="services.subtitle">
-        MIJOZ MAQSADLARIGA MOS, KO‘RINISHGA YOQIMLI VA ISHLAYDIGAN SAYTLAR. BARCHA PLATFORMALARDA BIR XIL FOYDALANUVCHI TAJRIBASI.
-      </p>
+  <section class="services-shell" data-purpose="services-section" id="services">
+    <div class="services-portrait">
+      <div class="services-portrait__glow" aria-hidden="true"></div>
+      <img src="assets/avazov-services.png?v=3" alt="Avazov Ogabek" width="384" height="512" loading="eager" />
     </div>
-
-    <!-- Service Pill Rows Accordion -->
-    <div class="max-w-4xl mx-auto flex flex-col space-y-3.5">
-      
-      <!-- Item 1: UI/UX -->
-      <div id="service-0" onclick="toggleService(0)" class="accordion-item w-full flex flex-col px-6 py-4 rounded-3xl border border-neutral-300 bg-white hover:border-black cursor-pointer">
-        <div class="flex items-center justify-between">
-          <span class="item-badge w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-xs font-medium text-neutral-700">1</span>
-          <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-neutral-800" data-i18n="services.uiux">UI/UX</span>
-          <div class="item-icon w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center">
-            <svg class="w-3.5 h-3.5 text-neutral-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-          </div>
+    <div class="services-inner">
+      <div class="services-content">
+        <div class="text-center lg:text-left max-w-2xl mx-auto lg:mx-0 mb-10 lg:mb-12">
+          <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-900 mb-4">
+            <span data-i18n="services.title">TAQDIM ETADIGAN XIZMATLAR</span>
+          </h2>
+          <p class="text-xs md:text-xs uppercase font-medium leading-relaxed tracking-wider text-neutral-500" data-i18n="services.subtitle">
+            MIJOZ MAQSADLARIGA MOS, KO‘RINISHGA YOQIMLI VA ISHLAYDIGAN SAYTLAR. BARCHA PLATFORMALARDA BIR XIL FOYDALANUVCHI TAJRIBASI.
+          </p>
         </div>
-        <div class="accordion-content">
-          <div class="accordion-content-inner">
-            <p class="text-xs text-neutral-500 leading-relaxed max-w-2xl mb-4" data-i18n="services.uiuxDesc">
-              Foydalanuvchi tadqiqoti, wireframe, interaktiv prototip va usability tekshiruvi. Murakkab jarayonlarni sodda, yoqimli tajribaga aylantirish.
-            </p>
-            <div class="flex items-center justify-between border-t border-neutral-200 pt-3">
-              <span class="text-[11px] font-mono text-neutral-400" data-i18n="services.uiuxDel">NATIJA: USER FLOW, WIREFRAME, DESIGN TOKEN</span>
-              <button onclick="event.stopPropagation(); bookSpecificService('UI/UX Design');" class="text-xs font-bold underline hover:text-neutral-600" data-i18n="services.inquire">SO‘ROV ↗</button>
+
+        <div class="flex flex-col space-y-3.5">
+          <!-- Item 1: UI/UX -->
+          <div id="service-0" onclick="toggleService(0)" class="accordion-item w-full flex flex-col px-6 py-4 rounded-3xl border border-neutral-300 bg-white hover:border-black cursor-pointer">
+            <div class="flex items-center justify-between">
+              <span class="item-badge w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-xs font-medium text-neutral-700">1</span>
+              <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-neutral-800" data-i18n="services.uiux">UI/UX</span>
+              <div class="item-icon w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center">
+                <svg class="w-3.5 h-3.5 text-neutral-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </div>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">
+                <p class="text-xs text-neutral-500 leading-relaxed max-w-2xl mb-4" data-i18n="services.uiuxDesc">
+                  Foydalanuvchi tadqiqoti, wireframe, interaktiv prototip va usability tekshiruvi. Murakkab jarayonlarni sodda, yoqimli tajribaga aylantirish.
+                </p>
+                <div class="flex items-center justify-between border-t border-neutral-200 pt-3">
+                  <span class="text-[11px] font-mono text-neutral-400" data-i18n="services.uiuxDel">NATIJA: USER FLOW, WIREFRAME, DESIGN TOKEN</span>
+                  <button onclick="event.stopPropagation(); bookSpecificService('UI/UX Design');" class="text-xs font-bold underline hover:text-neutral-600" data-i18n="services.inquire">SO‘ROV ↗</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2: WEB DESIGN -->
+          <div id="service-1" onclick="toggleService(1)" class="accordion-item w-full flex flex-col px-6 py-4 rounded-3xl border border-neutral-300 bg-white hover:border-black cursor-pointer">
+            <div class="flex items-center justify-between">
+              <span class="item-badge w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-xs font-medium text-neutral-700">2</span>
+              <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-neutral-800" data-i18n="services.web">VEB DIZAYN</span>
+              <div class="item-icon w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center">
+                <svg class="w-3.5 h-3.5 text-neutral-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </div>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">
+                <p class="text-xs text-neutral-500 leading-relaxed max-w-2xl mb-4" data-i18n="services.webDesc">
+                  Moslashuvchan layout, tipografiya ierarxiyasi, yuqori kontrast rejimlar va aniq interaktiv animatsiyalar bilan maxsus veb estetika.
+                </p>
+                <div class="flex items-center justify-between border-t border-neutral-200 pt-3">
+                  <span class="text-[11px] font-mono text-neutral-400" data-i18n="services.webDel">NATIJA: TO‘LIQ RESPONSIVE DIZAYN, FIGMA TIZIMI</span>
+                  <button onclick="event.stopPropagation(); bookSpecificService('Web Design');" class="text-xs font-bold underline hover:text-neutral-600" data-i18n="services.inquire">SO‘ROV ↗</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3: LANDING PAGE DESIGN (Active by default) -->
+          <div id="service-2" onclick="toggleService(2)" class="accordion-item active w-full flex flex-col px-6 py-4 rounded-3xl bg-black text-white shadow-xl cursor-pointer">
+            <div class="flex items-center justify-between">
+              <span class="item-badge w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center text-xs font-medium text-neutral-300">3</span>
+              <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-white" data-i18n="services.landing">LANDING PAGE DIZAYN</span>
+              <div class="item-icon w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center rotate-180">
+                <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </div>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">
+                <p class="text-xs text-neutral-300 leading-relaxed max-w-2xl mb-4" data-i18n="services.landingDesc">
+                  Startap, mahsulot chiqarish va shaxsiy brendlar uchun yuqori konversiyali editorial landing page lar.
+                </p>
+                <div class="flex items-center justify-between border-t border-neutral-800 pt-3">
+                  <span class="text-[11px] font-mono text-neutral-400" data-i18n="services.landingDel">NATIJA: COPY STRUKTURASI, CUSTOM GRAFIKA, WEBFLOW KOD</span>
+                  <button onclick="event.stopPropagation(); bookSpecificService('Landing Page Design');" class="text-xs font-bold underline text-white hover:text-neutral-300" data-i18n="services.inquire">SO‘ROV ↗</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Item 2: WEB DESIGN -->
-      <div id="service-1" onclick="toggleService(1)" class="accordion-item w-full flex flex-col px-6 py-4 rounded-3xl border border-neutral-300 bg-white hover:border-black cursor-pointer">
-        <div class="flex items-center justify-between">
-          <span class="item-badge w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-xs font-medium text-neutral-700">2</span>
-          <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-neutral-800" data-i18n="services.web">VEB DIZAYN</span>
-          <div class="item-icon w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center">
-            <svg class="w-3.5 h-3.5 text-neutral-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-          </div>
-        </div>
-        <div class="accordion-content">
-          <div class="accordion-content-inner">
-            <p class="text-xs text-neutral-500 leading-relaxed max-w-2xl mb-4" data-i18n="services.webDesc">
-              Moslashuvchan layout, tipografiya ierarxiyasi, yuqori kontrast rejimlar va aniq interaktiv animatsiyalar bilan maxsus veb estetika.
-            </p>
-            <div class="flex items-center justify-between border-t border-neutral-200 pt-3">
-              <span class="text-[11px] font-mono text-neutral-400" data-i18n="services.webDel">NATIJA: TO‘LIQ RESPONSIVE DIZAYN, FIGMA TIZIMI</span>
-              <button onclick="event.stopPropagation(); bookSpecificService('Web Design');" class="text-xs font-bold underline hover:text-neutral-600" data-i18n="services.inquire">SO‘ROV ↗</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Item 3: LANDING PAGE DESIGN (Active by default) -->
-      <div id="service-2" onclick="toggleService(2)" class="accordion-item active w-full flex flex-col px-6 py-4 rounded-3xl bg-black text-white shadow-xl cursor-pointer">
-        <div class="flex items-center justify-between">
-          <span class="item-badge w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center text-xs font-medium text-neutral-300">3</span>
-          <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-white" data-i18n="services.landing">LANDING PAGE DIZAYN</span>
-          <div class="item-icon w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center rotate-180">
-            <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-          </div>
-        </div>
-        <div class="accordion-content">
-          <div class="accordion-content-inner">
-            <p class="text-xs text-neutral-300 leading-relaxed max-w-2xl mb-4" data-i18n="services.landingDesc">
-              Startap, mahsulot chiqarish va shaxsiy brendlar uchun yuqori konversiyali editorial landing page lar.
-            </p>
-            <div class="flex items-center justify-between border-t border-neutral-800 pt-3">
-              <span class="text-[11px] font-mono text-neutral-400" data-i18n="services.landingDel">NATIJA: COPY STRUKTURASI, CUSTOM GRAFIKA, WEBFLOW KOD</span>
-              <button onclick="event.stopPropagation(); bookSpecificService('Landing Page Design');" class="text-xs font-bold underline text-white hover:text-neutral-300" data-i18n="services.inquire">SO‘ROV ↗</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
   <!-- END: Services Section -->
 
   <!-- BEGIN: Contact / Let's Talk Footer -->
-  <footer class="w-full bg-[#0D0D0D] text-white pt-20 pb-12 mt-12" data-purpose="footer-section" id="contact">
+  <footer class="w-full bg-[#0D0D0D] text-white pt-20 pb-12 mt-0" data-purpose="footer-section" id="contact">
     <div class="max-w-[1400px] mx-auto px-6 md:px-14 flex flex-col items-center">
       
       <!-- Metallic Callout Headline -->
