@@ -149,6 +149,71 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'markazdaKitobxon',
+    title: 'Markazda Kitobxon',
+    subtitle: 'Kitobxonlar yordamchisi — mutola, test va reyting',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'Talaba va xodimlar uchun mutola platformasi: adabiyotlar katalogi, o‘qish jarayoni, testlar, reyting va grant imtihonlariga tayyorgarlik. 100+ asar bo‘yicha bilimni mustahkamlash — bitta joyda.',
+    src: 'assets/projects/markazda-kitobxon.jpg',
+    link: 'https://markazdakitobxon1.netlify.app/',
+    tools: ['EdTech', 'Reading', 'Web'],
+    featured: false
+  },
+  {
+    id: 'normaCheck',
+    title: 'NormaCheck',
+    subtitle: 'Huquqiy hujjatlar uchun SI tahlil — MVP',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'Huquqiy hujjatlarni tekshirish, solishtirish va audit qilish g‘oyasidagi MVP. Xom matndan tuzilgan xulosalar, bandlar bo‘yicha izchillik va normativ solishtirish kontseptsiyasi. To‘liq production mahsulot emas — prototip/demo bosqichi.',
+    src: 'assets/projects/normacheck.png',
+    link: 'https://normacheck01.netlify.app/',
+    tools: ['MVP', 'AI', 'LegalTech'],
+    featured: false
+  },
+  {
+    id: 'buildContract',
+    title: 'BuildContract',
+    subtitle: 'Qurilish AI platformasi uchun landing',
+    tag: 'Landing',
+    year: '2026',
+    description:
+      'BuildContract / SmartBuild AI loyihasi uchun landing page: smart-shartnomalar, AI tender analitika va AI-Reyestr g‘oyasini taqdim etadi. Demo so‘rov, roadmap va bozor raqamlari — mahsulotning to‘liq platformasi emas, marketing sahifasi.',
+    src: 'assets/projects/buildcontract.jpg',
+    link: 'https://buildcontract.netlify.app/',
+    tools: ['Landing', 'AI', 'Construction'],
+    featured: false
+  },
+  {
+    id: 'avazoffLanding',
+    title: 'Avazoff',
+    subtitle: 'Shaxsiy portfolio landing',
+    tag: 'Landing',
+    year: '2026',
+    description:
+      'Og‘abek Avazov uchun dark-theme shaxsiy landing: full-stack yo‘nalish, loyihalar va aloqa. UZ/RU/EN — marketing/portfolio sahifasi, asosiy avazov-dev.uz saytidan alohida.',
+    src: 'assets/projects/avazoff-landing.png',
+    link: 'https://avazoff.zonic.fit/uz',
+    tools: ['Landing', 'Portfolio', 'Web'],
+    featured: false
+  },
+  {
+    id: 'myAdvocate',
+    title: 'My Advocate',
+    subtitle: 'Yuridik himoya platformasi uchun landing',
+    tag: 'Landing',
+    year: '2026',
+    description:
+      'My Advocate loyihasi uchun landing: shaxsiy advokat, One ID kirish, maslahat va ish boshqaruvi g‘oyasi. 500+ advokat kontseptsiyasi — to‘liq product emas, marketing sahifasi.',
+    src: 'assets/projects/my-advocate.jpg',
+    link: 'https://myadvocate.netlify.app/',
+    tools: ['Landing', 'LegalTech', 'Web'],
+    featured: false
+  },
+  {
     id: 'locme',
     title: 'Loc',
     subtitle: 'Amaliyot va davomat boshqaruvi',
