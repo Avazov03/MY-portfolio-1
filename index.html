@@ -837,8 +837,8 @@
       <!-- Right Column: Pitch and Disciplines -->
       <div class="md:col-span-3 flex flex-col items-start md:items-end text-left order-3 pt-6 md:pt-0 pr-2 md:pr-6 space-y-10">
         <!-- Pitch Quote -->
-        <p class="text-[11px] md:text-xs uppercase font-medium leading-relaxed tracking-wider text-neutral-700 max-w-[220px] text-left" data-i18n="hero.pitch">
-          OLAMOMDAN AJRALIB TURADIGAN SAYTLAR YARATISHGA ISHQIYMAN.
+        <p class="text-[11px] md:text-xs uppercase font-medium leading-relaxed tracking-wider text-neutral-700 max-w-[260px] text-left" data-i18n="hero.pitch">
+          OLAMOMDAN AJRALIB TURADIGAN SAYTLARNI MEN BILAN YARATISHGA TAYYORMISIZ?
         </p>
 
         <!-- Service List with hover interaction -->
@@ -846,11 +846,17 @@
           <a href="#services" onclick="selectService(0)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5">
             <span data-i18n="hero.uiux">UI/UX</span>
           </a>
-          <a href="#services" onclick="selectService(1)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5">
-            <span data-i18n="hero.web">VEB DIZAYN</span>
+          <a href="#services" onclick="selectService(1)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5 font-bold text-black">
+            <span data-i18n="hero.websites">WEB SAYTLAR</span>
           </a>
-          <a href="#services" onclick="selectService(2)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5 font-bold text-black">
-            <span data-i18n="hero.landing">STARTAPLAR</span>
+          <a href="#services" onclick="selectService(1)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5">
+            <span data-i18n="hero.web">WEB DIZAYN / REDESIGN</span>
+          </a>
+          <a href="#services" onclick="selectService(2)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5">
+            <span data-i18n="hero.landing">LANDING</span>
+          </a>
+          <a href="#services" onclick="selectService(2)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5">
+            <span data-i18n="hero.app">MOBIL APP</span>
           </a>
         </div>
       </div>
@@ -1977,7 +1983,7 @@
     }
   </script>
   <script type="module">
-    import { initI18n } from './i18n.js';
+    import { initI18n } from './i18n.js?v=hero5';
     import { initSiteCursor } from './site-cursor.js';
     initI18n();
     initSiteCursor();

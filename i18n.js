@@ -26,10 +26,12 @@ export const translations = {
     'mobile.role': 'Mustaqil Dizayner & Dasturchi',
 
     'hero.designer': 'DIZAYNER EST.2000',
-    'hero.pitch': 'OLAMOMDAN AJRALIB TURADIGAN SAYTLAR YARATISHGA ISHQIYMAN.',
+    'hero.pitch': 'OLAMOMDAN AJRALIB TURADIGAN SAYTLARNI MEN BILAN YARATISHGA TAYYORMISIZ?',
     'hero.uiux': 'UI/UX',
-    'hero.web': 'VEB DIZAYN',
-    'hero.landing': 'STARTAPLAR',
+    'hero.websites': 'WEB SAYTLAR',
+    'hero.web': 'WEB DIZAYN / REDESIGN',
+    'hero.landing': 'LANDING',
+    'hero.app': 'MOBIL APP',
     'hero.scrollAbout': 'Men haqimda bo‘limiga o‘tish',
 
     'about.headline': 'G‘OYALARNI TEZ VA O‘ZIGA XOS RAQAMLI TAJRIBALARGA AYLANTRISH',
@@ -227,10 +229,12 @@ export const translations = {
     'mobile.role': 'Freelance Designer & Developer',
 
     'hero.designer': 'DESIGNER EST.2000',
-    'hero.pitch': 'I AM PASSIONATE ABOUT CREATING WEBSITES THAT STAND OUT FROM THE CROWD.',
+    'hero.pitch': 'READY TO BUILD STAND-OUT WEBSITES WITH ME?',
     'hero.uiux': 'UI/UX',
-    'hero.web': 'WEB DESIGN',
-    'hero.landing': 'STARTUPS',
+    'hero.websites': 'WEBSITES',
+    'hero.web': 'WEB DESIGN / REDESIGN',
+    'hero.landing': 'LANDING',
+    'hero.app': 'MOBILE APP',
     'hero.scrollAbout': 'Scroll to About Section',
 
     'about.headline': 'TURNING VISIONARY IDEAS INTO FAST, DISTINCTIVE DIGITAL EXPERIENCES',
@@ -428,10 +432,12 @@ export const translations = {
     'mobile.role': 'Фриланс дизайнер и разработчик',
 
     'hero.designer': 'ДИЗАЙНЕР EST.2000',
-    'hero.pitch': 'Я УВЛЕЧЁН СОЗДАНИЕМ САЙТОВ, КОТОРЫЕ ВЫДЕЛЯЮТСЯ.',
+    'hero.pitch': 'ГОТОВЫ СОЗДАТЬ СО МНОЙ САЙТЫ, КОТОРЫЕ ВЫДЕЛЯЮТСЯ?',
     'hero.uiux': 'UI/UX',
-    'hero.web': 'ВЕБ-ДИЗАЙН',
-    'hero.landing': 'СТАРТАПЫ',
+    'hero.websites': 'ВЕБ-САЙТЫ',
+    'hero.web': 'ВЕБ-ДИЗАЙН / РЕДИЗАЙН',
+    'hero.landing': 'LANDING',
+    'hero.app': 'МОБИЛЬНОЕ ПРИЛОЖЕНИЕ',
     'hero.scrollAbout': 'Перейти к разделу Обо мне',
 
     'about.headline': 'ПРЕВРАЩАЮ СМЕЛЫЕ ИДЕИ В БЫСТРЫЕ И САМОБЫТНЫЕ ЦИФРОВЫЕ ПРОДУКТЫ',
