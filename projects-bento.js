@@ -32,6 +32,19 @@ export const PROJECTS = [
     featured: true
   },
   {
+    id: 'eResearcher',
+    title: 'E-Researcher 2.0',
+    subtitle: 'Ilmiy jarayonlar platformasi',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'TDYU izlanuvchilari uchun dissertatsiyadan nashrgacha bo‘lgan ilmiy jarayonlarni bir joyga yig‘gan web platforma. Himoya bosqichlari, monitoring, nashrga ruxsat va elektron ilmiy portfolio shu yerda. Hujjatlar, muddatlar va hisobotlar rollar bo‘yicha yuritiladi.',
+    src: 'assets/projects/e-researcher.jpg',
+    link: 'https://ilmiy.tsul.uz',
+    tools: ['Web', 'Platform', 'TDYU'],
+    featured: false
+  },
+  {
     id: 'cafe',
     title: 'Cafe Website',
     subtitle: 'Editorial Coffee House',
