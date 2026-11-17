@@ -4,6 +4,7 @@
 
 export const PROJECTS = [
   {
+    id: 'cafe',
     title: 'Cafe Website',
     subtitle: 'Editorial Coffee House',
     tag: 'Web',
@@ -15,6 +16,7 @@ export const PROJECTS = [
     featured: true
   },
   {
+    id: 'designStudio',
     title: 'Design Studio',
     subtitle: 'Creative Agency',
     tag: 'Landing',
@@ -26,6 +28,7 @@ export const PROJECTS = [
     featured: true
   },
   {
+    id: 'photographer',
     title: 'Photographer Portfolio',
     subtitle: 'Analog & Editorial',
     tag: 'Client',
@@ -37,6 +40,7 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'portfolioDesign',
     title: 'Portfolio Design',
     subtitle: 'Minimal Developer',
     tag: 'Web',
@@ -48,6 +52,7 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'portfolioWebsite',
     title: 'Portfolio Website',
     subtitle: 'Full-stack Showcase',
     tag: 'Web',
@@ -59,6 +64,7 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'senCruzo',
     title: 'Sen Cruzo',
     subtitle: 'Luxury Client Portfolio',
     tag: 'Client',
@@ -232,40 +238,70 @@ function spanForIndex(i) {
   return 'col-span-1 row-span-1 md:col-span-2';
 }
 
+function tr(key, fallback) {
+  if (window.EchoI18n) {
+    const value = window.EchoI18n.t(key);
+    if (value && value !== key) return value;
+  }
+  return fallback;
+}
+
+export function localizeProject(p) {
+  const tagKey = (p.tag || 'Web').toLowerCase();
+  const tag = tr(`projects.tag.${tagKey}`, p.tag);
+  const subtitle = p.id ? tr(`project.${p.id}.subtitle`, p.subtitle) : p.subtitle;
+  const description = p.id ? tr(`project.${p.id}.description`, p.description) : p.description;
+  return { ...p, tag, subtitle, description };
+}
+
 export function initProjectsBento(container, options = {}) {
   if (!container) return null;
-  const items = options.items || PROJECTS;
+  const source = options.items || PROJECTS;
   const onSelect = options.onSelect || null;
 
-  container.innerHTML = '';
-  container.className = 'projects-bento grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[170px]';
+  const render = () => {
+    container.innerHTML = '';
+    container.className =
+      'projects-bento grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[170px]';
 
-  items.forEach((p, i) => {
-    const a = document.createElement('button');
-    a.type = 'button';
-    a.className = `projects-bento-tile ${spanForIndex(i)} relative rounded-2xl md:rounded-3xl border border-neutral-200 bg-neutral-100 overflow-hidden text-left group`;
-    a.dataset.reveal = 'mask-curtain';
-    a.innerHTML = `
+    source.forEach((raw, i) => {
+      const p = localizeProject(raw);
+      const a = document.createElement('button');
+      a.type = 'button';
+      a.className = `projects-bento-tile ${spanForIndex(i)} relative rounded-2xl md:rounded-3xl border border-neutral-200 bg-neutral-100 overflow-hidden text-left group`;
+      a.dataset.reveal = 'mask-curtain';
+      a.innerHTML = `
       <div class="bento-motion">
         <img src="${p.src}" alt="${p.title}" class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]" loading="${i < 4 ? 'eager' : 'lazy'}">
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
         <div class="absolute left-3 right-3 bottom-3 text-white z-10">
-          <p class="text-[9px] md:text-[10px] font-mono tracking-widest text-white/70">${String(i + 1).padStart(2, '0')} · ${p.tag.toUpperCase()}</p>
+          <p class="text-[9px] md:text-[10px] font-mono tracking-widest text-white/70">${String(i + 1).padStart(2, '0')} · ${String(p.tag).toUpperCase()}</p>
           <h3 class="text-sm md:text-lg font-black uppercase tracking-tight leading-tight">${p.title}</h3>
         </div>
       </div>
     `;
-    a.addEventListener('click', () => {
-      if (onSelect) onSelect(i, p);
-      else if (window.openProjectModal) window.openProjectModal(p);
-      else if (p.link && p.link.startsWith('http')) window.open(p.link, '_blank');
+      a.addEventListener('click', () => {
+        const localized = localizeProject(raw);
+        if (onSelect) onSelect(i, localized);
+        else if (window.openProjectModal) window.openProjectModal(localized);
+        else if (localized.link && localized.link.startsWith('http')) window.open(localized.link, '_blank');
+      });
+      container.appendChild(a);
     });
-    container.appendChild(a);
-  });
 
-  bindMaskCurtainReveal(container);
+    bindMaskCurtainReveal(container);
+  };
 
-  return { items };
+  render();
+  const onLang = () => render();
+  window.addEventListener('echo:langchange', onLang);
+
+  return {
+    items: source,
+    destroy() {
+      window.removeEventListener('echo:langchange', onLang);
+    }
+  };
 }
 
 /** Row-wave Mask Curtain — replays every time tiles re-enter the viewport */

@@ -749,13 +749,13 @@
 
       <!-- Mobile Hamburger Button -->
 
-      <div class="lang-switch ml-1" role="group" aria-label="Language">
+      <div class="lang-switch ml-1" role="group" data-i18n-aria="nav.language" aria-label="Til">
         <button type="button" data-lang-btn="uz" data-i18n="lang.uz" class="bg-black text-white border-black">UZ</button>
         <button type="button" data-lang-btn="en" data-i18n="lang.en" class="text-neutral-600 border-neutral-300">EN</button>
         <button type="button" data-lang-btn="ru" data-i18n="lang.ru" class="text-neutral-600 border-neutral-300">RU</button>
       </div>
 
-      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open Menu" class="md:hidden w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 ml-1">
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" data-i18n-aria="nav.openMenu" aria-label="Menyuni ochish" class="md:hidden w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 ml-1">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" x2="20" y1="7" y2="7"></line><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="17" y2="17"></line></svg>
       </button>
     </div>
@@ -1429,8 +1429,8 @@
     <div id="project-modal-card" class="bg-white rounded-[32px] max-w-2xl w-full max-h-[90vh] overflow-y-auto no-scrollbar p-6 sm:p-8 md:p-9 shadow-2xl border border-neutral-100 opacity-0 scale-[0.94] translate-y-4 relative">
       <div class="relative text-center pb-4 mb-5 border-b border-neutral-100">
         <span id="modal-project-category" class="block text-[11px] font-bold tracking-widest uppercase text-neutral-400 mb-1" data-i18n="modal.category">TURKUM</span>
-        <h3 id="modal-project-title" class="text-2xl sm:text-3xl font-black uppercase text-neutral-900 tracking-tight">PROJECT TITLE</h3>
-        <button onclick="closeProjectModal()" class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-500 hover:border-black hover:text-black hover:bg-neutral-50 transition-colors" aria-label="Close modal">✕</button>
+        <h3 id="modal-project-title" class="text-2xl sm:text-3xl font-black uppercase text-neutral-900 tracking-tight" data-i18n="modal.details">LOYIHA TAFSILOTLARI</h3>
+        <button onclick="closeProjectModal()" class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-500 hover:border-black hover:text-black hover:bg-neutral-50 transition-colors" data-i18n-aria="modal.close" aria-label="Modalni yopish">✕</button>
       </div>
       <div id="modal-project-body" class="space-y-5 text-sm text-neutral-700">
         <!-- Injected dynamically -->
@@ -1653,6 +1653,22 @@
       }
     }
 
+    function i18nText(key, fallback) {
+      if (window.EchoI18n) {
+        const value = window.EchoI18n.t(key);
+        if (value && value !== key) return value;
+      }
+      return fallback;
+    }
+
+    function i18nFormat(key, vars, fallback) {
+      let text = i18nText(key, fallback || key);
+      Object.keys(vars || {}).forEach((k) => {
+        text = text.replaceAll(`{${k}}`, String(vars[k]));
+      });
+      return text;
+    }
+
     // Modal Handlers
     function openProjectModal(itemOrKey) {
       let data = null;
@@ -1663,8 +1679,8 @@
       }
       if (!data) return;
 
-      const category = data.subtitle || data.category || 'FEATURED PROJECT';
-      const title = data.title || 'PROJECT DETAILS';
+      const category = data.subtitle || data.category || i18nText('modal.featured', 'TANLANGAN LOYIHA');
+      const title = data.title || i18nText('modal.details', 'LOYIHA TAFSILOTLARI');
       document.getElementById('modal-project-category').innerText = category;
       document.getElementById('modal-project-title').innerText = title;
       
@@ -1682,7 +1698,7 @@
       if (data.stats) {
         html += `
           <div class="bg-neutral-50 p-4 rounded-2xl border border-neutral-200 text-center">
-            <p class="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1">Key Highlights</p>
+            <p class="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1">${i18nText('modal.highlights', 'Asosiy jihatlar')}</p>
             <p class="text-xs text-neutral-800 font-medium">${data.stats}</p>
           </div>
         `;
@@ -1690,7 +1706,7 @@
       if (data.deliverables && data.deliverables.length) {
         html += `
           <div>
-            <h4 class="text-xs font-bold uppercase tracking-wider text-black mb-2 text-center">Key Deliverables</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-black mb-2 text-center">${i18nText('modal.deliverables', 'Asosiy natijalar')}</h4>
             <ul class="list-disc pl-5 space-y-1 text-xs text-neutral-600 max-w-md mx-auto">
               ${data.deliverables.map(d => `<li>${d}</li>`).join('')}
             </ul>
@@ -1700,7 +1716,7 @@
       if (data.tools && data.tools.length) {
         html += `
           <div>
-            <h4 class="text-xs font-bold uppercase tracking-wider text-black mb-2 text-center">Technologies & Stack</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-black mb-2 text-center">${i18nText('modal.tech', 'Texnologiyalar & Stack')}</h4>
             <div class="flex flex-wrap justify-center gap-2">
               ${data.tools.map(t => `<span class="px-3 py-1 bg-neutral-100 border border-neutral-200 text-neutral-800 text-[10px] font-semibold rounded-full uppercase">${t}</span>`).join('')}
             </div>
@@ -1711,7 +1727,7 @@
         html += `
           <div class="pt-2 flex justify-center items-center">
             <a href="${data.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-all shadow-md hover:shadow-xl hover:scale-105 active:scale-95">
-              Visit Live Website ↗
+              ${i18nText('modal.visit', 'Jonli saytni ochish ↗')}
             </a>
           </div>
         `;
@@ -1778,7 +1794,7 @@
       const name = document.getElementById('contact-name').value;
       const service = document.getElementById('contact-service').value;
       closeContactModal();
-      showToast(`Thank you, ${name}! Your inquiry for "${service}" has been received.`);
+      showToast(i18nFormat('toast.inquiry', { name, service }, `Rahmat, ${name}!`));
       document.getElementById('contact-form').reset();
     }
 
@@ -1786,7 +1802,7 @@
     function addToCart(title, price) {
       cart.push({ title, price, id: Date.now() });
       updateCartUI();
-      showToast(`Added ${title} ($${price.toFixed(2)}) to your bag.`);
+      showToast(i18nFormat('toast.added', { title, price: price.toFixed(2) }, `${title} savatga qo‘shildi.`));
     }
 
     function updateCartUI() {
@@ -1846,15 +1862,15 @@
 
     function checkoutCart() {
       if (cart.length === 0) {
-        showToast('Your bag is currently empty.');
+        showToast(i18nText('toast.emptyBag', 'Savat hozircha bo‘sh.'));
         return;
       }
       closeCartModal();
-      showToast('Redirecting to secure checkout...');
+      showToast(i18nText('toast.checkout', 'Xavfsiz to‘lovga yo‘naltirilmoqda...'));
       setTimeout(() => {
         cart = [];
         updateCartUI();
-        showToast('Order confirmed! Thank you for supporting designer craftsmanship.');
+        showToast(i18nText('toast.order', 'Buyurtma tasdiqlandi! Rahmat.'));
       }, 1000);
     }
 
@@ -1864,7 +1880,7 @@
         btn.innerText = '♥';
         btn.classList.add('text-red-500');
         btn.classList.remove('text-neutral-400');
-        showToast('Added Wood Chair to saved items.');
+        showToast(i18nText('toast.saved', 'Wood Chair saqlanganlarga qo‘shildi.'));
       } else {
         btn.innerText = '♡';
         btn.classList.remove('text-red-500');
@@ -1877,13 +1893,13 @@
       if (kwh) {
         kwh.innerText = (parseFloat(kwh.innerText) + 0.8).toFixed(1) + ' kWh';
       }
-      showToast('Live solar telemetry synchronized (+0.8 kWh).');
+      showToast(i18nText('toast.solar', 'Jonli solar telemetriya sinxronlandi (+0.8 kWh).'));
     }
 
     function copyContactEmail() {
       const email = 'hello@example.com';
       navigator.clipboard?.writeText(email);
-      showToast('Copied email: hello@example.com');
+      showToast(i18nText('toast.copiedEmail', 'Email nusxa olindi: hello@example.com'));
     }
 
     function toggleMobileMenu() {
@@ -1965,7 +1981,7 @@
 
   <!-- Selected Works Bento -->
   <script type="module">
-    import { initProjectsBento } from './projects-bento.js?v=replay1';
+    import { initProjectsBento } from './projects-bento.js?v=i18nFix1';
 
     function startProjectsBento() {
       const container = document.getElementById('projects-bento');
@@ -1986,7 +2002,7 @@
 
   <!-- Landing Case Strip -->
   <script type="module">
-    import { initLandingCaseStrip } from './landing-case-strip.js?v=replay1';
+    import { initLandingCaseStrip } from './landing-case-strip.js?v=i18nFix1';
 
     function startLandingCaseStrip() {
       const container = document.getElementById('landing-case-strip');
@@ -2005,7 +2021,7 @@
     }
   </script>
   <script type="module">
-    import { initI18n } from './i18n.js?v=heroLeft1';
+    import { initI18n } from './i18n.js?v=i18nFix1';
     import { initSiteCursor } from './site-cursor.js';
     initI18n();
     initSiteCursor();

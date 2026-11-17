@@ -7,6 +7,7 @@ const IMG = 'Landing Page Assest';
 
 export const STARTUPS = [
   {
+    id: 'aether',
     title: 'Aether AI',
     subtitle: 'AI Product · Founder',
     tag: 'AI Product',
@@ -22,6 +23,7 @@ export const STARTUPS = [
     stats: 'Waitlist live · Node synthesis · Research UI'
   },
   {
+    id: 'afterform',
     title: 'Afterform',
     subtitle: 'Fashion Brand · Founder',
     tag: 'Fashion Brand',
@@ -37,6 +39,7 @@ export const STARTUPS = [
     stats: 'S01 drop · Lookbook · E-com ready'
   },
   {
+    id: 'eleara',
     title: 'Maison Éléara',
     subtitle: 'Luxury Atelier · Founder',
     tag: 'Luxury Atelier',
@@ -53,12 +56,37 @@ export const STARTUPS = [
   }
 ];
 
+function tr(key, fallback) {
+  if (window.EchoI18n) {
+    const value = window.EchoI18n.t(key);
+    if (value && value !== key) return value;
+  }
+  return fallback;
+}
+
+export function localizeStartup(s) {
+  const p = `startup.${s.id}`;
+  return {
+    ...s,
+    subtitle: tr(`${p}.subtitle`, s.subtitle),
+    tag: tr(`${p}.tag`, s.tag),
+    role: tr(`${p}.role`, s.role),
+    headline: tr(`${p}.headline`, s.headline),
+    description: tr(`${p}.description`, s.description),
+    cta: tr(`${p}.cta`, s.cta),
+    stats: tr(`${p}.stats`, s.stats)
+  };
+}
+
 export function initLandingCaseStrip(container, { onSelect } = {}) {
   if (!container) return null;
 
-  container.innerHTML = STARTUPS.map((s, i) => {
-    const flip = i % 2 === 1;
-    return `
+  const render = () => {
+    const items = STARTUPS.map(localizeStartup);
+    container.innerHTML = items
+      .map((s, i) => {
+        const flip = i % 2 === 1;
+        return `
       <article
         class="landing-case-row group rounded-[28px] border border-neutral-200 bg-white overflow-hidden grid md:grid-cols-2 cursor-pointer ${
           flip ? 'is-flip md:[&>.landing-case-media]:order-2' : ''
@@ -92,8 +120,8 @@ export function initLandingCaseStrip(container, { onSelect } = {}) {
             <div class="flex flex-wrap gap-1.5">
               ${s.tools
                 .map(
-                  (t) =>
-                    `<span class="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border border-neutral-200 text-neutral-600">${t}</span>`
+                  (tool) =>
+                    `<span class="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border border-neutral-200 text-neutral-600">${tool}</span>`
                 )
                 .join('')}
             </div>
@@ -104,28 +132,39 @@ export function initLandingCaseStrip(container, { onSelect } = {}) {
         </div>
       </article>
     `;
-  }).join('');
+      })
+      .join('');
 
-  const open = (index) => {
-    const item = STARTUPS[index];
-    if (!item) return;
-    if (typeof onSelect === 'function') onSelect(index, item);
+    const open = (index) => {
+      const item = localizeStartup(STARTUPS[index]);
+      if (!item) return;
+      if (typeof onSelect === 'function') onSelect(index, item);
+    };
+
+    container.querySelectorAll('.landing-case-row').forEach((row) => {
+      const index = Number(row.dataset.index);
+      row.addEventListener('click', () => open(index));
+      row.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open(index);
+        }
+      });
+    });
+
+    bindSplitArriveReveal(container);
   };
 
-  container.querySelectorAll('.landing-case-row').forEach((row) => {
-    const index = Number(row.dataset.index);
-    row.addEventListener('click', () => open(index));
-    row.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        open(index);
-      }
-    });
-  });
+  render();
+  const onLang = () => render();
+  window.addEventListener('echo:langchange', onLang);
 
-  bindSplitArriveReveal(container);
-
-  return { items: STARTUPS };
+  return {
+    items: STARTUPS,
+    destroy() {
+      window.removeEventListener('echo:langchange', onLang);
+    }
+  };
 }
 
 /** Split Arrive — replays every time a case re-enters the viewport */
