@@ -16,6 +16,8 @@ alwaysApply: true
 - **GitHub repo:** `https://github.com/Avazov03/MY-portfolio-1.git` · branch `main`
 - **Runtime:** Docker + nginx static site (`Dockerfile`, `docker-compose.yml`, `nginx.conf`)
 - **Remote app dir:** `/opt/avazov-portfolio`
+- **Container bind:** `127.0.0.1:8088→80` (host nginx proxies `avazov-dev.uz` → `:8088`; host `:80` already used)
+- **Host nginx site:** `/etc/nginx/sites-available/avazov-dev.uz`
 
 ## After any meaningful site change in this project
 
