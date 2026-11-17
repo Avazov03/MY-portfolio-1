@@ -45,6 +45,19 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'openTsul',
+    title: 'Open Tsul',
+    subtitle: 'TDYU professorlaridan bepul va pullik huquqiy video kurslar',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'Toshkent davlat yuridik universiteti professorlarining bepul onlayn ta’lim platformasi. Talabalar fan va mavzu bo‘yicha video darslar, ma’ruza matnlari va kurs to‘plamlarini istalgan vaqtda o‘qiydi, professorlarga obuna bo‘ladi, test topshiradi va yakuniy testdan o‘tgach sertifikat oladi.',
+    src: 'assets/projects/open-tsul.jpg',
+    link: 'https://open.okina.uz',
+    tools: ['EdTech', 'Huquq', 'Video kurslar', 'Next.js'],
+    featured: false
+  },
+  {
     id: 'cafe',
     title: 'Cafe Website',
     subtitle: 'Editorial Coffee House',
