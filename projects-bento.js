@@ -283,6 +283,20 @@ export const PROJECTS = [
     featured: false
   },
   {
+    id: 'travelUz',
+    title: 'TravelUz',
+    subtitle: 'TravelUz Routes — AI sayohat MVP',
+    tag: 'Web',
+    year: '2026',
+    description:
+      'O‘zbekiston bo‘ylab sayohatni AI bilan rejalashtirish: manzillar, bron, gidlar, mehmonxonalar va jamoa kontenti — bir platformada. Hozir MVP; production serverga hali chiqmagan, ustida ishlar davom etmoqda.',
+    src: 'assets/projects/traveluz.jpg',
+    link: '',
+    tools: ['Next.js', 'AI', 'MVP'],
+    featured: false,
+    comingSoon: true
+  },
+  {
     id: 'cafe',
     title: 'Cafe Website',
     subtitle: 'Editorial Coffee House',

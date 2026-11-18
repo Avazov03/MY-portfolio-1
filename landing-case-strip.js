@@ -3,8 +3,6 @@
  * Reveal: Split Arrive (media ↔ copy)
  */
 
-const IMG = 'Landing Page Assest';
-
 export const STARTUPS = [
   {
     id: 'zonic',
@@ -42,20 +40,22 @@ export const STARTUPS = [
     stats: 'yuristai.uz · Live'
   },
   {
-    id: 'eleara',
-    title: 'Maison Éléara',
-    subtitle: 'Luxury Atelier · Founder',
-    tag: 'Luxury Atelier',
+    id: 'travelUz',
+    title: 'TravelUz',
+    subtitle: 'TravelUz Routes · Founder',
+    tag: 'Web · AI · MVP',
     year: '2026',
-    role: 'Founder · Experience',
-    headline: 'Made to be kept forever.',
+    role: 'Founder · Dasturlash',
+    headline: 'O‘zbekiston bo‘ylab sayohat',
     description:
-      'Haute jewellery boutique — fairmined gold, Place Vendôme atelier, private salon concierge.',
-    cta: 'Explore collection',
-    link: '#eleara',
-    src: `${IMG}/Screenshot 2026-10-20 at 7.44.03\u202fPM.png`,
-    tools: ['React', 'Typography', 'WebGL'],
-    stats: '18k gold · Salon booking · Archive'
+      'O‘zbekiston bo‘ylab sayohatni AI bilan rejalashtirish: manzillar, bron, gidlar, mehmonxonalar va jamoa kontenti — bir platformada. Hozir MVP; production serverga hali chiqmagan, ustida ishlar davom etmoqda.',
+    cta: 'MVP · ishlanmoqda',
+    link: '',
+    src: 'assets/projects/traveluz.jpg',
+    modalSrc: 'assets/projects/traveluz.jpg',
+    tools: ['Next.js', 'AI', 'Web'],
+    stats: 'MVP · Production yo‘q · Ishlanmoqda',
+    comingSoon: true
   }
 ];
 
@@ -84,6 +84,9 @@ function ctaHtml(s) {
       ? `<a href="${s.appStore}" target="_blank" rel="noopener noreferrer" data-store-btn class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-neutral-300 text-neutral-900 text-[11px] font-bold uppercase tracking-wider hover:border-black hover:bg-neutral-50 transition">${APP_STORE_SVG}${appLabel}</a>`
       : '';
     return `<div class="flex flex-wrap items-center gap-2">${play}${apple}</div>`;
+  }
+  if (s.comingSoon || !s.link) {
+    return `<span class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-neutral-300 text-neutral-700 text-[11px] font-bold uppercase tracking-wider">${s.cta}</span>`;
   }
   return `<span class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black text-white text-[11px] font-bold uppercase tracking-wider group-hover:bg-neutral-800 transition">${s.cta} →</span>`;
 }
