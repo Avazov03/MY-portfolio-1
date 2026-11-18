@@ -132,6 +132,14 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    /* Mobile hero name — larger / wider so it fills the first viewport */
+    @media (max-width: 767px) {
+      #hero-title.hero-title {
+        font-size: clamp(3.4rem, 17vw, 5.75rem);
+        letter-spacing: -0.045em;
+        line-height: 0.78;
+      }
+    }
 
     /* Portrait fades at bottom only — sides stay unclipped */
     .hero-portrait-mask {
@@ -849,7 +857,7 @@
   <main class="relative max-w-[1400px] mx-auto px-6 md:px-14 pt-6 md:pt-12 pb-20 overflow-x-clip" data-purpose="hero-section" id="home">
     <!-- Big Title Header -->
     <div class="text-center w-full mb-6 md:mb-10 relative z-0 select-none">
-      <h1 id="hero-title" class="text-[9.5vw] md:text-[8rem] lg:text-[9.5rem] font-extrabold uppercase leading-[0.85] tracking-tight">
+      <h1 id="hero-title" class="hero-title text-[16.5vw] sm:text-[14vw] md:text-[8rem] lg:text-[9.5rem] font-extrabold uppercase leading-[0.8] tracking-[-0.04em] w-full">
         <span class="block">
           <span class="text-[#121212]">AVAZOV</span>
         </span>
