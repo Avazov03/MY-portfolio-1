@@ -166,6 +166,54 @@
       transform: translateX(-50%) scale(1.02);
     }
 
+    /* Hero load entrance — softens hard first paint on refresh */
+    @keyframes heroRevealUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 28px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    @keyframes heroRevealPortrait {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 16%, 0);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    #home.hero-pending .hero-reveal {
+      opacity: 0;
+      transform: translate3d(0, 28px, 0);
+      pointer-events: none;
+    }
+    #home.hero-pending .hero-reveal--portrait {
+      transform: translate3d(0, 16%, 0);
+    }
+    #home.hero-ready .hero-reveal {
+      pointer-events: auto;
+      animation: heroRevealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: var(--hero-delay, 0ms);
+    }
+    #home.hero-ready .hero-reveal--portrait {
+      animation-name: heroRevealPortrait;
+      animation-duration: 1.2s;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #home.hero-pending .hero-reveal,
+      #home.hero-ready .hero-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        pointer-events: auto !important;
+      }
+    }
+
     .footer-metallic-title {
       background: linear-gradient(180deg, #FFFFFF 0%, #a8a8a8 50%, #444444 100%);
       -webkit-background-clip: text;
@@ -854,9 +902,9 @@
   <!-- END: Navigation -->
 
   <!-- BEGIN: Hero Section -->
-  <main class="relative max-w-[1400px] mx-auto px-6 md:px-14 pt-6 md:pt-12 pb-20 overflow-x-clip" data-purpose="hero-section" id="home">
+  <main class="relative max-w-[1400px] mx-auto px-6 md:px-14 pt-6 md:pt-12 pb-20 overflow-x-clip hero-pending" data-purpose="hero-section" id="home">
     <!-- Big Title Header -->
-    <div class="text-center w-full mb-6 md:mb-10 relative z-0 select-none">
+    <div class="text-center w-full mb-6 md:mb-10 relative z-0 select-none hero-reveal hero-reveal--title" style="--hero-delay: 60ms">
       <h1 id="hero-title" class="hero-title text-[16.5vw] sm:text-[14vw] md:text-[8rem] lg:text-[9.5rem] font-extrabold uppercase leading-[0.8] tracking-[-0.04em] w-full">
         <span class="block">
           <span class="text-[#121212]">AVAZOV</span>
@@ -873,7 +921,7 @@
       <!-- Left Column: stacked label + circle pairs -->
       <div class="md:col-span-3 flex flex-col items-start md:items-start pl-2 md:pl-6 order-2 md:order-1 pt-6 md:pt-0 gap-10">
         <!-- Fixed brand line — never translated -->
-        <div class="flex flex-col items-start">
+        <div class="flex flex-col items-start hero-reveal" style="--hero-delay: 280ms">
           <span class="text-xs font-bold tracking-wider uppercase text-neutral-800 mb-2.5">MY WORK → lawlab</span>
           <a
             class="circle-btn w-14 h-14 md:w-16 md:h-16 border-neutral-300"
@@ -887,7 +935,7 @@
             </svg>
           </a>
         </div>
-        <div class="flex flex-col items-start">
+        <div class="flex flex-col items-start hero-reveal" style="--hero-delay: 400ms">
           <span class="text-xs font-bold tracking-wider uppercase text-neutral-800 mb-2.5" data-i18n="hero.contactLabel">Men bilan bog‘lanish</span>
           <a
             class="circle-btn w-14 h-14 md:w-16 md:h-16 border-neutral-300"
@@ -903,36 +951,37 @@
       </div>
 
       <!-- Center Column: Stylized Black and White Headshot (in front of text) -->
-      <div class="md:col-span-6 flex justify-center order-1 md:order-2 relative z-10 -mt-16 md:-mt-36 overflow-visible">
+      <div class="md:col-span-6 flex justify-center order-1 md:order-2 relative z-10 -mt-16 md:-mt-36 overflow-visible hero-reveal hero-reveal--portrait" style="--hero-delay: 120ms">
         <div class="hero-portrait-slot relative w-full max-w-[320px] h-[400px] md:max-w-none md:w-[480px] md:h-[580px]">
           <img src="assets/hero_portrait.png?v=7"
                alt="Avazov Ogabek — Developer & Designer"
-               class="hero-portrait-mask absolute pointer-events-none select-none transition-transform duration-700">
+               class="hero-portrait-mask absolute pointer-events-none select-none transition-transform duration-700"
+               decoding="async">
         </div>
       </div>
 
       <!-- Right Column: Pitch and Disciplines -->
       <div class="md:col-span-3 flex flex-col items-start md:items-end text-left order-3 pt-6 md:pt-0 pr-2 md:pr-6 space-y-10">
         <!-- Pitch Quote -->
-        <p class="text-[11px] md:text-xs uppercase font-medium leading-relaxed tracking-wider text-neutral-700 max-w-[260px] text-left" data-i18n="hero.pitch">
+        <p class="text-[11px] md:text-xs uppercase font-medium leading-relaxed tracking-wider text-neutral-700 max-w-[260px] text-left hero-reveal" style="--hero-delay: 320ms" data-i18n="hero.pitch">
           OLAMOMDAN AJRALIB TURADIGAN SAYTLARNI MEN BILAN YARATISHGA TAYYORMISIZ?
         </p>
 
         <!-- Service List with hover interaction -->
         <div class="flex flex-col space-y-3 text-[11px] md:text-xs font-semibold tracking-widest text-neutral-600 uppercase">
-          <a href="#services" onclick="selectService(0)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5">
+          <a href="#services" onclick="selectService(0)" class="hero-reveal hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5" style="--hero-delay: 420ms">
             <span data-i18n="hero.uiux">UI/UX</span>
           </a>
-          <a href="#services" onclick="selectService(1)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5 font-bold text-black">
+          <a href="#services" onclick="selectService(1)" class="hero-reveal hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5 font-bold text-black" style="--hero-delay: 500ms">
             <span data-i18n="hero.websites">WEB SAYTLAR</span>
           </a>
-          <a href="#services" onclick="selectService(1)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5">
+          <a href="#services" onclick="selectService(1)" class="hero-reveal hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5" style="--hero-delay: 580ms">
             <span data-i18n="hero.web">WEB DIZAYN / REDESIGN</span>
           </a>
-          <a href="#services" onclick="selectService(2)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5">
+          <a href="#services" onclick="selectService(2)" class="hero-reveal hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5" style="--hero-delay: 660ms">
             <span data-i18n="hero.landing">LANDING</span>
           </a>
-          <a href="#services" onclick="selectService(2)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5">
+          <a href="#services" onclick="selectService(2)" class="hero-reveal hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5" style="--hero-delay: 740ms">
             <span data-i18n="hero.app">MOBIL APP</span>
           </a>
         </div>
@@ -941,6 +990,40 @@
     </div>
   </main>
   <!-- END: Hero Section -->
+  <script>
+    (function initHeroEntrance() {
+      const home = document.getElementById('home');
+      if (!home) return;
+
+      const start = () => {
+        home.classList.remove('hero-pending');
+        home.classList.add('hero-ready');
+      };
+
+      const kick = () => {
+        const img = home.querySelector('.hero-portrait-slot img');
+        const run = () => requestAnimationFrame(() => requestAnimationFrame(start));
+        if (img && !img.complete) {
+          img.addEventListener('load', run, { once: true });
+          img.addEventListener('error', run, { once: true });
+          setTimeout(run, 700);
+        } else {
+          run();
+        }
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', kick, { once: true });
+      } else {
+        kick();
+      }
+
+      // Safety: never leave hero hidden if something stalls
+      setTimeout(() => {
+        if (home.classList.contains('hero-pending')) start();
+      }, 1600);
+    })();
+  </script>
 
   <!-- BEGIN: About Section (ScrollExpandMedia Component) -->
   <section class="relative w-full bg-[#0D0D0D] text-white" id="about" style="min-height: 200vh;">
