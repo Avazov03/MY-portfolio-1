@@ -990,11 +990,11 @@
               <!-- Minimal Aesthetic About Info - Perimeter Layout with Empty Center -->
               <div
                 id="sem-media-content"
-                class="absolute inset-0 z-20 flex flex-col justify-between p-5 sm:p-7 md:p-9 pointer-events-none opacity-0 transition-all duration-300 select-none"
+                class="absolute inset-0 z-20 flex flex-col justify-between p-4 sm:p-7 md:p-9 pointer-events-none opacity-0 transition-all duration-300 select-none"
               >
                 <!-- Top Perimeter: Refined Monochrome Headline -->
-                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-white/10 pb-3">
-                  <h3 class="text-xs sm:text-sm md:text-base font-extrabold uppercase tracking-tight text-white max-w-xl" data-i18n="about.headline">
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5 sm:gap-2 border-b border-white/10 pb-2 sm:pb-3 shrink-0">
+                  <h3 class="text-[11px] leading-snug sm:text-sm md:text-base font-extrabold uppercase tracking-tight text-white max-w-xl" data-i18n="about.headline">
                     LANDING VA PORTFOLIO SAYTLARNI TEZ, CHIROYLI VA CONVERSION’GA YO‘NALTIRIB QURAMAN
                   </h3>
                   <span class="text-[10px] font-mono tracking-wider uppercase text-neutral-400 shrink-0" data-i18n="about.based">
@@ -1002,13 +1002,13 @@
                   </span>
                 </div>
 
-                <!-- Center Zone: COMPLETELY OPEN & EMPTY - 100% unobscured view of artwork -->
-                <div class="flex-1 pointer-events-none min-h-[140px] md:min-h-[200px]"></div>
+                <!-- Center Zone: open on desktop; collapse min-height on mobile so CTAs stay visible -->
+                <div class="flex-1 pointer-events-none min-h-0 md:min-h-[200px]"></div>
 
                 <!-- Bottom Perimeter: Disciplines, About Summary & Monochrome CTAs -->
-                <div class="pt-3 border-t border-white/10 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                  <!-- About Me Summary & Disciplines -->
-                  <div class="max-w-xl space-y-2">
+                <div class="pt-2 sm:pt-3 border-t border-white/10 flex flex-col md:flex-row md:items-end justify-between gap-3 md:gap-4 shrink-0">
+                  <!-- About Me Summary & Disciplines — hide long copy on small phones so buttons fit -->
+                  <div class="max-w-xl space-y-2 hidden sm:block">
                     <div class="flex items-center gap-2.5">
                       <span class="text-[10px] font-bold tracking-widest uppercase text-neutral-300" data-i18n="about.discipline">YO‘NALISH &amp; MAHORAT</span>
                       <div class="h-px bg-white/15 w-6"></div>
@@ -1019,18 +1019,18 @@
                     </p>
                   </div>
 
-                  <!-- Monochrome Action Buttons -->
-                  <div class="flex items-center gap-3 shrink-0 pt-1 md:pt-0 flex-wrap">
-                    <a href="start.html" class="pointer-events-auto px-5 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 text-xs font-bold tracking-wider uppercase transition-all duration-200 inline-flex items-center gap-2">
+                  <!-- Monochrome Action Buttons — always visible when card is expanded -->
+                  <div class="flex items-center gap-2 sm:gap-3 shrink-0 flex-wrap">
+                    <a href="start.html" class="pointer-events-auto px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-200 inline-flex items-center gap-2">
                       <span data-i18n="about.cta">BOG‘LANISH</span>
                       <svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </a>
-                    <a href="#services" class="pointer-events-auto px-5 py-2.5 rounded-full border border-neutral-500 hover:border-white text-white text-xs font-bold tracking-wider uppercase transition-all duration-200" data-i18n="about.services">
+                    <a href="#services" class="pointer-events-auto px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-neutral-500 hover:border-white text-white text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-200" data-i18n="about.services">
                       XIZMATLAR
                     </a>
-                    <a href="bio.html" class="pointer-events-auto px-5 py-2.5 rounded-full border border-white hover:bg-white hover:text-black text-white text-xs font-bold tracking-wider uppercase transition-all duration-200" data-i18n="about.detail">
+                    <a href="bio.html" class="pointer-events-auto px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-white hover:bg-white hover:text-black text-white text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-200" data-i18n="about.detail">
                       BATAFSIL
                     </a>
                   </div>
@@ -2252,7 +2252,7 @@
       }
     } catch (e) {}
   </script>
-  <script type="module" src="./scroll-expand-media.js"></script>
+  <script type="module" src="./scroll-expand-media.js?v=mobile-cta1"></script>
   <script type="module" src="./experience-section.js?v=expWork1"></script>
 </body>
 </html>

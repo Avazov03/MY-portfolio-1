@@ -29,11 +29,19 @@ export function initScrollExpandMedia() {
     const startW = isMobile ? 280 : 300;
     const startH = isMobile ? 360 : 400;
 
-    // Fully expanded size matching the image aspect ratio (1024 / 546)
-    const maxWByViewport = window.innerWidth * 0.94;
-    const maxWByHeight = (window.innerHeight * 0.86) * ASPECT_RATIO;
-    const endW = Math.min(maxWByViewport, maxWByHeight);
-    const endH = endW / ASPECT_RATIO;
+    // Fully expanded size
+    // Desktop: wide image aspect. Mobile: taller card so headline + CTAs fit (landscape endH ~220px was clipping buttons).
+    let endW;
+    let endH;
+    if (isMobile) {
+      endW = Math.min(window.innerWidth * 0.94, 440);
+      endH = Math.min(window.innerHeight * 0.72, endW * 1.35);
+    } else {
+      const maxWByViewport = window.innerWidth * 0.94;
+      const maxWByHeight = (window.innerHeight * 0.86) * ASPECT_RATIO;
+      endW = Math.min(maxWByViewport, maxWByHeight);
+      endH = endW / ASPECT_RATIO;
+    }
 
     const currentW = startW + progress * (endW - startW);
     const currentH = startH + progress * (endH - startH);
