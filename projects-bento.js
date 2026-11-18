@@ -289,7 +289,7 @@ export const PROJECTS = [
     tag: 'Web',
     year: '2025',
     description: 'A full-stack cafe management system with an admin portal for orders, menu, and reservations',
-    src: 'Project Images/Cafe Website.png',
+    src: 'assets/projects/cafe-website.png',
     link: 'https://mochaandmiso.web.app/',
     tools: ['React', 'Firebase', 'Node.js'],
     featured: false
@@ -301,7 +301,7 @@ export const PROJECTS = [
     tag: 'Landing',
     year: '2025',
     description: 'A bold design studio website built to showcase creative services, brand identity, and digital experiences',
-    src: 'Project Images/Design Studio.png',
+    src: 'assets/projects/design-studio.png',
     link: 'https://echo-design-studio-ex.vercel.app/',
     tools: ['Next.js', 'TypeScript', 'GSAP'],
     featured: true
@@ -313,7 +313,7 @@ export const PROJECTS = [
     tag: 'Client',
     year: '2025',
     description: 'An analog & editorial photography portfolio showcasing timeless visual stories',
-    src: 'Project Images/Photographer Portfolio.png',
+    src: 'assets/projects/photographer-portfolio.png',
     link: 'https://julianvance.vercel.app/',
     tools: ['Three.js', 'Astro', 'GSAP'],
     featured: false
@@ -325,7 +325,7 @@ export const PROJECTS = [
     tag: 'Web',
     year: '2025',
     description: 'A sleek, high-performance portfolio crafted with modern typography and fluid interactions',
-    src: 'Project Images/Portfolio Design.png',
+    src: 'assets/projects/portfolio-design.png',
     link: 'https://echooo.web.app/',
     tools: ['React', 'Tailwind', 'Motion'],
     featured: false
@@ -337,7 +337,7 @@ export const PROJECTS = [
     tag: 'Web',
     year: '2026',
     description: 'A personal portfolio highlighting full-stack engineering and interactive UI',
-    src: 'Project Images/Portfolio Website.png',
+    src: 'assets/projects/portfolio-website.png',
     link: 'https://jishnumondal.vercel.app/',
     tools: ['Next.js', 'Framer Motion', 'TS'],
     featured: false
@@ -349,7 +349,7 @@ export const PROJECTS = [
     tag: 'Client',
     year: '2025',
     description: 'A bespoke editorial portfolio for high-profile client presentation',
-    src: 'Project Images/Sen Cruzo-Client Portfolio.png',
+    src: 'assets/projects/sen-cruzo.png',
     link: 'https://sencruzo.web.app/',
     tools: ['React', 'GSAP', 'Tailwind'],
     featured: false
