@@ -125,19 +125,33 @@
     /* ============================================================
        EDITORIAL HERO TITLE
        ============================================================ */
-    /* Metallic gradient for lower text ("OGABEK") only */
+    /* Metallic gradient for lower text ("OGABEK") only.
+       Tight line-height was clipping glyph bottoms under background-clip:text —
+       pad the paint box so O/G/A/B/E/K render fully. */
     .metallic-title {
       display: inline-block;
+      padding: 0.06em 0.02em 0.14em;
+      margin: -0.06em -0.02em -0.06em;
       background: linear-gradient(180deg, #1A1A1A 0%, #4A4A4A 35%, #8E8E8E 60%, #BDBDBD 85%, #E5E5E5 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    #hero-title.hero-title {
+      line-height: 0.88;
+      overflow: visible;
+    }
+    #hero-title .block {
+      overflow: visible;
+      padding-bottom: 0.02em;
     }
     /* Mobile hero name — larger / wider so it fills the first viewport */
     @media (max-width: 767px) {
       #hero-title.hero-title {
         font-size: clamp(3.4rem, 17vw, 5.75rem);
         letter-spacing: -0.045em;
-        line-height: 0.78;
+        line-height: 0.86;
       }
     }
 
@@ -1017,7 +1031,7 @@
   <main class="relative max-w-[1400px] mx-auto px-6 md:px-14 pt-6 md:pt-12 pb-20 overflow-x-clip hero-pending" data-purpose="hero-section" id="home">
     <!-- Big Title Header -->
     <div class="text-center w-full mb-6 md:mb-10 relative z-0 select-none hero-reveal hero-reveal--title" style="--hero-delay: 60ms">
-      <h1 id="hero-title" class="hero-title text-[16.5vw] sm:text-[14vw] md:text-[8rem] lg:text-[9.5rem] font-extrabold uppercase leading-[0.8] tracking-[-0.04em] w-full">
+      <h1 id="hero-title" class="hero-title text-[16.5vw] sm:text-[14vw] md:text-[8rem] lg:text-[9.5rem] font-extrabold uppercase tracking-[-0.04em] w-full">
         <span class="block">
           <span class="text-[#121212]">AVAZOV</span>
         </span>
