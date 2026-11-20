@@ -212,6 +212,7 @@ export const translations = {
     'footer.linkedin': 'LINKEDIN',
     'footer.github': 'GITHUB',
     'footer.contactMe': 'MEN BILAN ALOQA',
+    'btt.aria': 'Yuqoriga qaytish',
 
     'modal.category': 'TURKUM',
     'modal.highlights': 'Asosiy jihatlar',
@@ -551,6 +552,7 @@ export const translations = {
     'footer.linkedin': 'LINKEDIN',
     'footer.github': 'GITHUB',
     'footer.contactMe': 'CONTACT ME',
+    'btt.aria': 'Back to top',
 
     'modal.category': 'CATEGORY',
     'modal.highlights': 'Key Highlights',
@@ -890,6 +892,7 @@ export const translations = {
     'footer.linkedin': 'LINKEDIN',
     'footer.github': 'GITHUB',
     'footer.contactMe': 'СВЯЗАТЬСЯ',
+    'btt.aria': 'Наверх',
 
     'modal.category': 'КАТЕГОРИЯ',
     'modal.highlights': 'Ключевые моменты',
