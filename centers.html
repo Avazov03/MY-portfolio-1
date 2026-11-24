@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Yo‘nalishlar — Avazov Ogabek</title>
+  <meta name="description" content="Avazov ish yo‘nalishlari: dizayn tizimi, veb, landing, startap, brend va yetkazish.">
+  <link rel="icon" href="assets/favicon-avazov.svg?v=bw1" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="centers.css?v=yoCardsDark2">
+</head>
+<body data-page="centers">
+  <div id="centers" class="centers-stage"></div>
+  <script type="module">
+    import { mountCenters } from './centers.js?v=yo1';
+    mountCenters(document.getElementById('centers'), { page: true });
+  </script>
+</body>
+</html>

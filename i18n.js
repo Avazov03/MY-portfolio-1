@@ -16,6 +16,7 @@ export const translations = {
 
     'nav.home': 'BOSH SAHIFA',
     'nav.about': 'MEN HAQIMDA',
+    'nav.centers': 'YO‘NALISHLAR',
     'nav.experience': 'TAJRIBA',
     'nav.projects': 'LOYIHALAR',
     'nav.landing': 'MENING STARTUPLARIM',
@@ -341,6 +342,25 @@ export const translations = {
     'cart.checkout': 'TO‘LOVGA O‘TISH',
     'cart.remove': 'O‘chirish',
 
+    'centers.metaTitle': 'Yo‘nalishlar — Avazov Ogabek',
+    'centers.metaDescription': 'Avazov ish yo‘nalishlari: dizayn tizimi, veb, landing, startap, brend va yetkazish — bitta karuselda.',
+    'centers.eyebrow': 'YO‘NALISHLAR',
+    'centers.title': 'Ish maydonlarim',
+    'centers.sub': 'har bir yo‘nalish qanday ko‘rinadi, <i>ish o‘zi yurganda</i>',
+    'centers.hint': 'sudrab aylantiring · batafsil uchun oldingi kartani bosing',
+    'centers.searchPh': 'Yo‘nalishlarni qidirish',
+    'centers.searchAria': 'Yo‘nalishlarni qidirish',
+    'centers.back': '← BARCHA YO‘NALISHLAR',
+    'centers.tabHome': 'PORTFOLIO',
+    'centers.tabHere': 'YO‘NALISHLAR',
+    'centers.tabTalk': 'ALOQA',
+    'centers.prev': 'Oldingi',
+    'centers.next': 'Keyingi',
+    'centers.note': 'Yo‘nalishlar — real ish uslubimning vizual ko‘rinishi.',
+    'centers.openWork': 'KO‘RISH',
+    'centers.openTalk': 'BOG‘LANISH',
+    'centers.empty': 'Bu so‘rovga yo‘nalish topilmadi',
+
     'lang.uz': 'UZ',
     'lang.en': 'EN',
     'lang.ru': 'RU'
@@ -356,6 +376,7 @@ export const translations = {
 
     'nav.home': 'HOME',
     'nav.about': 'ABOUT ME',
+    'nav.centers': 'DISCIPLINES',
     'nav.experience': 'EXPERIENCE',
     'nav.projects': 'PROJECTS',
     'nav.landing': 'MY STARTUPS',
@@ -681,6 +702,25 @@ export const translations = {
     'cart.checkout': 'PROCEED TO CHECKOUT',
     'cart.remove': 'Remove',
 
+    'centers.metaTitle': 'Disciplines — Avazov Ogabek',
+    'centers.metaDescription': 'Work disciplines: design system, web, landings, startups, brand and delivery — one carousel.',
+    'centers.eyebrow': 'DISCIPLINES',
+    'centers.title': 'My workspaces',
+    'centers.sub': 'what each discipline looks like <i>when the work runs itself</i>',
+    'centers.hint': 'drag to spin · click the front card for details',
+    'centers.searchPh': 'Search disciplines',
+    'centers.searchAria': 'Search disciplines',
+    'centers.back': '← ALL DISCIPLINES',
+    'centers.tabHome': 'PORTFOLIO',
+    'centers.tabHere': 'DISCIPLINES',
+    'centers.tabTalk': 'CONTACT',
+    'centers.prev': 'Previous',
+    'centers.next': 'Next',
+    'centers.note': 'Disciplines — a visual map of how I work.',
+    'centers.openWork': 'EXPLORE',
+    'centers.openTalk': 'GET IN TOUCH',
+    'centers.empty': 'No discipline matches that search',
+
     'lang.uz': 'UZ',
     'lang.en': 'EN',
     'lang.ru': 'RU'
@@ -696,6 +736,7 @@ export const translations = {
 
     'nav.home': 'ГЛАВНАЯ',
     'nav.about': 'ОБО МНЕ',
+    'nav.centers': 'НАПРАВЛЕНИЯ',
     'nav.experience': 'ОПЫТ',
     'nav.projects': 'ПРОЕКТЫ',
     'nav.landing': 'МОИ СТАРТАПЫ',
@@ -1021,6 +1062,25 @@ export const translations = {
     'cart.checkout': 'К ОПЛАТЕ',
     'cart.remove': 'Удалить',
 
+    'centers.metaTitle': 'Направления — Avazov Ogabek',
+    'centers.metaDescription': 'Рабочие направления: дизайн-система, веб, лендинги, стартапы, бренд и сдача — одна карусель.',
+    'centers.eyebrow': 'НАПРАВЛЕНИЯ',
+    'centers.title': 'Мои рабочие зоны',
+    'centers.sub': 'как выглядит каждое направление, <i>когда работа идёт сама</i>',
+    'centers.hint': 'потяните, чтобы крутить · нажмите переднюю карточку',
+    'centers.searchPh': 'Искать направления',
+    'centers.searchAria': 'Искать направления',
+    'centers.back': '← ВСЕ НАПРАВЛЕНИЯ',
+    'centers.tabHome': 'ПОРТФОЛИО',
+    'centers.tabHere': 'НАПРАВЛЕНИЯ',
+    'centers.tabTalk': 'СВЯЗЬ',
+    'centers.prev': 'Назад',
+    'centers.next': 'Дальше',
+    'centers.note': 'Направления — визуальная карта того, как я работаю.',
+    'centers.openWork': 'СМОТРЕТЬ',
+    'centers.openTalk': 'СВЯЗАТЬСЯ',
+    'centers.empty': 'Направление по этому запросу не найдено',
+
     'lang.uz': 'UZ',
     'lang.en': 'EN',
     'lang.ru': 'RU'
@@ -1069,16 +1129,21 @@ export function applyLanguage(lang) {
   const path = window.location.pathname || '';
   const isBioPage = /bio\.html$/i.test(path) || document.body?.dataset?.page === 'bio';
   const isStartPage = /start\.html$/i.test(path) || document.body?.dataset?.page === 'start';
+  const isCentersPage = /centers\.html$/i.test(path) || document.body?.dataset?.page === 'centers';
   const title = isBioPage
     ? `${t('bio.name', lang)} — ${t('bio.section.story', lang)}`
     : isStartPage
       ? `${t('start.title', lang)} — Avazov Ogabek`
-      : t('meta.title', lang);
+      : isCentersPage
+        ? t('centers.metaTitle', lang)
+        : t('meta.title', lang);
   const desc = isBioPage
     ? t('bio.tagline', lang)
     : isStartPage
       ? t('start.intro', lang)
-      : t('meta.description', lang);
+      : isCentersPage
+        ? t('centers.metaDescription', lang)
+        : t('meta.description', lang);
   document.title = title;
   const meta = document.querySelector('meta[name="description"]');
   if (meta) meta.setAttribute('content', desc);

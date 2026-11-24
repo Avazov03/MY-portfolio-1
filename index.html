@@ -46,6 +46,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="FlexCarousel.css">
+  <link rel="stylesheet" href="centers.css?v=yoCardsDark2">
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -939,15 +940,16 @@
     </a>
 
     <!-- Center Navigation Links (Pill with no unwanted wrapping) -->
-    <!-- Full pill nav from xl only — 7 long UZ labels overflow below ~1280 -->
-    <nav class="hidden xl:flex items-center gap-1 p-1 bg-white/95 border border-[#E2E2E2] rounded-full shadow-sm text-xs font-semibold tracking-wider text-neutral-600">
-      <a id="nav-home" class="nav-link px-3 2xl:px-4 py-2 rounded-full border border-neutral-300 text-black hover:border-black transition whitespace-nowrap" href="#home" data-i18n="nav.home">BOSH SAHIFA</a>
-      <a id="nav-about" class="nav-link px-3 2xl:px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#about" data-i18n="nav.about">MEN HAQIMDA</a>
-      <a id="nav-experience" class="nav-link px-3 2xl:px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#experience" data-i18n="nav.experience">TAJRIBA</a>
-      <a id="nav-projects" class="nav-link px-3 2xl:px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#projects" data-i18n="nav.projects">LOYIHALAR</a>
-      <a id="nav-landing-pages" class="nav-link px-3 2xl:px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#startups" data-i18n="nav.landing">MENING STARTUPLARIM</a>
-      <a id="nav-talk" class="nav-link px-3 2xl:px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#talk" data-i18n="nav.talk">ALOQA</a>
-      <a id="nav-services" class="nav-link px-3 2xl:px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#services" data-i18n="nav.services">XIZMATLAR</a>
+    <!-- Full pill nav from xl only — long UZ labels overflow below ~1280 -->
+    <nav class="hidden xl:flex items-center gap-0.5 p-1 bg-white/95 border border-[#E2E2E2] rounded-full shadow-sm text-[11px] 2xl:text-xs font-semibold tracking-wider text-neutral-600">
+      <a id="nav-home" class="nav-link px-2.5 2xl:px-3.5 py-2 rounded-full border border-neutral-300 text-black hover:border-black transition whitespace-nowrap" href="#home" data-i18n="nav.home">BOSH SAHIFA</a>
+      <a id="nav-about" class="nav-link px-2.5 2xl:px-3.5 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#about" data-i18n="nav.about">MEN HAQIMDA</a>
+      <a id="nav-centers" class="nav-link px-2.5 2xl:px-3.5 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#centers" data-i18n="nav.centers">YO‘NALISHLAR</a>
+      <a id="nav-experience" class="nav-link px-2.5 2xl:px-3.5 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#experience" data-i18n="nav.experience">TAJRIBA</a>
+      <a id="nav-projects" class="nav-link px-2.5 2xl:px-3.5 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#projects" data-i18n="nav.projects">LOYIHALAR</a>
+      <a id="nav-landing-pages" class="nav-link px-2.5 2xl:px-3.5 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#startups" data-i18n="nav.landing">MENING STARTUPLARIM</a>
+      <a id="nav-talk" class="nav-link px-2.5 2xl:px-3.5 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#talk" data-i18n="nav.talk">ALOQA</a>
+      <a id="nav-services" class="nav-link px-2.5 2xl:px-3.5 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#services" data-i18n="nav.services">XIZMATLAR</a>
     </nav>
 
     <!-- Right Social & Menu Links — socials hidden on small phones (in drawer) to prevent horizontal overflow -->
@@ -1000,6 +1002,7 @@
         <nav class="flex flex-col gap-4 mt-8 text-base font-bold tracking-wider">
           <a onclick="toggleMobileMenu()" href="#home" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.home">BOSH SAHIFA</a>
           <a onclick="toggleMobileMenu()" href="#about" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.about">MEN HAQIMDA</a>
+          <a onclick="toggleMobileMenu()" href="#centers" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.centers">YO‘NALISHLAR</a>
           <a onclick="toggleMobileMenu()" href="#experience" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.experience">TAJRIBA</a>
           <a onclick="toggleMobileMenu()" href="#projects" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.projects">LOYIHALAR</a>
           <a onclick="toggleMobileMenu()" href="#startups" class="py-2 border-b border-neutral-100 hover:text-neutral-500" data-i18n="nav.landing">MENING STARTUPLARIM</a>
@@ -1277,6 +1280,14 @@
     </div>
   </section>
   <!-- END: About Section (ScrollExpandMedia Component) -->
+
+  <!-- BEGIN: Command Centers — in the page, after About. No iframe, so the page scroll is not trapped. -->
+  <section id="centers" class="centers-stage" data-purpose="command-centers"></section>
+  <script type="module">
+    import { mountCenters } from './centers.js?v=yoCardsDark2';
+    mountCenters(document.getElementById('centers'));
+  </script>
+  <!-- END: Command Centers -->
 
   <!-- BEGIN: Experience Section ("Where I've Been" — Horizontal Cinematic Installation) -->
   <section
@@ -2364,6 +2375,7 @@
       const navLinks = {
         'home': document.getElementById('nav-home'),
         'about': document.getElementById('nav-about'),
+        'centers': document.getElementById('nav-centers'),
         'experience': document.getElementById('nav-experience'),
         'projects': document.getElementById('nav-projects'),
         'startups': document.getElementById('nav-landing-pages'),
@@ -2442,7 +2454,7 @@
     }
   </script>
   <script type="module">
-    import { initI18n } from './i18n.js?v=travelUz1';
+    import { initI18n } from './i18n.js?v=centersYo1';
     import { initSiteCursor } from './site-cursor.js';
     import { initBackToTop } from './back-to-top.js?v=btt2';
     initI18n();
