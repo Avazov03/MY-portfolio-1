@@ -1,0 +1,15 @@
+# avazov-dev.uz
+User-agent: *
+Allow: /
+
+# Draft / lab pages — noindex
+Disallow: /concepts/
+Disallow: /admin-404
+Disallow: /admin-404-preview.html
+Disallow: /admin-404-samples.html
+Disallow: /back-to-top-variants.html
+Disallow: /hero-left-lab.html
+Disallow: /services-variants.html
+
+Sitemap: https://avazov-dev.uz/sitemap.xml
+Host: https://avazov-dev.uz

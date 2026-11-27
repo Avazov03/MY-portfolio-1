@@ -5,7 +5,8 @@
   <script>
     (function () {
       try {
-        var l = localStorage.getItem('echo-lang') || 'uz';
+        var q = new URLSearchParams(location.search).get('lang');
+        var l = (q && ['uz','en','ru'].indexOf(q) !== -1) ? q : (localStorage.getItem('echo-lang') || 'uz');
         if (['uz','en','ru'].indexOf(l) === -1) l = 'uz';
         document.documentElement.lang = l;
       } catch (e) {}
@@ -13,10 +14,99 @@
   </script>
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Avazov Ogabek — Dizayner & Dasturchi Portfolio</title>
-  <meta name="description" content="Avazov Ogabek portfolio: UI/UX, veb-dizayn, landing page va zamonaviy interaktiv tajribalar.">
+  <title>Og‘abek Avazov — UI/UX Dizayner &amp; Full-Stack Dasturchi | Toshkent</title>
+  <meta name="description" content="Toshkentlik UI/UX dizayner va full-stack dasturchi. Landing, portfolio, startap mahsulotlari — ZONIC FIT, Yurist AI. Dizayndan deploygacha.">
+  <meta name="author" content="Og‘abek Avazov">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="theme-color" content="#0D0D0D">
+  <meta name="keywords" content="Og‘abek Avazov, Avazov Ogabek, UI/UX dizayner, full-stack dasturchi, Toshkent, landing page, portfolio sayt, Yurist AI, ZONIC FIT, avazov-dev.uz, web dizayn, frontend, backend">
+  <link rel="canonical" href="https://avazov-dev.uz/">
+  <link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/?lang=uz">
+  <link rel="alternate" hreflang="en" href="https://avazov-dev.uz/?lang=en">
+  <link rel="alternate" hreflang="ru" href="https://avazov-dev.uz/?lang=ru">
+  <link rel="alternate" hreflang="x-default" href="https://avazov-dev.uz/">
   <link rel="icon" href="assets/favicon-avazov.svg?v=bw1" type="image/svg+xml">
-  
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="assets/og-avazov.jpg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AVAZOV">
+  <meta property="og:locale" content="uz_UZ">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:url" content="https://avazov-dev.uz/">
+  <meta property="og:title" content="Og‘abek Avazov — UI/UX Dizayner &amp; Full-Stack Dasturchi">
+  <meta property="og:description" content="Toshkentlik UI/UX dizayner va full-stack dasturchi. Landing, portfolio, startap mahsulotlari — ZONIC FIT, Yurist AI.">
+  <meta property="og:image" content="https://avazov-dev.uz/assets/og-avazov.jpg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+  <meta property="og:image:alt" content="AVAZOV — Og‘abek Avazov portfolio">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Og‘abek Avazov — UI/UX Dizayner &amp; Full-Stack Dasturchi">
+  <meta name="twitter:description" content="Landing, portfolio va startap mahsulotlari — dizayndan deploygacha. Toshkent.">
+  <meta name="twitter:image" content="https://avazov-dev.uz/assets/og-avazov.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://avazov-dev.uz/#website",
+        "url": "https://avazov-dev.uz/",
+        "name": "AVAZOV",
+        "alternateName": ["Avazov Ogabek", "Og‘abek Avazov", "avazov-dev.uz"],
+        "inLanguage": ["uz", "en", "ru"],
+        "publisher": { "@id": "https://avazov-dev.uz/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://avazov-dev.uz/#person",
+        "name": "Og‘abek Avazov",
+        "alternateName": ["Avazov Ogabek", "AVAZOV"],
+        "url": "https://avazov-dev.uz/",
+        "image": "https://avazov-dev.uz/assets/about_media_portrait.jpg",
+        "jobTitle": "UI/UX Designer & Full-Stack Developer",
+        "email": "mailto:avazovogabek86@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Tashkent",
+          "addressCountry": "UZ"
+        },
+        "sameAs": [
+          "https://www.instagram.com/avazov_fit/",
+          "https://t.me/Avazov_fit"
+        ],
+        "knowsAbout": [
+          "UI/UX design",
+          "Full-stack development",
+          "Landing pages",
+          "Startup products",
+          "Brand identity"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://avazov-dev.uz/#service",
+        "name": "Avazov — Dizayn va Dasturlash",
+        "url": "https://avazov-dev.uz/#services",
+        "image": "https://avazov-dev.uz/assets/og-avazov.jpg",
+        "provider": { "@id": "https://avazov-dev.uz/#person" },
+        "areaServed": { "@type": "Country", "name": "Uzbekistan" },
+        "serviceType": [
+          "Full-stack development",
+          "UI/UX design",
+          "Web design",
+          "Landing page design",
+          "Startup MVP"
+        ]
+      }
+    ]
+  }
+  </script>
+
   <!-- Tailwind CSS v3 with Plugins -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
@@ -2454,7 +2544,7 @@
     }
   </script>
   <script type="module">
-    import { initI18n } from './i18n.js?v=centersYo1';
+    import { initI18n } from './i18n.js?v=seo1';
     import { initSiteCursor } from './site-cursor.js';
     import { initBackToTop } from './back-to-top.js?v=btt2';
     initI18n();

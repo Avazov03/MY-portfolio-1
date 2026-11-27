@@ -1,0 +1,19 @@
+{
+  "name": "Avazov Ogabek — Portfolio",
+  "short_name": "AVAZOV",
+  "description": "Og‘abek Avazov — UI/UX dizayner va full-stack dasturchi portfolio (Toshkent).",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#0D0D0D",
+  "lang": "uz",
+  "icons": [
+    {
+      "src": "assets/favicon-avazov.svg?v=bw1",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

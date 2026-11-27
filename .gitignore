@@ -5,3 +5,6 @@ extracted/
 extracted_zip/
 *.zip
 scratch_box.png
+
+# Local SEO audit reports
+*-audit/

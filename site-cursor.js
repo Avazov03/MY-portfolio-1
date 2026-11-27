@@ -4,11 +4,11 @@
  * Partial overlap inverts only the overlapping half.
  */
 
-const DESKTOP = '(min-width: 1024px)';
 const REDUCE = '(prefers-reduced-motion: reduce)';
 
-export function initSiteCursor() {
-  const desktop = window.matchMedia(DESKTOP);
+export function initSiteCursor(opts = {}) {
+  const minW = opts.minWidth ?? 1024;
+  const desktop = window.matchMedia(`(min-width: ${minW}px)`);
   const reduce = window.matchMedia(REDUCE);
   const fine = window.matchMedia('(pointer: fine)');
 

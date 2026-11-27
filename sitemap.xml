@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://avazov-dev.uz/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/?lang=uz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avazov-dev.uz/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://avazov-dev.uz/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://avazov-dev.uz/"/>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/bio.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/bio.html?lang=uz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avazov-dev.uz/bio.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://avazov-dev.uz/bio.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://avazov-dev.uz/bio.html"/>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/centers.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/centers.html?lang=uz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avazov-dev.uz/centers.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://avazov-dev.uz/centers.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://avazov-dev.uz/centers.html"/>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/start.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/start.html?lang=uz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avazov-dev.uz/start.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://avazov-dev.uz/start.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://avazov-dev.uz/start.html"/>
+  </url>
+</urlset>

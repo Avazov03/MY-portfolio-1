@@ -7,8 +7,12 @@ const STORAGE_KEY = 'echo-lang';
 
 export const translations = {
   uz: {
-    'meta.title': 'Avazov Ogabek — Dizayner & Dasturchi Portfolio',
-    'meta.description': 'Avazov Ogabek portfolio: UI/UX, veb-dizayn, landing page va zamonaviy interaktiv tajribalar.',
+    'meta.title': 'Og‘abek Avazov — UI/UX Dizayner & Full-Stack Dasturchi | Toshkent',
+    'meta.description': 'Toshkentlik UI/UX dizayner va full-stack dasturchi. Landing, portfolio, startap mahsulotlari — ZONIC FIT, Yurist AI. Dizayndan deploygacha.',
+    'meta.ogTitle': 'Og‘abek Avazov — UI/UX Dizayner & Full-Stack Dasturchi',
+    'meta.ogDescription': 'Toshkentlik UI/UX dizayner va full-stack dasturchi. Landing, portfolio, startap mahsulotlari — ZONIC FIT, Yurist AI.',
+    'meta.keywords': 'Og‘abek Avazov, Avazov Ogabek, UI/UX dizayner, full-stack dasturchi, Toshkent, landing page, portfolio sayt, Yurist AI, ZONIC FIT, avazov-dev.uz',
+    'meta.ogLocale': 'uz_UZ',
 
     'brand.wordmark': 'AVAZOV',
     'brand.tagline': 'WEB · AI · CLOUD',
@@ -367,8 +371,12 @@ export const translations = {
   },
 
   en: {
-    'meta.title': 'Avazov Ogabek — Designer & Developer Portfolio',
-    'meta.description': 'Portfolio of Avazov Ogabek — UI/UX, web design, landing pages, and interactive digital experiences.',
+    'meta.title': 'Og‘abek Avazov — UI/UX Designer & Full-Stack Developer | Tashkent',
+    'meta.description': 'UI/UX designer and full-stack developer in Tashkent. Landings, portfolios, startups — ZONIC FIT, Yurist AI. From design to deploy.',
+    'meta.ogTitle': 'Og‘abek Avazov — UI/UX Designer & Full-Stack Developer',
+    'meta.ogDescription': 'UI/UX designer and full-stack developer in Tashkent. Landings, portfolios, startups — ZONIC FIT, Yurist AI.',
+    'meta.keywords': 'Og‘abek Avazov, Avazov Ogabek, UI/UX designer, full-stack developer, Tashkent, landing page, portfolio website, Yurist AI, ZONIC FIT, avazov-dev.uz',
+    'meta.ogLocale': 'en_US',
 
     'brand.wordmark': 'AVAZOV',
     'brand.tagline': 'WEB · AI · CLOUD',
@@ -727,8 +735,12 @@ export const translations = {
   },
 
   ru: {
-    'meta.title': 'Avazov Ogabek — Портфолио дизайнера и разработчика',
-    'meta.description': 'Портфолио Avazov Ogabek: UI/UX, веб-дизайн, лендинги и интерактивные цифровые продукты.',
+    'meta.title': 'Огабек Авазов — UI/UX дизайнер и Full-Stack разработчик | Ташкент',
+    'meta.description': 'UI/UX дизайнер и full-stack разработчик в Ташкенте. Лендинги, портфолио, стартапы — ZONIC FIT, Yurist AI. От дизайна до деплоя.',
+    'meta.ogTitle': 'Огабек Авазов — UI/UX дизайнер и Full-Stack разработчик',
+    'meta.ogDescription': 'UI/UX дизайнер и full-stack разработчик в Ташкенте. Лендинги, портфолио, стартапы — ZONIC FIT, Yurist AI.',
+    'meta.keywords': 'Огабек Авазов, Avazov Ogabek, UI/UX дизайнер, full-stack разработчик, Ташкент, лендинг, портфолио сайт, Yurist AI, ZONIC FIT, avazov-dev.uz',
+    'meta.ogLocale': 'ru_RU',
 
     'brand.wordmark': 'AVAZOV',
     'brand.tagline': 'WEB · AI · CLOUD',
@@ -1145,8 +1157,23 @@ export function applyLanguage(lang) {
         ? t('centers.metaDescription', lang)
         : t('meta.description', lang);
   document.title = title;
-  const meta = document.querySelector('meta[name="description"]');
-  if (meta) meta.setAttribute('content', desc);
+  const setMeta = (selector, attr, value) => {
+    const el = document.querySelector(selector);
+    if (el && value != null) el.setAttribute(attr, value);
+  };
+  setMeta('meta[name="description"]', 'content', desc);
+  setMeta('meta[name="keywords"]', 'content', t('meta.keywords', lang));
+  const ogTitle = isCentersPage ? t('centers.metaTitle', lang)
+    : isBioPage || isStartPage ? title
+      : t('meta.ogTitle', lang);
+  const ogDesc = isCentersPage ? t('centers.metaDescription', lang)
+    : isBioPage || isStartPage ? desc
+      : t('meta.ogDescription', lang);
+  setMeta('meta[property="og:title"]', 'content', ogTitle);
+  setMeta('meta[property="og:description"]', 'content', ogDesc);
+  setMeta('meta[property="og:locale"]', 'content', t('meta.ogLocale', lang));
+  setMeta('meta[name="twitter:title"]', 'content', ogTitle);
+  setMeta('meta[name="twitter:description"]', 'content', ogDesc);
 
   document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
     const active = btn.getAttribute('data-lang-btn') === lang;
@@ -1161,14 +1188,28 @@ export function applyLanguage(lang) {
   window.dispatchEvent(new CustomEvent('echo:langchange', { detail: { lang } }));
 }
 
-export function initI18n() {
+function resolveInitialLang() {
+  try {
+    const params = new URLSearchParams(window.location.search || '');
+    const fromQuery = (params.get('lang') || '').toLowerCase();
+    if (SUPPORTED_LANGS.includes(fromQuery)) return fromQuery;
+  } catch (_) {}
   const saved = localStorage.getItem(STORAGE_KEY);
-  const lang = SUPPORTED_LANGS.includes(saved) ? saved : DEFAULT_LANG;
-  applyLanguage(lang);
+  return SUPPORTED_LANGS.includes(saved) ? saved : DEFAULT_LANG;
+}
+
+export function initI18n() {
+  applyLanguage(resolveInitialLang());
 
   document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      applyLanguage(btn.getAttribute('data-lang-btn'));
+      const next = btn.getAttribute('data-lang-btn');
+      applyLanguage(next);
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', next);
+        window.history.replaceState({}, '', url);
+      } catch (_) {}
     });
   });
 }

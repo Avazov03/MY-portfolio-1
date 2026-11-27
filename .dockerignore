@@ -17,3 +17,14 @@ scratch_box.png
 **/*id_rsa*
 concepts
 agent-transcripts
+
+# Draft / lab pages — not part of the public site
+admin-404.html
+admin-404-preview.html
+admin-404-samples.html
+back-to-top-variants.html
+hero-left-lab.html
+services-variants.html
+
+# Local SEO audit reports
+*-audit
