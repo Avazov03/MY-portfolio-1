@@ -5,10 +5,15 @@
   "description": "Monochrome Editorial Developer & Designer Portfolio",
   "type": "module",
   "scripts": {
-    "dev": "python3 -m http.server 8080",
-    "start": "python3 -m http.server 8080"
+    "dev": "python -m http.server 8080",
+    "start": "python -m http.server 8080",
+    "build:css": "tailwindcss -i ./src/input.css -o ./assets/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./assets/css/tailwind.css --watch"
   },
   "dependencies": {
     "@fiddle-digital/string-tune": "^1.2.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }

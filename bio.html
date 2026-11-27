@@ -51,18 +51,7 @@
     }
   }
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
-          }
-        }
-      }
-    };
-  </script>
+  <link rel="stylesheet" href="assets/css/tailwind.css?v=seo2">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     body { font-family: "Plus Jakarta Sans", system-ui, sans-serif; background: #0D0D0D; color: #FAFAFA; }
@@ -114,11 +103,14 @@
     <!-- Sticky portrait -->
     <div class="relative">
       <div class="portrait-sticky overflow-hidden bg-neutral-900">
-        <img
-          src="assets/about_media_portrait.jpg"
-          alt="Avazov Ogabek"
-          class="absolute inset-0 w-full h-full object-cover object-top"
-        />
+        <picture>
+          <source type="image/webp" srcset="assets/about_media_portrait.webp?v=1">
+          <img
+            src="assets/about_media_portrait.jpg?v=3"
+            alt="Avazov Ogabek"
+            class="absolute inset-0 w-full h-full object-cover object-top"
+          />
+        </picture>
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/30"></div>
         <div class="absolute bottom-0 left-0 right-0 p-6 md:p-10">
           <p class="text-[11px] font-bold tracking-widest uppercase text-white/60" data-i18n="bio.location">Toshkent · O‘zbekiston</p>

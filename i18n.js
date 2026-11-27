@@ -40,6 +40,8 @@ export const translations = {
     'hero.scrollAbout': 'Men haqimda bo‘limiga o‘tish',
     'hero.contactLabel': 'Men bilan bog‘lanish',
     'hero.contactAria': 'Men bilan bog‘lanish sahifasini ochish',
+    'hero.roleLine': 'UI/UX dizayner & full-stack · Toshkent',
+    'hero.ctaPrimary': 'Bog‘lanish',
 
     'about.headline': 'LANDING VA PORTFOLIO SAYTLARNI TEZ, CHIROYLI VA CONVERSION’GA YO‘NALTIRIB QURAMAN',
     'about.based': 'O‘ZBEKISTON · TOSHKENT',
@@ -340,10 +342,10 @@ export const translations = {
     'toast.solar': 'Jonli solar telemetriya sinxronlandi (+0.8 kWh).',
     'toast.copiedEmail': 'Email nusxa olindi: hello@example.com',
 
-    'cart.title': 'SAVAT',
-    'cart.empty': 'Savat bo‘sh.',
+    'cart.title': 'BUYURTMA',
+    'cart.empty': 'Buyurtma bo‘sh.',
     'cart.subtotal': 'JAMI',
-    'cart.checkout': 'TO‘LOVGA O‘TISH',
+    'cart.checkout': 'BUYURTMA BERISH',
     'cart.remove': 'O‘chirish',
 
     'centers.metaTitle': 'Yo‘nalishlar — Avazov Ogabek',
@@ -404,6 +406,8 @@ export const translations = {
     'hero.scrollAbout': 'Scroll to About Section',
     'hero.contactLabel': 'Get in touch',
     'hero.contactAria': 'Open contact page',
+    'hero.roleLine': 'UI/UX designer & full-stack · Tashkent',
+    'hero.ctaPrimary': 'Contact',
 
     'about.headline': 'I BUILD LANDING AND PORTFOLIO SITES FAST, BEAUTIFUL, AND CONVERSION-FOCUSED',
     'about.based': 'UZBEKISTAN · TASHKENT',
@@ -704,10 +708,10 @@ export const translations = {
     'toast.solar': 'Live solar telemetry synchronized (+0.8 kWh).',
     'toast.copiedEmail': 'Copied email: hello@example.com',
 
-    'cart.title': 'SHOPPING BAG',
-    'cart.empty': 'Your bag is empty.',
+    'cart.title': 'ORDER',
+    'cart.empty': 'No services selected.',
     'cart.subtotal': 'SUBTOTAL',
-    'cart.checkout': 'PROCEED TO CHECKOUT',
+    'cart.checkout': 'REQUEST ORDER',
     'cart.remove': 'Remove',
 
     'centers.metaTitle': 'Disciplines — Avazov Ogabek',
@@ -768,6 +772,8 @@ export const translations = {
     'hero.scrollAbout': 'Перейти к разделу Обо мне',
     'hero.contactLabel': 'Связаться со мной',
     'hero.contactAria': 'Открыть страницу связи',
+    'hero.roleLine': 'UI/UX дизайнер & full-stack · Ташкент',
+    'hero.ctaPrimary': 'Связаться',
 
     'about.headline': 'ДЕЛАЮ ЛЕНДИНГИ И ПОРТФОЛИО БЫСТРО, КРАСИВО И С ФОКУСОМ НА КОНВЕРСИЮ',
     'about.based': 'УЗБЕКИСТАН · ТАШКЕНТ',
@@ -1068,10 +1074,10 @@ export const translations = {
     'toast.solar': 'Живая solar-телеметрия синхронизирована (+0.8 kWh).',
     'toast.copiedEmail': 'Email скопирован: hello@example.com',
 
-    'cart.title': 'КОРЗИНА',
-    'cart.empty': 'Корзина пуста.',
+    'cart.title': 'ЗАКАЗ',
+    'cart.empty': 'Заказ пуст.',
     'cart.subtotal': 'ИТОГО',
-    'cart.checkout': 'К ОПЛАТЕ',
+    'cart.checkout': 'ОФОРМИТЬ ЗАКАЗ',
     'cart.remove': 'Удалить',
 
     'centers.metaTitle': 'Направления — Avazov Ogabek',

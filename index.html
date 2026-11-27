@@ -107,886 +107,16 @@
   }
   </script>
 
-  <!-- Tailwind CSS v3 with Plugins -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              black: '#0D0D0D',
-              dark: '#141414',
-              gray: '#7A7A7A',
-              light: '#F8F9FA',
-              border: '#E5E5E5'
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Built Tailwind + site CSS (no Play CDN) -->
+  <link rel="stylesheet" href="assets/css/tailwind.css?v=seo2">
+  <link rel="stylesheet" href="assets/css/site.css?v=seo2">
 
-  <!-- Typography & Gradients Stylesheet -->
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="FlexCarousel.css">
   <link rel="stylesheet" href="centers.css?v=yoCardsDark2">
-  <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #FAFAFA;
-      color: #121212;
-      overflow-x: clip;
-      selection-background-color: #000;
-      selection-color: #fff;
-    }
-
-    ::selection {
-      background: #000;
-      color: #fff;
-    }
-
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* ============================================================
-       EXPERIENCE HORIZONTAL SPATIAL CANVAS
-       ============================================================ */
-    #exp-horizontal-stage {
-      will-change: transform;
-      transform: translate3d(0, 0, 0);
-    }
-    .exp-panel {
-      will-change: transform, opacity;
-    }
-    .exp-date-bg {
-      will-change: transform;
-    }
-    @keyframes expLivingFlow {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-    .exp-living-flow {
-      animation: expLivingFlow 4.5s ease-in-out infinite;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      #experience {
-        height: auto !important;
-      }
-      #exp-sticky-viewport {
-        position: relative !important;
-        height: auto !important;
-        overflow: visible !important;
-      }
-      #exp-horizontal-stage {
-        flex-direction: column !important;
-        width: 100% !important;
-        transform: none !important;
-      }
-      .exp-panel {
-        width: 100% !important;
-        padding-top: 5rem !important;
-        padding-bottom: 5rem !important;
-      }
-      .exp-living-flow {
-        animation: none !important;
-      }
-    }
-
-    #project-modal {
-      transition: opacity 380ms cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 380ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    #project-modal-card {
-      transition: transform 440ms cubic-bezier(0.16, 1, 0.3, 1), opacity 360ms cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: transform, opacity;
-      transform: translate3d(0, 0, 0);
-    }
-
-    /* ============================================================
-       EDITORIAL HERO TITLE
-       ============================================================ */
-    /* Metallic gradient for lower text ("OGABEK") only.
-       Tight line-height was clipping glyph bottoms under background-clip:text —
-       pad the paint box so O/G/A/B/E/K render fully. */
-    .metallic-title {
-      display: inline-block;
-      padding: 0.06em 0.02em 0.14em;
-      margin: -0.06em -0.02em -0.06em;
-      background: linear-gradient(180deg, #1A1A1A 0%, #4A4A4A 35%, #8E8E8E 60%, #BDBDBD 85%, #E5E5E5 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-    }
-    #hero-title.hero-title {
-      line-height: 0.88;
-      overflow: visible;
-    }
-    #hero-title .block {
-      overflow: visible;
-      padding-bottom: 0.02em;
-    }
-    /* Mobile hero name — larger / wider so it fills the first viewport */
-    @media (max-width: 767px) {
-      #hero-title.hero-title {
-        font-size: clamp(3.4rem, 17vw, 5.75rem);
-        letter-spacing: -0.045em;
-        line-height: 0.86;
-      }
-    }
-
-    /* Portrait fades at bottom only — sides stay unclipped */
-    .hero-portrait-mask {
-      mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
-      -webkit-mask-size: 100% 100%;
-      mask-size: 100% 100%;
-    }
-    .hero-portrait-slot {
-      overflow: visible;
-    }
-    .hero-portrait-slot img {
-      width: 148%;
-      max-width: none;
-      height: auto;
-      left: 50%;
-      bottom: -30px;
-      transform: translateX(-50%);
-      transform-origin: bottom center;
-    }
-    .hero-portrait-slot img:hover {
-      transform: translateX(-50%) scale(1.02);
-    }
-
-    /* Hero load entrance — softens hard first paint on refresh */
-    @keyframes heroRevealUp {
-      from {
-        opacity: 0;
-        transform: translate3d(0, 28px, 0);
-      }
-      to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-      }
-    }
-    @keyframes heroRevealPortrait {
-      from {
-        opacity: 0;
-        transform: translate3d(0, 16%, 0);
-      }
-      to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-      }
-    }
-    #home.hero-pending .hero-reveal {
-      opacity: 0;
-      transform: translate3d(0, 28px, 0);
-      pointer-events: none;
-    }
-    #home.hero-pending .hero-reveal--portrait {
-      transform: translate3d(0, 16%, 0);
-    }
-    #home.hero-ready .hero-reveal {
-      pointer-events: auto;
-      animation: heroRevealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-      animation-delay: var(--hero-delay, 0ms);
-    }
-    #home.hero-ready .hero-reveal--portrait {
-      animation-name: heroRevealPortrait;
-      animation-duration: 1.2s;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      #home.hero-pending .hero-reveal,
-      #home.hero-ready .hero-reveal {
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-        pointer-events: auto !important;
-      }
-    }
-
-    .footer-metallic-title {
-      background: linear-gradient(180deg, #FFFFFF 0%, #a8a8a8 50%, #444444 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      transition: filter 0.3s ease;
-    }
-    .footer-metallic-title:hover {
-      filter: brightness(1.2);
-    }
-
-    /* Back to top — split + live scroll %
-       White ring via 1px padding (not border+overflow) → smooth, no jagged AA */
-    .back-to-top {
-      position: fixed;
-      right: max(1rem, env(safe-area-inset-right, 0px));
-      bottom: max(1.15rem, env(safe-area-inset-bottom, 0px));
-      z-index: 45;
-      width: 3.25rem;
-      height: 3.25rem;
-      padding: 1px;
-      border: 0;
-      border-radius: 999px;
-      background: #fff;
-      color: #0D0D0D;
-      cursor: pointer;
-      opacity: 0;
-      pointer-events: none;
-      transform: translate3d(0, 12px, 0) scale(0.92);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
-      transition:
-        opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-        box-shadow 0.2s ease;
-      will-change: transform, opacity;
-      -webkit-tap-highlight-color: transparent;
-      -webkit-font-smoothing: antialiased;
-    }
-    .back-to-top__face {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      width: 100%;
-      height: 100%;
-      border-radius: 999px;
-      overflow: hidden;
-      background: #fff;
-      transform: translateZ(0);
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-    }
-    .back-to-top.is-on {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-    .back-to-top:hover { box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28); }
-    .back-to-top:active { transform: translate3d(0, 1px, 0) scale(0.98); }
-    .back-to-top.is-on:active { transform: translate3d(0, 1px, 0) scale(0.98); }
-    .back-to-top:focus-visible {
-      outline: 2px solid #0D0D0D;
-      outline-offset: 3px;
-    }
-    .back-to-top__top {
-      background: #0D0D0D;
-      color: #fff;
-      display: grid;
-      place-items: center;
-    }
-    .back-to-top__bot {
-      display: grid;
-      place-items: center;
-      font-variant-numeric: tabular-nums;
-      font-feature-settings: "tnum" 1;
-      line-height: 1;
-      background: #fff;
-    }
-    .back-to-top__pct {
-      display: inline-flex;
-      align-items: baseline;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-    .back-to-top__num {
-      display: inline-block;
-      min-width: 1.4em;
-      text-align: right;
-    }
-    .back-to-top__sym {
-      font-size: 8px;
-      font-weight: 800;
-      margin-left: 0.5px;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .back-to-top {
-        transition: opacity 0.15s ease;
-        transform: none !important;
-      }
-      .back-to-top.is-on { transform: none !important; }
-    }
-
-    .letter-spacing-widest {
-      letter-spacing: 0.18em;
-    }
-
-    .pill-btn {
-      border: 1px solid #D6D6D6;
-      border-radius: 9999px;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .pill-btn:hover {
-      border-color: #000000;
-      transform: translateY(-1px);
-    }
-
-    .circle-btn {
-      border: 1px solid #D1D1D1;
-      border-radius: 9999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, background-color 0.25s ease;
-    }
-    .circle-btn:hover {
-      border-color: #000;
-      transform: scale(1.08);
-      background-color: #f0f0f0;
-    }
-
-
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
-      gap: 2px;
-      padding: 3px;
-      border-radius: 9999px;
-      border: 1px solid #E2E2E2;
-      background: rgba(255,255,255,0.95);
-    }
-    .lang-switch button {
-      min-width: 1.75rem;
-      height: 1.6rem;
-      padding: 0 0.35rem;
-      border-radius: 9999px;
-      border: 1px solid transparent;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      line-height: 1;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
-    @media (min-width: 640px) {
-      .lang-switch button {
-        min-width: 2rem;
-        height: 1.75rem;
-        padding: 0 0.45rem;
-      }
-    }
-    @media (max-width: 639px) {
-      .brand-logo__word { font-size: 1rem; }
-      .brand-logo__mark { width: 2rem; height: 2rem; }
-    }
-
-    /* Accordion — height via grid (no max-height jump, no scale shake) */
-    .accordion-item {
-      transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, color 0.35s ease;
-    }
-    .accordion-content {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .accordion-content-inner {
-      overflow: hidden;
-      min-height: 0;
-      opacity: 0;
-      padding-top: 0;
-      transform: translateY(-4px);
-      transition:
-        opacity 0.28s ease 0.05s,
-        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-        padding-top 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .accordion-item.active .accordion-content {
-      grid-template-rows: 1fr;
-    }
-    .accordion-item.active .accordion-content-inner {
-      opacity: 1;
-      transform: translateY(0);
-      padding-top: 1rem;
-    }
-    .accordion-item .item-icon {
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
-    }
-    /* Services — 2-col accordion (right panel only; portrait stays left) */
-    .services-accordion {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.5rem;
-    }
-    @media (min-width: 768px) {
-      .services-accordion {
-        grid-template-columns: 1fr 1fr;
-        align-items: start;
-      }
-      .services-accordion .accordion-item.active {
-        grid-column: 1 / -1;
-      }
-    }
-    .services-accordion .accordion-item {
-      padding: 0.7rem 0.95rem;
-      border-radius: 1.1rem;
-    }
-    .services-accordion .accordion-item.active .accordion-content-inner {
-      padding-top: 0.7rem;
-    }
-    .services-content-head {
-      margin-bottom: 1.1rem;
-    }
-    @media (min-width: 1024px) {
-      .services-shell {
-        min-height: 670px;
-        overflow: hidden;
-      }
-      .services-content {
-        padding-top: 0.5rem;
-        padding-bottom: 1.25rem;
-      }
-    }
-
-    /* Selected Works — Bento archive + Mask Curtain reveal */
-    .projects-bento-tile {
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
-    }
-    .projects-bento-tile:hover {
-      transform: translateY(-2px);
-      border-color: #0D0D0D;
-    }
-    .projects-bento-tile .bento-motion {
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      overflow: hidden;
-      clip-path: inset(0 100% 0 0);
-      transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-      transition-delay: calc(var(--stagger, 0) * 80ms);
-      will-change: clip-path;
-    }
-    .projects-bento-tile.is-in .bento-motion {
-      clip-path: inset(0 0% 0 0);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .projects-bento-tile .bento-motion {
-        clip-path: none;
-        transition: none;
-      }
-    }
-    /* AVAZOV watermark — viewport-centered sticky across projects + startups;
-       grid-stacked + overflow clip so it never bleeds into Talk */
-    .works-sticky-shell {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      overflow: clip;
-    }
-    .works-watermark,
-    .works-sticky-content {
-      grid-column: 1;
-      grid-row: 1;
-    }
-    .works-stroke {
-      -webkit-text-stroke: 1.5px rgb(13 13 13 / 0.12);
-      color: transparent;
-      user-select: none;
-      pointer-events: none;
-    }
-    .works-watermark {
-      position: sticky;
-      top: 0;
-      z-index: 0;
-      align-self: start;
-      height: 100vh;
-      height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-    }
-    .works-watermark span {
-      display: block;
-      font-size: clamp(120px, 28vw, 420px);
-      line-height: 0.85;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      text-align: center;
-    }
-    .works-sticky-content {
-      position: relative;
-      z-index: 1;
-    }
-    #projects-bento,
-    #landing-case-strip {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Landing — Case strip + Split Arrive reveal */
-    .landing-case-row {
-      transition: border-color 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .landing-case-row.is-in:hover {
-      border-color: #0D0D0D;
-      transform: translateY(-2px);
-    }
-    .landing-case-row .landing-case-media,
-    .landing-case-row .landing-case-copy {
-      opacity: 0;
-      transition:
-        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      transition-delay: calc(var(--stagger, 0) * 110ms);
-      will-change: transform, opacity;
-    }
-    .landing-case-row .landing-case-media {
-      transform: translate3d(-36px, 0, 0);
-    }
-    .landing-case-row .landing-case-copy {
-      transform: translate3d(36px, 0, 0);
-    }
-    .landing-case-row.is-flip .landing-case-media {
-      transform: translate3d(36px, 0, 0);
-    }
-    .landing-case-row.is-flip .landing-case-copy {
-      transform: translate3d(-36px, 0, 0);
-    }
-    .landing-case-row.is-in .landing-case-media,
-    .landing-case-row.is-in .landing-case-copy {
-      opacity: 1;
-      transform: none;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .landing-case-row .landing-case-media,
-      .landing-case-row .landing-case-copy {
-        opacity: 1;
-        transform: none;
-        transition: none;
-      }
-    }
-
-    /* Talk stage — flat black background (no radial card panel) */
-    .talk-shell {
-      --talk-ink: #ffffff;
-      --talk-soft: #a3a3a3;
-      width: 100%;
-      background: #0D0D0D;
-      padding: 0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-    @media (min-width: 1024px) {
-      .talk-shell { padding: 0; }
-    }
-    .talk-stage {
-      position: relative;
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      overflow: hidden;
-      color: var(--talk-ink);
-      background: transparent;
-      padding: 3.5rem 1.5rem 0;
-      display: flex;
-      flex-direction: column;
-    }
-    @media (min-width: 768px) {
-      .talk-stage { padding: 4rem 3.5rem 0; }
-    }
-    @media (min-width: 1024px) {
-      .talk-stage {
-        min-height: 740px;
-        padding-bottom: 0;
-      }
-    }
-    .talk-inner {
-      position: relative;
-      z-index: 2;
-      order: 1;
-      width: 100%;
-    }
-    @media (min-width: 1024px) {
-      .talk-inner {
-        order: 0;
-        padding-left: 440px;
-        min-height: 740px;
-        display: flex;
-        align-items: center;
-      }
-    }
-    .talk-stroke {
-      -webkit-text-stroke: 1.5px rgb(255 255 255 / 0.1);
-      color: transparent;
-      user-select: none;
-      pointer-events: none;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
-    }
-    .talk-accent { color: #fff; }
-    .talk-btn-primary {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .85rem 1.75rem; border-radius: 999px;
-      background: #fff; color: #0D0D0D;
-      font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
-      transition: background .2s, transform .2s, box-shadow .2s;
-      box-shadow: 0 8px 24px rgba(0,0,0,.25);
-    }
-    .talk-btn-primary:hover {
-      background: #e5e5e5;
-      transform: scale(1.05);
-      box-shadow: 0 12px 28px rgba(0,0,0,.35);
-    }
-    .talk-btn-primary:active { transform: scale(0.97); }
-    .talk-btn-outline {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .85rem 1.5rem; border-radius: 999px;
-      border: 1px solid #404040; color: #d4d4d4;
-      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-      transition: border-color .2s, background .2s, color .2s, transform .2s;
-    }
-    .talk-btn-outline:hover {
-      border-color: #a3a3a3;
-      color: #fff;
-      background: rgba(255,255,255,.04);
-      transform: scale(1.05);
-    }
-    .talk-btn-outline:active { transform: scale(0.97); }
-    .talk-deco { display: none; }
-    /* Talk portrait — absolute bottom:0 of stage (true flush) */
-    .talk-portrait {
-      pointer-events: none;
-      position: relative;
-      z-index: 1;
-      height: 380px;
-      width: 100%;
-      order: 2;
-      margin: 0;
-    }
-    @media (min-width: 640px) {
-      .talk-portrait { height: 420px; }
-    }
-    @media (min-width: 1024px) {
-      .talk-portrait {
-        position: absolute;
-        left: 3.5rem;
-        top: auto;
-        bottom: 0;
-        width: 380px;
-        /* talk portrait only — larger */
-        height: 760px;
-        width: 420px;
-        order: 0;
-        margin: 0;
-        z-index: 1;
-      }
-    }
-    .talk-portrait__glow {
-      display: none;
-    }
-    .talk-portrait img {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      transform: translateX(-50%);
-      height: 100%;
-      width: auto;
-      max-width: none;
-      object-fit: contain;
-      object-position: bottom center;
-      filter: drop-shadow(-12px 0 24px rgba(0,0,0,.35));
-      display: block;
-    }
-    .talk-copy {
-      position: relative;
-      z-index: 2;
-      min-width: 0;
-      order: 1;
-      padding-bottom: 1.25rem;
-    }
-    @media (min-width: 1024px) {
-      .talk-copy {
-        order: 0;
-        padding-top: 1rem;
-        padding-bottom: 2.5rem;
-        max-width: 36rem;
-      }
-    }
-
-    /* Services: portrait absolute bottom:0 of shell */
-    .services-shell {
-      position: relative;
-      overflow: hidden;
-      padding-top: 2.5rem;
-      padding-bottom: 0;
-      display: flex;
-      flex-direction: column;
-    }
-    @media (min-width: 1024px) {
-      .services-shell { min-height: 670px; padding-top: 1.25rem; }
-    }
-    .services-inner {
-      position: relative;
-      z-index: 2;
-      order: 1;
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-    @media (min-width: 768px) {
-      .services-inner { padding: 0 3.5rem; }
-    }
-    @media (min-width: 1024px) {
-      .services-inner {
-        order: 0;
-        padding-left: calc(3.5rem + 400px);
-        min-height: 670px;
-        display: flex;
-        align-items: center;
-      }
-    }
-    .services-portrait {
-      pointer-events: none;
-      position: relative;
-      z-index: 1;
-      height: 380px;
-      width: 100%;
-      order: 2;
-      margin: 0;
-    }
-    @media (min-width: 640px) {
-      .services-portrait { height: 420px; }
-    }
-    @media (min-width: 1024px) {
-      .services-portrait {
-        position: absolute;
-        left: max(1.5rem, calc((100% - 1400px) / 2 + 3.5rem));
-        top: auto;
-        bottom: 0;
-        width: 380px;
-        /* locked to previous full-section visual size, not scaled with page */
-        height: 620px;
-        order: 0;
-        margin: 0;
-        z-index: 1;
-      }
-    }
-    .services-portrait__glow {
-      display: none;
-    }
-    .services-portrait img {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      transform: translateX(-50%);
-      height: 100%;
-      width: auto;
-      max-width: none;
-      object-fit: contain;
-      object-position: bottom center;
-      filter: drop-shadow(-12px 0 24px rgba(0,0,0,.35));
-      display: block;
-    }
-    .services-content {
-      position: relative;
-      z-index: 2;
-      min-width: 0;
-      order: 1;
-      padding-bottom: 1.25rem;
-    }
-    @media (min-width: 1024px) {
-      .services-content {
-        order: 0;
-        padding-top: 1rem;
-        padding-bottom: 2.5rem;
-        align-self: center;
-      }
-    }
-
-    /* AVAZOV logo — black-hole mark + wordmark (site DNA, no gold box) */
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      text-decoration: none;
-      color: #0D0D0D;
-      user-select: none;
-    }
-    .brand-logo__mark {
-      display: flex;
-      width: 2.35rem;
-      height: 2.35rem;
-      align-items: center;
-      justify-content: center;
-      color: #0D0D0D;
-      background: transparent;
-      flex-shrink: 0;
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .brand-logo:hover .brand-logo__mark { transform: rotate(12deg); }
-    .brand-logo__mark svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .brand-logo__word {
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      color: #0D0D0D;
-      line-height: 1;
-    }
-    .brand-logo__tag {
-      display: none;
-    }
-
-    /* Site cursor */
-    html.has-site-cursor,
-    html.has-site-cursor * { cursor: none !important; }
-    html.has-site-cursor input,
-    html.has-site-cursor textarea,
-    html.has-site-cursor select,
-    html.has-site-cursor [contenteditable="true"] { cursor: text !important; }
-    .site-cursor {
-      pointer-events: none;
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      opacity: 0;
-      transition: opacity .35s;
-      mix-blend-mode: difference;
-    }
-    .site-cursor__dot {
-      position: absolute;
-      top: 0; left: 0;
-      width: 10px; height: 10px;
-      border-radius: 999px;
-      background: #fff;
-      will-change: transform;
-    }
-    .site-cursor__ring {
-      position: absolute;
-      top: 0; left: 0;
-      width: 36px; height: 36px;
-      border-radius: 999px;
-      border: 1.5px solid #fff;
-      will-change: transform;
-    }
-
-    /* Toast animation */
-    .toast-enter {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    .toast-active {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  </style>
 </head>
 <body class="antialiased text-[#111] bg-[#FAFAFA]">
 
@@ -1132,6 +262,14 @@
           <span class="metallic-title">OGABEK</span>
         </span>
       </h1>
+      <p class="mt-3 md:mt-4 text-[11px] md:text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500" data-i18n="hero.roleLine">
+        UI/UX dizayner &amp; full-stack · Toshkent
+      </p>
+      <div class="mt-5 md:mt-6 flex justify-center hero-reveal" style="--hero-delay: 140ms">
+        <a data-cursor-grow href="start.html" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black text-white text-[11px] font-bold uppercase tracking-widest hover:bg-neutral-800 transition" data-i18n="hero.ctaPrimary">
+          Bog‘lanish
+        </a>
+      </div>
     </div>
 
     <!-- Center Headshot & Symmetrical Content Grid -->
@@ -1176,10 +314,14 @@
       <!-- Center Column: Stylized Black and White Headshot (in front of text) -->
       <div class="md:col-span-6 flex justify-center order-1 md:order-2 relative z-10 -mt-16 md:-mt-36 overflow-visible hero-reveal hero-reveal--portrait" style="--hero-delay: 120ms">
         <div class="hero-portrait-slot relative w-full max-w-[320px] h-[400px] md:max-w-none md:w-[480px] md:h-[580px]">
-          <img src="assets/hero_portrait.png?v=7"
-               alt="Avazov Ogabek — Developer & Designer"
-               class="hero-portrait-mask absolute pointer-events-none select-none transition-transform duration-700"
-               decoding="async">
+          <picture class="contents">
+            <source type="image/webp" srcset="assets/hero_portrait.webp?v=1">
+            <img src="assets/hero_portrait.png?v=7"
+                 alt="Avazov Ogabek — Developer & Designer"
+                 class="hero-portrait-mask absolute pointer-events-none select-none transition-transform duration-700"
+                 decoding="async"
+                 fetchpriority="high">
+          </picture>
         </div>
       </div>
 
@@ -1274,22 +416,28 @@
             <!-- Media: black stage + new portrait (seamless dark UI) -->
             <div class="relative w-full h-full overflow-hidden rounded-xl flex items-center justify-center bg-black">
               <!-- Crisp Base Image (GPU accelerated) -->
-              <img
-                id="sem-media-img"
-                src="assets/about_media_portrait.jpg?v=3"
-                alt="Avazov Ogabek — Developer & Designer"
-                class="w-full h-full object-cover object-[center_22%] rounded-xl transition-none"
-                style="transform: scale(1.02) translateZ(0); transform-origin: center; backface-visibility: hidden;"
-              />
+              <picture class="contents">
+                <source type="image/webp" srcset="assets/about_media_portrait.webp?v=1">
+                <img
+                  id="sem-media-img"
+                  src="assets/about_media_portrait.jpg?v=3"
+                  alt="Avazov Ogabek — Developer & Designer"
+                  class="w-full h-full object-cover object-[center_22%] rounded-xl transition-none"
+                  style="transform: scale(1.02) translateZ(0); transform-origin: center; backface-visibility: hidden;"
+                />
+              </picture>
               <!-- Pre-blurred Layer for 120 FPS GPU-accelerated Unblur (fades out opacity smoothly on scroll) -->
-              <img
-                id="sem-media-blur"
-                src="assets/about_media_portrait.jpg?v=3"
-                alt=""
-                aria-hidden="true"
-                class="absolute inset-0 w-full h-full object-cover object-[center_22%] rounded-xl transition-none pointer-events-none"
-                style="filter: blur(18px); transform: scale(1.08) translateZ(0); transform-origin: center; opacity: 1; will-change: opacity; backface-visibility: hidden;"
-              />
+              <picture class="contents">
+                <source type="image/webp" srcset="assets/about_media_portrait.webp?v=1">
+                <img
+                  id="sem-media-blur"
+                  src="assets/about_media_portrait.jpg?v=3"
+                  alt=""
+                  aria-hidden="true"
+                  class="absolute inset-0 w-full h-full object-cover object-[center_22%] rounded-xl transition-none pointer-events-none"
+                  style="filter: blur(18px); transform: scale(1.08) translateZ(0); transform-origin: center; opacity: 1; will-change: opacity; backface-visibility: hidden;"
+                />
+              </picture>
               <!-- Subtle Gradient Overlay: protects top/bottom legibility while keeping the center 100% transparent -->
               <div id="sem-media-overlay" class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 rounded-xl transition-opacity duration-150 pointer-events-none"></div>
 
@@ -1982,11 +1130,11 @@
   <div id="cart-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
     <div id="cart-modal-card" class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl transform scale-95 transition-transform duration-300">
       <div class="flex justify-between items-center border-b border-neutral-200 pb-4 mb-4">
-        <h3 class="text-lg font-black uppercase text-neutral-900" data-i18n="cart.title">SAVAT</h3>
+        <h3 class="text-lg font-black uppercase text-neutral-900" data-i18n="cart.title">BUYURTMA</h3>
         <button onclick="closeCartModal()" class="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-600 hover:border-black hover:text-black">✕</button>
       </div>
       <div id="cart-items" class="py-4 space-y-3 min-h-[120px] max-h-[300px] overflow-y-auto">
-        <p class="text-xs text-neutral-400 text-center py-8" data-i18n="cart.empty">Savat bo‘sh.</p>
+        <p class="text-xs text-neutral-400 text-center py-8" data-i18n="cart.empty">Buyurtma bo‘sh.</p>
       </div>
       <div class="border-t border-neutral-200 pt-4 mt-2">
         <div class="flex justify-between items-center font-bold text-sm mb-4">
@@ -1994,7 +1142,7 @@
           <span id="cart-total">$0.00</span>
         </div>
         <button onclick="checkoutCart()" class="w-full py-3 bg-black text-white rounded-xl text-xs font-bold tracking-widest uppercase hover:bg-neutral-800 transition" data-i18n="cart.checkout">
-          TO‘LOVGA O‘TISH
+          BUYURTMA BERISH
         </button>
       </div>
     </div>
@@ -2339,7 +1487,7 @@
       const list = document.getElementById('cart-items');
       const totalEl = document.getElementById('cart-total');
       if (cart.length === 0) {
-        const empty = window.EchoI18n ? window.EchoI18n.t('cart.empty') : 'Savat bo‘sh.';
+        const empty = window.EchoI18n ? window.EchoI18n.t('cart.empty') : 'Buyurtma bo‘sh.';
         list.innerHTML = `<p class="text-xs text-neutral-400 text-center py-8" data-i18n="cart.empty">${empty}</p>`;
         totalEl.innerText = '$0.00';
       } else {

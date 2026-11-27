@@ -117,7 +117,7 @@ export function mountCenters(root, opts = {}) {
     <div id="scene"><div id="ring"></div></div>
     <div id="ctitle">
       <div class="ceyebrow" data-i18n="centers.eyebrow">YO‘NALISHLAR</div>
-      <h1 data-i18n="centers.title">Ish maydonlarim</h1>
+      <h2 data-i18n="centers.title">Ish maydonlarim</h2>
       <p class="cser" data-i18n="centers.sub" data-i18n-html>har bir yo‘nalish qanday ko‘rinadi, <i>ish o‘zi yurganda</i></p>
     </div>
     <button class="wchev" id="wchev-l" type="button" data-i18n-aria="centers.prev" aria-label="Oldingi"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 11 3 L 4 11 L 11 19"/></svg></button>
