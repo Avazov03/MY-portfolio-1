@@ -298,12 +298,12 @@ export const PROJECTS = [
   },
   {
     id: 'avazovTeam',
-    title: 'AVAZOV Team',
+    title: 'LAW TEAM',
     subtitle: 'Jamoa studio sayti',
     tag: 'Web',
     year: '2026',
     description:
-      'AVAZOV Team — dizayn, dasturlash va mahsulot jamoasi uchun studio sayt. Portfolio, xizmatlar, jamoa va aloqa — bitta brend ostida. Live: team.zonic.fit.',
+      'LAW TEAM — dizayn, dasturlash va mahsulot jamoasi uchun studio sayt. Portfolio, xizmatlar, jamoa va aloqa — bitta brend ostida. Live: team.zonic.fit.',
     src: 'assets/projects/avazov-team.png',
     link: 'https://team.zonic.fit/',
     tools: ['Web', 'Studio', 'UI/UX'],
