@@ -117,12 +117,12 @@ export function mountCenters(root, opts = {}) {
     <div id="scene"><div id="ring"></div></div>
     <div id="ctitle">
       <div class="ceyebrow" data-i18n="centers.eyebrow">YO‘NALISHLAR</div>
-      <h2 data-i18n="centers.title">Ish maydonlarim</h2>
+      <h1 data-i18n="centers.title">Ish maydonlarim</h1>
       <p class="cser" data-i18n="centers.sub" data-i18n-html>har bir yo‘nalish qanday ko‘rinadi, <i>ish o‘zi yurganda</i></p>
     </div>
     <button class="wchev" id="wchev-l" type="button" data-i18n-aria="centers.prev" aria-label="Oldingi"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 11 3 L 4 11 L 11 19"/></svg></button>
     <button class="wchev" id="wchev-r" type="button" data-i18n-aria="centers.next" aria-label="Keyingi"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 3 3 L 10 11 L 3 19"/></svg></button>
-    <div id="chint" data-i18n="centers.hint">sudrab aylantiring · batafsil uchun oldingi kartani bosing</div>
+    <div id="chint" data-i18n="centers.hint">o‘zi aylanadi · sudrab to‘xtating · batafsil uchun oldingi kartani bosing</div>
     <div id="dashview"><div class="dwrap" id="dwrap"></div></div>`;
 
   let openId = null;
@@ -239,14 +239,23 @@ export function mountCenters(root, opts = {}) {
   function closeDash() {
     openId = null;
     root.classList.remove('is-open');
+    if (!hovering && !cDragging) autoPaused = false;
   }
   $('#back').addEventListener('click', closeDash);
+
+  /* team.zonic.fit kabi sekin auto-rotate; hover/drag = pauza */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const AUTO_DEG = 0.12;
+  let autoPaused = reduceMotion;
+  let hovering = false;
+  let resumeTimer = 0;
 
   let cDragging = false, cDragDist = 0, cLastX = 0, cOriginX = 0, cOriginY = 0, cIdle = null, cFlickV = 0, cFlickT = 0, cAxis = null;
   root.addEventListener('pointerdown', (e) => {
     if (root.classList.contains('is-open')) return;
     if (e.target.closest('.wchev, #back, #dashview')) return;
     cDragging = true; cDragDist = 0; cAxis = null;
+    autoPaused = true;
     cLastX = cOriginX = e.clientX; cOriginY = e.clientY;
     cFlickV = 0; cFlickT = performance.now();
   });
@@ -280,20 +289,46 @@ export function mountCenters(root, opts = {}) {
     cDragging = false;
     cAxis = null;
     root.classList.remove('is-panning');
+    if (!hovering && !root.classList.contains('is-open') && !reduceMotion) {
+      window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => { if (!hovering) autoPaused = false; }, 1600);
+    }
   }
   root.addEventListener('pointerup', endDrag);
   root.addEventListener('pointercancel', endDrag);
 
-  $('#wchev-l').addEventListener('click', () => { cwT = Math.round(cwT / C_STEP) * C_STEP + C_STEP; });
-  $('#wchev-r').addEventListener('click', () => { cwT = Math.round(cwT / C_STEP) * C_STEP - C_STEP; });
+  function nudge(dir) {
+    autoPaused = true;
+    cwT = Math.round(cwT / C_STEP) * C_STEP + dir * C_STEP;
+    window.clearTimeout(resumeTimer);
+    resumeTimer = window.setTimeout(() => { if (!hovering && !reduceMotion) autoPaused = false; }, 2200);
+  }
+  $('#wchev-l').addEventListener('click', () => nudge(1));
+  $('#wchev-r').addEventListener('click', () => nudge(-1));
+
+  function pauseAuto(snap) {
+    hovering = true;
+    autoPaused = true;
+    if (snap) cwT = Math.round(cwA / C_STEP) * C_STEP;
+  }
+  function resumeAuto() {
+    hovering = false;
+    if (!cDragging && !root.classList.contains('is-open') && !reduceMotion) autoPaused = false;
+  }
+  ring.addEventListener('pointerenter', () => pauseAuto(true));
+  ring.addEventListener('pointerleave', resumeAuto);
 
   if (page) {
     root.addEventListener('wheel', (e) => {
       if (root.classList.contains('is-open')) return;
       e.preventDefault();
+      autoPaused = true;
       cwT += (e.deltaX || e.deltaY) * -0.08;
       clearTimeout(cIdle);
-      cIdle = setTimeout(() => { cwT = Math.round(cwT / C_STEP) * C_STEP; }, 240);
+      cIdle = setTimeout(() => {
+        cwT = Math.round(cwT / C_STEP) * C_STEP;
+        if (!hovering && !reduceMotion) autoPaused = false;
+      }, 240);
     }, { passive: false });
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') { closeDash(); return; }
@@ -304,7 +339,15 @@ export function mountCenters(root, opts = {}) {
   }
 
   function tick() {
-    if (Math.abs(cwT - cwA) > 0.01) {
+    if (!root.isConnected) return;
+    const open = root.classList.contains('is-open');
+    if (open) autoPaused = true;
+
+    if (!autoPaused && !cDragging && !open && root.clientWidth >= 700) {
+      cwA -= AUTO_DEG;
+      cwT = cwA;
+      layoutC();
+    } else if (Math.abs(cwT - cwA) > 0.01) {
       cwA += (cwT - cwA) * 0.14;
       layoutC();
     }
