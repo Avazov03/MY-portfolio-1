@@ -108,7 +108,11 @@ def page_html(p: dict) -> str:
     overview, approach, outcome = case_sections(p)
     links = []
     if p.get("link"):
-        links.append(f'<a class="btn" href="{escape(p["link"])}" target="_blank" rel="noopener">Jonli sayt ↗</a>')
+        live = p["link"]
+        # Site-relative links (e.g. admin-404.html) must resolve from the site root, not /projects/
+        if not live.startswith(("http://", "https://", "/")):
+            live = "/" + live
+        links.append(f'<a class="btn" href="{escape(live)}" target="_blank" rel="noopener">Jonli sayt ↗</a>')
     if p.get("playStore"):
         links.append(f'<a class="btn btn-ghost" href="{escape(p["playStore"])}" target="_blank" rel="noopener">Google Play</a>')
     if p.get("appStore"):
