@@ -3,34 +3,158 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://avazov-dev.uz/</loc>
-    <lastmod>2026-11-24</lastmod>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/?lang=uz"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://avazov-dev.uz/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://avazov-dev.uz/?lang=ru"/>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avazov-dev.uz/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://avazov-dev.uz/ru/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://avazov-dev.uz/"/>
   </url>
   <url>
     <loc>https://avazov-dev.uz/bio.html</loc>
-    <lastmod>2026-11-24</lastmod>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/bio.html?lang=uz"/>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/bio.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://avazov-dev.uz/bio.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://avazov-dev.uz/bio.html?lang=ru"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://avazov-dev.uz/bio.html"/>
   </url>
   <url>
     <loc>https://avazov-dev.uz/centers.html</loc>
-    <lastmod>2026-11-24</lastmod>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/centers.html?lang=uz"/>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/centers.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://avazov-dev.uz/centers.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://avazov-dev.uz/centers.html?lang=ru"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://avazov-dev.uz/centers.html"/>
   </url>
   <url>
     <loc>https://avazov-dev.uz/start.html</loc>
-    <lastmod>2026-11-24</lastmod>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/start.html?lang=uz"/>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://avazov-dev.uz/start.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://avazov-dev.uz/start.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://avazov-dev.uz/start.html?lang=ru"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://avazov-dev.uz/start.html"/>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/en/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/ru/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/lawlab.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/zonic.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/eResearcher.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/openTsul.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/yuristAi.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/yuristAi2.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/agroExport.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/tdyuEndowment.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/hotelSite.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/cosmetologist.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/lexify.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/markazdaKitobxon.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/normaCheck.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/buildContract.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/avazoffLanding.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/myAdvocate.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/avazovPortfolio.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/locme.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/zonicAdmin.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/diemp.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/uzexInsight.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/travelUz.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/cafe.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/designStudio.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/photographer.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/portfolioDesign.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/portfolioWebsite.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://avazov-dev.uz/projects/senCruzo.html</loc>
+    <lastmod>2026-11-27</lastmod>
   </url>
 </urlset>
