@@ -218,6 +218,8 @@ export const translations = {
     'footer.twitter': 'TWITTER',
     'footer.linkedin': 'LINKEDIN',
     'footer.github': 'GITHUB',
+    'footer.insights': 'INSIGHTS',
+    'footer.projects': 'LOYIHALAR',
     'footer.contactMe': 'MEN BILAN ALOQA',
     'btt.aria': 'Yuqoriga qaytish',
 
@@ -584,6 +586,8 @@ export const translations = {
     'footer.twitter': 'TWITTER',
     'footer.linkedin': 'LINKEDIN',
     'footer.github': 'GITHUB',
+    'footer.insights': 'INSIGHTS',
+    'footer.projects': 'PROJECTS',
     'footer.contactMe': 'CONTACT ME',
     'btt.aria': 'Back to top',
 
@@ -950,6 +954,8 @@ export const translations = {
     'footer.twitter': 'TWITTER',
     'footer.linkedin': 'LINKEDIN',
     'footer.github': 'GITHUB',
+    'footer.insights': 'INSIGHTS',
+    'footer.projects': 'ПРОЕКТЫ',
     'footer.contactMe': 'СВЯЗАТЬСЯ',
     'btt.aria': 'Наверх',
 

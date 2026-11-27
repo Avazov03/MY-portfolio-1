@@ -69,6 +69,33 @@ def parse_projects(text: str) -> list[dict]:
         return projects
 
 
+def case_sections(p: dict) -> tuple[str, str, str]:
+    """Build Overview / Approach / Outcome copy from project fields."""
+    title = p.get("title") or "Loyiha"
+    sub = (p.get("subtitle") or "").strip()
+    desc = (p.get("description") or sub or title).strip()
+    tag = (p.get("tag") or "Product").strip()
+    tools = p.get("tools") or []
+    tool_line = ", ".join(tools[:5]) if tools else "dizayn va development"
+
+    overview = desc
+    if sub and sub.lower() not in desc.lower():
+        overview = f"{sub}. {desc}"
+
+    approach = (
+        f"{title} uchun {tag.lower()} yechimi sifatida interfeys, kontent ierarxiyasi "
+        f"va texnik stack ({tool_line}) birgalikda ishlab chiqildi — "
+        f"foydalanuvchi birinchi qadamdan maqsadni tushunishi uchun."
+    )
+    outcome = (
+        f"Natija — ishlaydigan, brendga mos mahsulot sahifasi: tez yuklanish, "
+        f"aniq CTA va qidiruv tizimlari uchun ochiq case hujjat."
+    )
+    if p.get("link") or p.get("playStore") or p.get("appStore"):
+        outcome += " Jonli versiya yoki store havolasi pastda."
+    return overview, approach, outcome
+
+
 def page_html(p: dict) -> str:
     img = p.get("modalSrc") or p.get("src") or ""
     img_abs = f"https://avazov-dev.uz/{img.lstrip('./')}" if img else "https://avazov-dev.uz/assets/og-avazov.jpg"
@@ -78,6 +105,7 @@ def page_html(p: dict) -> str:
     desc = p.get("description") or sub
     tools = p.get("tools") or []
     url = f"https://avazov-dev.uz/projects/{p['id']}.html"
+    overview, approach, outcome = case_sections(p)
     links = []
     if p.get("link"):
         links.append(f'<a class="btn" href="{escape(p["link"])}" target="_blank" rel="noopener">Jonli sayt ↗</a>')
@@ -86,13 +114,14 @@ def page_html(p: dict) -> str:
     if p.get("appStore"):
         links.append(f'<a class="btn btn-ghost" href="{escape(p["appStore"])}" target="_blank" rel="noopener">App Store</a>')
     tools_html = "".join(f"<li>{escape(t)}</li>" for t in tools)
+    meta_desc = (desc or sub or title)[:155]
     return f"""<!DOCTYPE html>
 <html lang="uz">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{escape(title)} — case | Og‘abek Avazov</title>
-  <meta name="description" content="{escape(desc[:160])}">
+  <title>{escape(title)} — case study | Og‘abek Avazov</title>
+  <meta name="description" content="{escape(meta_desc)}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="{url}">
   <link rel="icon" href="../assets/favicon-avazov.svg?v=bw1" type="image/svg+xml">
@@ -100,9 +129,11 @@ def page_html(p: dict) -> str:
   <meta property="og:site_name" content="AVAZOV">
   <meta property="og:url" content="{url}">
   <meta property="og:title" content="{escape(title)} — Og‘abek Avazov">
-  <meta property="og:description" content="{escape(desc[:160])}">
+  <meta property="og:description" content="{escape(meta_desc)}">
   <meta property="og:image" content="{escape(img_abs)}">
+  <meta property="og:image:alt" content="{escape(title)}">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{escape(img_abs)}">
   <script type="application/ld+json">
   {json.dumps({
     "@context": "https://schema.org",
@@ -116,27 +147,30 @@ def page_html(p: dict) -> str:
     "keywords": tools,
   }, ensure_ascii=False, indent=2)}
   </script>
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=seo3">
   <link rel="stylesheet" href="../assets/css/tailwind.css?v=seo2">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     body {{ font-family: "Plus Jakarta Sans", system-ui, sans-serif; background:#FAFAFA; color:#111; margin:0; }}
-    .wrap {{ max-width: 920px; margin: 0 auto; padding: 28px 20px 64px; }}
+    .wrap {{ max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }}
     .crumb {{ font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color:#737373; }}
     .crumb a {{ color: inherit; text-decoration: none; }}
     .crumb a:hover {{ color:#111; }}
-    h1 {{ margin: 14px 0 8px; font-size: clamp(28px, 5vw, 44px); font-weight: 900; letter-spacing: -.03em; text-transform: uppercase; line-height: 1; }}
+    h1 {{ margin: 14px 0 8px; font-size: clamp(28px, 5vw, 44px); font-weight: 800; letter-spacing: -.03em; text-transform: uppercase; line-height: 1; }}
     .sub {{ color:#525252; font-size: 15px; line-height: 1.5; }}
     .meta {{ margin-top: 14px; display:flex; flex-wrap:wrap; gap:8px; }}
     .chip {{ font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; border:1px solid #e5e5e5; border-radius:999px; padding:6px 10px; color:#525252; }}
     .cover {{ margin-top: 28px; border-radius: 20px; overflow:hidden; border:1px solid #e5e5e5; background:#0d0d0d; aspect-ratio: 16/10; }}
     .cover img {{ width:100%; height:100%; object-fit:cover; display:block; }}
-    .body {{ margin-top: 28px; font-size: 16px; line-height: 1.7; color:#333; }}
-    .tools {{ margin-top: 28px; }}
-    .tools h2 {{ font-size:12px; letter-spacing:.16em; text-transform:uppercase; margin:0 0 10px; }}
-    .tools ul {{ margin:0; padding-left: 18px; color:#404040; }}
-    .actions {{ margin-top: 32px; display:flex; flex-wrap:wrap; gap:10px; }}
+    .sections {{ margin-top: 36px; display:grid; gap:28px; }}
+    .sec h2 {{ font-size:12px; letter-spacing:.16em; text-transform:uppercase; margin:0 0 10px; color:#737373; }}
+    .sec p {{ margin:0; font-size:16px; line-height:1.7; color:#333; }}
+    .tools {{ margin-top: 8px; }}
+    .tools ul {{ margin:0; padding-left: 18px; color:#404040; line-height:1.7; }}
+    .actions {{ margin-top: 36px; display:flex; flex-wrap:wrap; gap:10px; }}
     .btn {{ display:inline-flex; align-items:center; padding:12px 18px; border-radius:999px; background:#0d0d0d; color:#fff; text-decoration:none; font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }}
     .btn-ghost {{ background:#fff; color:#0d0d0d; border:1px solid #e5e5e5; }}
+    .more {{ margin-top: 48px; padding-top: 28px; border-top:1px solid #e5e5e5; }}
+    .more a {{ color:#111; font-weight:700; font-size:13px; }}
   </style>
 </head>
 <body>
@@ -147,16 +181,31 @@ def page_html(p: dict) -> str:
     <div class="meta">
       <span class="chip">{escape(p.get("tag") or "Project")}</span>
       <span class="chip">{escape(str(p.get("year") or ""))}</span>
+      <span class="chip">Case study</span>
     </div>
     <div class="cover">
-      <img src="{escape(img_rel)}" alt="{escape(title)}" loading="eager" decoding="async">
+      <img src="{escape(img_rel)}" alt="{escape(title)} — loyiha preview" width="920" height="575" loading="eager" decoding="async" fetchpriority="high">
     </div>
-    <p class="body">{escape(desc)}</p>
-    {"<div class='tools'><h2>Stack / yo‘nalish</h2><ul>" + tools_html + "</ul></div>" if tools_html else ""}
+    <div class="sections">
+      <section class="sec">
+        <h2>Overview</h2>
+        <p>{escape(overview)}</p>
+      </section>
+      <section class="sec">
+        <h2>Yondashuv</h2>
+        <p>{escape(approach)}</p>
+      </section>
+      <section class="sec">
+        <h2>Natija</h2>
+        <p>{escape(outcome)}</p>
+      </section>
+      {"<section class='sec tools'><h2>Stack / yo‘nalish</h2><ul>" + tools_html + "</ul></section>" if tools_html else ""}
+    </div>
     <div class="actions">
       {''.join(links)}
-      <a class="btn btn-ghost" href="../start.html">Bog‘lanish</a>
+      <a class="btn btn-ghost" href="../start.html">O‘xshash loyiha uchun yozing</a>
     </div>
+    <p class="more"><a href="./">← Barcha loyihalar</a> · <a href="../insights/">Insights</a></p>
   </main>
 </body>
 </html>
@@ -186,12 +235,12 @@ def index_html(projects: list[dict]) -> str:
   <meta property="og:title" content="Loyihalar — Og‘abek Avazov">
   <meta property="og:url" content="https://avazov-dev.uz/projects/">
   <meta property="og:image" content="https://avazov-dev.uz/assets/og-avazov.jpg">
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=seo3">
   <link rel="stylesheet" href="../assets/css/tailwind.css?v=seo2">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     body {{ font-family:"Plus Jakarta Sans",system-ui,sans-serif; background:#FAFAFA; color:#111; margin:0; }}
     .wrap {{ max-width:1100px; margin:0 auto; padding:32px 20px 72px; }}
-    h1 {{ font-size:clamp(32px,6vw,52px); font-weight:900; letter-spacing:-.03em; text-transform:uppercase; margin:12px 0 8px; }}
+    h1 {{ font-size:clamp(32px,6vw,52px); font-weight:800; letter-spacing:-.03em; text-transform:uppercase; margin:12px 0 8px; }}
     .lead {{ color:#525252; max-width:42rem; }}
     .grid {{ margin-top:28px; display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); }}
     .card {{ display:block; border:1px solid #e5e5e5; border-radius:18px; padding:18px; background:#fff; text-decoration:none; color:inherit; transition:.2s; }}
@@ -200,16 +249,19 @@ def index_html(projects: list[dict]) -> str:
     .card h2 {{ margin:10px 0 6px; font-size:18px; font-weight:800; text-transform:uppercase; letter-spacing:-.02em; }}
     .card p {{ margin:0; color:#525252; font-size:13px; line-height:1.45; }}
     .back {{ font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#737373; text-decoration:none; }}
+    .links {{ margin-top:40px; font-size:13px; }}
+    .links a {{ color:#111; font-weight:700; margin-right:16px; }}
   </style>
 </head>
 <body>
   <main class="wrap">
     <a class="back" href="../">← Portfolio</a>
     <h1>Loyihalar</h1>
-    <p class="lead">Tanlangan web, mobile va AI case’lar — har biri alohida sahifa, qidiruv tizimlari uchun ochiq.</p>
+    <p class="lead">Tanlangan web, mobile va AI case’lar — har biri Overview / Yondashuv / Natija bilan ochiq case study.</p>
     <div class="grid">
       {''.join(cards)}
     </div>
+    <p class="links"><a href="../insights/">Insights →</a><a href="../start.html">Bog‘lanish</a></p>
   </main>
 </body>
 </html>
@@ -225,6 +277,10 @@ def write_sitemap(projects: list[dict]) -> None:
         ("https://avazov-dev.uz/en/", False),
         ("https://avazov-dev.uz/ru/", False),
         ("https://avazov-dev.uz/projects/", False),
+        ("https://avazov-dev.uz/insights/", False),
+        ("https://avazov-dev.uz/insights/landing-page-checklist.html", False),
+        ("https://avazov-dev.uz/insights/portfolio-seo-basics.html", False),
+        ("https://avazov-dev.uz/insights/mvp-design-to-deploy.html", False),
     ]
     for p in projects:
         urls.append((f"https://avazov-dev.uz/projects/{p['id']}.html", False))
